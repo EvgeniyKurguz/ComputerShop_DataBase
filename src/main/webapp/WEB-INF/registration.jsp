@@ -3,11 +3,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
-<link rel="stylesheet" href="style/style.css" type="text/css">
-<head>
 
+<head>
     <title>Страница регистрации</title>
+    <link rel="stylesheet" href="style/style.css" type="text/css">
 </head>
+
 <body>
 <form name="forma1">
     <table border="0" cellspacing="5" cellpadding="5">
@@ -43,15 +44,13 @@
         </tr>
         <tr>
             <td align="right" valign="top">Увлечения</td>
-            <td><select name="hobby" size="7" multiple>
+            <td><select name="hobby" size="6" multiple>
                 <option selected value="1">компьютеры
                 <option value="2">спорт
                 <option value="3">игры
-                <option value="4">животные
-                <option value="5">автомобили
-                <option value="6">клубы
-                <option value="7">музыка
-                <option value="7">наука
+                <option value="4">автомобили
+                <option value="5">музыка
+                <option value="6">наука
             </select>
             </td>
         </tr>
