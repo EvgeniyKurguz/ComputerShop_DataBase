@@ -1,10 +1,10 @@
-package com.epam.kurguz;
+package com.epam.kurguz.main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Main {
     public static void main(String[] args) {
-       Connection connection = DriverManager.getConnection();
+     //  Connection connection = DriverManager.getConnection();
     }
 }
