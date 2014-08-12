@@ -1,7 +1,8 @@
-body{
-    background-image: url("wpapersApple.jpg");
+body {
+    background-image: url(wpapersApple.jpg);
     background-repeat:  no-repeat;
-    background-color: #E6E6FA;
+    /*background-color: #E6E6FA;*/
+
 }
 
 h1 {
