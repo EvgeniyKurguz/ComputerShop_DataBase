@@ -11,8 +11,7 @@ body,td,th {
 }
 </style>
 <head>
-    <meta charset="utf-8">
-    <title>Компьютерный магазин</title>
+      <title>Компьютерный магазин</title>
     <%--<script type="text/javascript" src="javaScript/script.js"></script>--%>
 
     <script>
@@ -49,7 +48,7 @@ body,td,th {
           method="post" onSubmit="return validate(this)">
 
       <div class="header">
-        <h3 align="right">   <span><em><strong> Введите ваши регистрационные данные для входа в ваш личный кабинет. </strong></em></span></h3>
+        <h3 align="right">   <span><em><strong>  Вход в  личный кабинет. </strong></em></span></h3>
         <div class="content">
           <div align="right">	Имя: 
             <input name="username" type="text" class="input username" value="Логин" onFocus="this.value=''"/>
