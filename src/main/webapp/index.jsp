@@ -1,39 +1,19 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=utf-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 
 <link rel="stylesheet" href="style/style.css" type="text/css">
 
+<style type="text/css">
+body,td,th {
+	color: #000;
+}
+</style>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Компьютерный магазин</title>
     <%--<script type="text/javascript" src="javaScript/script.js"></script>--%>
-
-    <script language="JavaScript" type="text/javascript">
-        ns4 = (document.layers)? true:false
-        ie4 = (document.all)? true:false
-
-        function init() {
-            if (ns4) {document.captureEvents(Event.MOUSEMOVE);}
-            document.onmousemove=mousemove;
-        }
-        function mousemove(event) {
-
-            var mouse_x = y = 0;
-            if (document.attachEvent != null) {
-                mouse_x = window.event.clientX;
-                mouse_y = window.event.clientY;
-            } else if (!document.attachEvent && document.addEventListener) {
-                mouse_x = event.clientX;
-                mouse_y = event.clientY;
-            }
-            status="x = " + mouse_x + ", y = " + mouse_y;
-            document.getElementById('xy').innerHTML = "x = " + mouse_x + ", y = " + mouse_y;
-        }
-        init()
-    </script>
-
 
     <script>
         function validate(form) {
@@ -52,19 +32,41 @@
             }
         }
     </script>
+
 </head>
 <body>
-<form method="post" onSubmit="return validate(this)">
-    <h1 align="center">Войти</h1>
-    <input name="username" type="text" placeholder="Логин"/>
-    <input name="password" type="password" placeholder="Пароль"/>
-    <input name="remember" type="checkbox" value="yes"/> Запомнить <br/>
-    <input name="submit" value="Войти" type="submit"/>
 
-    <hr style="background-color : #808080 ;"/>
+<span id="xy"></span><br/>
 
-    <h5><a href="">Забыли пароль?</a> |<a href="WEB-INF/registration.jsp" target="_blank"> Регистрация</a></h5>
-</form>
+<div id="wrapper">
+    <div class="user-icon"></div>
+    <div class="pass-icon">
+      <div align="center"><strong><em>
+      <h1>Форма входа</h1></em></strong></div>
+    </div>
 
+    <form name="login-form" class="login-form" action="${pageContext.request.contextPath}/action"
+          method="post" onSubmit="return validate(this)">
+
+      <div class="header">
+        <h3 align="right">   <span><em><strong> Введите ваши регистрационные данные для входа в ваш личный кабинет. </strong></em></span></h3>
+        <div class="content">
+          <div align="right">	Имя: 
+            <input name="username" type="text" class="input username" value="Логин" onFocus="this.value=''"/>
+          </div>
+        </div>
+          <p align="right"><span class="content">	Пароль: 
+              <input name="password" type="password" class="input password" value="Пароль" onFocus="this.value=''"/>
+          </span></p>
+      </div>
+      <div class="footer">
+            <div align="right">	
+              <input type="submit" name="submit" value="ВОЙТИ" class="button"/>
+              <input type="submit" name="action" value="Регистрация" class="register"/>
+            </div>
+      </div>
+    </form>
+</div>
+<div class="gradient"></div>
 </body>
 </html>
