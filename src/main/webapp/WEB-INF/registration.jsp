@@ -1,10 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
+<link rel="stylesheet" href="style/style.css" type="text/css">
 <head>
-    <link rel="stylesheet" href="style/style.css" type="text/css">
-    <title>Регистрация</title>
+
+    <title>Страница регистрации</title>
 </head>
 <body>
 <form name="forma1">
