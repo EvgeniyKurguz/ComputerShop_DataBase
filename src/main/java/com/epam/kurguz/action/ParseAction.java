@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 public class ParseAction implements Action {
     @Override
     public String execute(HttpServletRequest request) {
-        return null;
+        return "/WEB-INF/registration.jsp";
     }
 }
