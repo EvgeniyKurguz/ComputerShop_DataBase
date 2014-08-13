@@ -1,9 +1,11 @@
 package com.epam.kurguz.entity;
 
+import com.epam.kurguz.dao.Identified;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Client extends User{
+public class Client extends User implements Identified<Integer> {
 
     private String email;
     private List<Client> clients = new ArrayList<Client>();
@@ -11,8 +13,8 @@ public class Client extends User{
     public Client() {
     }
 
-    public Client(int id, String firstName, String lastName, String passport, String phone) {
-        super(id, firstName, lastName, passport, phone);
+    public Client(int id, String firstName, String lastName, String identityPapers, String phone) {
+        super(id, firstName, lastName, identityPapers, phone);
     }
 
     public String getEmail() {
