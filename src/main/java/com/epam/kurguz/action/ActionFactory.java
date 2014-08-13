@@ -11,17 +11,10 @@ public class ActionFactory {
     static Map<String, Action> actionMap = new HashMap<String, Action>();
 
     static {
-
-
+        actionMap.put("registrationAction", new ParseAction());
     }
 
     public static Action getAction(String actionName) {
         return actionMap.get(actionName);
-    }
-
-    public static void getAllAction() {
-        for (String s : actionMap.keySet()) {
-            System.out.println(s);
-        }
     }
 }

@@ -5,16 +5,12 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-    <welcome-file-list>
-        <welcome-file>registration.jsp</welcome-file>
-    </welcome-file-list>
-
-    <servlet>
+      <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.epam.kurguz.servlet.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
 </web-app>

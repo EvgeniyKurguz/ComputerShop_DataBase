@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 
@@ -56,7 +57,7 @@
         <div class="footer">
             <div align="right">
                 <input type="submit" name="submit" value="ВОЙТИ" class="button"/>
-                <input type="submit" name="action" value="Регистрация" class="register"/>
+                <a class="" href="<c:url value="/Controller?action=registrationAction"/>">Регистрация</a>
             </div>
         </div>
     </form>
