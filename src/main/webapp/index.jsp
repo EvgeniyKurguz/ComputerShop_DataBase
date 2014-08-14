@@ -8,9 +8,7 @@
     <title>Компьютерный магазин</title>
     <link rel="stylesheet" href="style/style.css">
 
-    <%--<script type="text/javascript" src="javaScript/script.js"></script>--%>
-
-    <script>
+        <script>
         function validate(form) {
             var reason = "";
 

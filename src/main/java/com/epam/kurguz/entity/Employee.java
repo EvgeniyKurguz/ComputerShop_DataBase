@@ -9,7 +9,7 @@ public class Employee extends User {
     private String region;
     private String country;
     private String post;
-    private String separation;
+
     private List<Employee> employees = new ArrayList<Employee>();
 
     public Employee(int id, String firstName, String lastName, String identityPapers, String phone) {
@@ -48,15 +48,7 @@ public class Employee extends User {
         this.post = post;
     }
 
-    public String getSeparation() {
-        return separation;
-    }
-
-    public void setSeparation(String separation) {
-        this.separation = separation;
-    }
-
-    public List<Employee> getEmployees() {
+       public List<Employee> getEmployees() {
         return employees;
     }
 

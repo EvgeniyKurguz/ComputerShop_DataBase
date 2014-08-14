@@ -42,11 +42,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getPassport() {
+    public String getIdentityPapers() {
         return identityPapers;
     }
 
-    public void setPassport(String passport) {
+    public void setIdentityPapers(String passport) {
         this.identityPapers = passport;
     }
 
@@ -56,5 +56,8 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    {
     }
 }

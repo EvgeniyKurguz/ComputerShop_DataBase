@@ -1,11 +1,9 @@
 package com.epam.kurguz.entity;
 
-import com.epam.kurguz.dao.Identified;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Client extends User implements Identified<Integer> {
+public class Client extends User  {
 
     private String email;
     private List<Client> clients = new ArrayList<Client>();
