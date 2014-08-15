@@ -28,7 +28,9 @@
 
 </head>
 <body>
-
+<%
+    response.sendRedirect(request.getContextPath() + "/do/index");
+%>
 <span id=""></span><br/>
 
 <div id="wrapper">
