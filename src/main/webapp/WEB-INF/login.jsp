@@ -6,9 +6,9 @@
 
 <head>
     <title>Компьютерный магазин</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../static/style/style.css">
 
-        <script>
+    <script>
         function validate(form) {
             var reason = "";
 
@@ -28,9 +28,9 @@
 
 </head>
 <body>
-<%
-    response.sendRedirect(request.getContextPath() + "/do/index");
-%>
+<%--<%--%>
+<%--response.sendRedirect(request.getContextPath() + "/do/index");--%>
+<%--%>--%>
 <span id=""></span><br/>
 
 <div id="wrapper">
@@ -40,12 +40,11 @@
             <h1>Форма входа</h1></em></strong></div>
     </div>
 
-    <form name="login-form" class="login-form" action="${pageContext.request.contextPath}/action"
-          method="post" onSubmit="return validate(this)">
+    <form method="post" name="login-form"  action="">
 
         <div class="header">
             <h3 align="right"><span><em><strong> Вход в личный кабинет. </strong></em></span></h3>
-
+            <input name="action" type="hidden" value="login"/>
             <div class="content">
                 <div align="right"> Имя:
                     <input name="username" type="text" class="input username" value="Логин" onFocus="this.value=''"/>
@@ -58,12 +57,16 @@
         <div class="footer">
             <div align="right">
                 <input type="submit" name="submit" value="ВОЙТИ" class="button"/>
-                <a class="" href="<c:url value="/Controller?action=registrationAction"/>">Регистрация</a>
+                <a class="" href="<c:url value="registration.jsp"/>">Регистрация</a>
             </div>
         </div>
     </form>
 </div>
 <div class="gradient"></div>
+
+
+</div>
+
 </body>
 </html>
 

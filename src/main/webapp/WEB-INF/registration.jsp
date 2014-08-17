@@ -6,7 +6,7 @@
 
 <head>
     <title>Страница регистрации</title>
-    <link rel="stylesheet" href="style/style.css" type="text/css">
+    <link rel="stylesheet" href="../static/style/style.css">
 </head>
 
 <body>
