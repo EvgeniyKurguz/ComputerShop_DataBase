@@ -54,8 +54,10 @@
         </div>
         <div class="footer">
             <div align="right">
+                <%--<a href="registration.jsp" class="c">ВОЙТИ</a>--%>
                 <input type="submit" name="submit" value="ВОЙТИ" class="button"/>
-                <a class="" href="<c:url value="registration.jsp"/>">Регистрация</a>
+                <%--<input type="submit" src="registration.jsp" value="РЕГИСТРАЦИЯ" />--%>
+                <a href="../WEB-INF/registration.jsp" Action="registration" class="c">РЕГИСТРАЦИЯ</a>
             </div>
         </div>
     </form>

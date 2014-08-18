@@ -8,29 +8,10 @@
     <title>Компьютерный магазин</title>
     <link rel="stylesheet" href="../static/style/style.css">
 
-        <script>
-        function validate(form) {
-            var reason = "";
-
-            if (form.username.value == "" || /[^a-zA-z]/.test(form.username.value))
-                reason += "Ошибка имени ";
-            if (form.password.value == "" || /[^0-9]/.test(form.password.value))
-                reason += "Ошибка пароля ";
-
-            if (reason == "")
-                return true;
-            else {
-                alert(reason);
-                return false;
-            }
-        }
-    </script>
 
 </head>
 <body>
-<%--<%--%>
-    <%--response.sendRedirect(request.getContextPath() + "/do/index");--%>
-<%--%>--%>
+
 <span id=""></span><br/>
 
 <div id="wrapper">
@@ -40,13 +21,11 @@
             <h1>Форма входа</h1></em></strong></div>
     </div>
 
-    <div style="float: right" >
-        <h6 style="color:#f7f7f7">  Админ</h6>
+    <div style="float: right">
+        <h5 style="color:#f7f7f7"> Админ</h5>
     </div>
 </div>
 <div class="gradient"></div>
-
-
 
 </body>
 </html>

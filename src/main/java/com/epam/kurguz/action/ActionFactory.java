@@ -15,14 +15,14 @@ public class ActionFactory {
         actionMap.put("GET/", showLoginPageAction);
         actionMap.put("POST/", new LoginAction());
         actionMap.put("GET/index", new ShowPageAction("index"));
-    }
+           }
 
     public static Action getAction(String actionName) {
         return actionMap.get(actionName);
     }
 }
 
-
+//{
 //    private static Logger logger = LoggerFactory.getLogger(ActionFactory.class);
 //    static Map<String, Action> actionMap = new HashMap<String, Action>();
 //
