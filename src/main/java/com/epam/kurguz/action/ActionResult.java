@@ -4,13 +4,17 @@ public class ActionResult {
     private String view;
     private boolean redirection;
 
-    public ActionResult(String view) {
+    public ActionResult() {
         this.view = view;
     }
 
     public ActionResult(String view, boolean redirection) {
         this.view = view;
         this.redirection = redirection;
+    }
+
+    public ActionResult(String view) {
+        this.view = view;
     }
 
     public String getView() {

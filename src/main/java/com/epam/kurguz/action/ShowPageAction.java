@@ -11,6 +11,6 @@ public class ShowPageAction implements Action {
     }
 
     public ShowPageAction(String page) {
-        actionResult = new ActionResult(page);
+        actionResult = new ActionResult();
     }
 }

@@ -6,6 +6,7 @@
 <body>
 <%
     response.sendRedirect(request.getContextPath() + "/login");
+    response.sendRedirect(request.getContextPath() + "/registration");
 %>
 </body>
 </html>

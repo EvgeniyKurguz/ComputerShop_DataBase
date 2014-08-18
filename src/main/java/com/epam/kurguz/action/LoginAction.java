@@ -9,9 +9,8 @@ import javax.servlet.http.HttpSession;
 public class LoginAction implements Action {
     private final static String USERNAME = "username";
     private final static String PASSWORD = "password";
-    private ActionResult index = new ActionResult("index", true);
-    private ActionResult login = new ActionResult("login");
-
+    private ActionResult index = new ActionResult("index");
+    private ActionResult login = new ActionResult();
 
     @Override
     public ActionResult execute(HttpServletRequest request) {

@@ -15,6 +15,7 @@ public class ActionFactory {
         actionMap.put("GET/", showLoginPageAction);
         actionMap.put("POST/", new LoginAction());
         actionMap.put("GET/index", new ShowPageAction("index"));
+        actionMap.put("GET/registration",  new FormRegistrationAction());
            }
 
     public static Action getAction(String actionName) {

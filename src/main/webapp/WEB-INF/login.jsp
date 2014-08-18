@@ -54,16 +54,15 @@
         </div>
         <div class="footer">
             <div align="right">
-                <%--<a href="registration.jsp" class="c">ВОЙТИ</a>--%>
+                <%--<a href="registration.jsp"  class="c">ВОЙТИ</a>--%>
                 <input type="submit" name="submit" value="ВОЙТИ" class="button"/>
                 <%--<input type="submit" src="registration.jsp" value="РЕГИСТРАЦИЯ" />--%>
-                <a href="../WEB-INF/registration.jsp" Action="registration" class="c">РЕГИСТРАЦИЯ</a>
+                <a href="/do/registration"  name="registration" class="c">РЕГИСТРАЦИЯ</a>
             </div>
         </div>
     </form>
 </div>
 <div class="gradient"></div>
-
 
 </div>
 

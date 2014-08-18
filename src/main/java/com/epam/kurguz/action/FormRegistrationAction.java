@@ -2,9 +2,11 @@ package com.epam.kurguz.action;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class FormRegistrationAction  {
+public class FormRegistrationAction implements Action {
 
-    public  String execute(HttpServletRequest request) {
-        return "../WEB-INF/registration.jsp";
+  public ActionResult execute(HttpServletRequest request) {
+       ActionResult registration = new ActionResult("registration");
+
+        return registration;
     }
 }
