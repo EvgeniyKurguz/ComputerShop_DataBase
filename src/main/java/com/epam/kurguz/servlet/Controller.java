@@ -26,12 +26,11 @@ public class Controller extends HttpServlet {
         ActionResult result = action.execute(req);
 
         if (result.isRedirection()) {
-            resp.sendRedirect(req.getContextPath() + "/do/" + result.getView());
+            resp.sendRedirect(req.getContextPath() + "/" + result.getView());
             return;
         }
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/" + result.getView() + ".jsp");
         requestDispatcher.forward(req, resp);
     }
 }
-
 

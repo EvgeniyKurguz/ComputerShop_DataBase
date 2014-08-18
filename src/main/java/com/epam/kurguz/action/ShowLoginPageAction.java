@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public class ShowLoginPageAction implements Action {
     public static final String USER = "user";
-    private ActionResult login = new ActionResult();
+    private ActionResult login = new ActionResult("login");
     private ActionResult index = new ActionResult("index", true);
 
     @Override

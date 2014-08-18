@@ -28,7 +28,10 @@ public class UrlFilter implements Filter {
             chain.doFilter(req, resp);
             return;
         }
-
+        if (pathInfo.startsWith("/WEB-INF")) {
+            chain.doFilter(req, resp);
+            return;
+        }
         req.getRequestDispatcher("/do" + pathInfo).forward(req, resp);
     }
 }

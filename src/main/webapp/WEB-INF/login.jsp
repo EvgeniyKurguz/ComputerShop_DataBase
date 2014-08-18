@@ -29,8 +29,6 @@
 </head>
 <body>
 
-<span id=""></span><br/>
-
 <div id="wrapper">
     <div class="user-icon"></div>
     <div class="pass-icon">
@@ -57,7 +55,7 @@
                 <%--<a href="registration.jsp"  class="c">ВОЙТИ</a>--%>
                 <input type="submit" name="submit" value="ВОЙТИ" class="button"/>
                 <%--<input type="submit" src="registration.jsp" value="РЕГИСТРАЦИЯ" />--%>
-                <a href="/do/registration"  name="registration" class="c">РЕГИСТРАЦИЯ</a>
+                <a href="registration"  class="c">РЕГИСТРАЦИЯ</a>
             </div>
         </div>
     </form>
