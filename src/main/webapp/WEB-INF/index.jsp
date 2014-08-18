@@ -22,7 +22,7 @@
     </div>
 
     <div style="float: right">
-        <h5 style="color:#f7f7f7"> Админ</h5>
+        <a href="login"  class="c">Выйти</a>
     </div>
 </div>
 <div class="gradient"></div>
