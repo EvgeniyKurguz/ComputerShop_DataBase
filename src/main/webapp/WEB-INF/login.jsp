@@ -43,17 +43,17 @@
             <input name="action" type="hidden" value="login"/>
             <div class="content">
                 <div align="right"> Имя:
-                    <input name="username" type="text" class="input username" value="Логин" onFocus="this.value=''"/>
+                    <input type="text" name="username"/>
                 </div>
             </div>
             <p align="right"><span class="content">	Пароль:
-              <input name="password" type="password" class="input password" value="Пароль" onFocus="this.value=''"/>
+              <input type="password" name="password"/>
           </span></p>
         </div>
         <div class="footer">
             <div align="right">
-                <%--<a href="registration.jsp"  class="c">ВОЙТИ</a>--%>
-                <input type="submit" name="submit" value="ВОЙТИ" class="button"/>
+                <%--<a href=""  class="c">ВОЙТИ</a>--%>
+                <button type="submit" class="c">ВОЙТИ</button>
                 <%--<input type="submit" src="registration.jsp" value="РЕГИСТРАЦИЯ" />--%>
                 <a href="registration"  class="c">РЕГИСТРАЦИЯ</a>
             </div>

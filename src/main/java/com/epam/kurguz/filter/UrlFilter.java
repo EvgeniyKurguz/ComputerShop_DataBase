@@ -8,9 +8,6 @@ import java.io.IOException;
 
 public class UrlFilter implements Filter {
 
-    public void destroy() {
-    }
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -33,5 +30,8 @@ public class UrlFilter implements Filter {
             return;
         }
         req.getRequestDispatcher("/do" + pathInfo).forward(req, resp);
+    }
+
+    public void destroy() {
     }
 }

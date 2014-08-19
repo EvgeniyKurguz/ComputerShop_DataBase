@@ -3,95 +3,45 @@ package com.epam.kurguz.pool;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConnectionPool {
     public static final String PROPERTIES_FILE =
             "database.properties";
-    public static final int DEFAULT_POOL_SIZE = 10;
-    private static ConnectionPool instance;
-    private BlockingQueue<Connection> connectionQueue;
+    public static final int MAX_POOL_SIZE = 10;
+    private static List<Connection> connectionList = new ArrayList<>(MAX_POOL_SIZE);
+    private static int CURRENT_POOL_SIZE;
 
-    private ConnectionPool(String driver, String url,
-                           String user, String password, int poolSize)
-            throws ClassNotFoundException, SQLException {
-        Class.forName(driver);
-        connectionQueue
-                = new ArrayBlockingQueue<Connection>(poolSize);
-        for (int i = 0; i < poolSize; i++) {
-            Connection connection
-                    = DriverManager.getConnection(url, user, password);
-            connectionQueue.offer(connection);
-        }
-    }
-
-    public static void init() throws SQLException {
-        if (instance == null) {
-            ResourceBundle rb = ResourceBundle.getBundle(
-                    PROPERTIES_FILE);
-            String driver = rb.getString("db.driver");
-            String url = rb.getString("db.url");
-            String user = rb.getString("db.user");
-            String password = rb.getString("db.password");
-            String poolSizeStr = rb.getString("db.poolsize");
-            int poolSize = (poolSizeStr != null) ?
-                    Integer.parseInt(poolSizeStr) : DEFAULT_POOL_SIZE;
-            try {
-                instance = new ConnectionPool(driver, url,
-                        user, password, poolSize);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    public static void dispose() throws SQLException {
-        if (instance != null) {
-            instance.clearConnectionQueue();
-            instance = null;
-        }
-    }
-
-    public static ConnectionPool getInstance() {
-        return instance;
-    }
-
-    public Connection takeConnection() {
-        Connection connection = null;
+    public ConnectionPool() {
         try {
-            connection = connectionQueue.take();
-        } catch (InterruptedException e) {
+            Class.forName("org.h2.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        return connection;
     }
 
-    public void releaseConnection(Connection connection) {
+    public static synchronized Connection getConnectionFromPool(String url, String userName, String password) throws PoolException {
         try {
-            if (!connection.isClosed()) {
-                if (!connectionQueue.offer(connection)) {
-                    //"Connection not added. Possible `leakage` of
-                    // connections"
+            if (connectionList.isEmpty()) {
+                if (CURRENT_POOL_SIZE >= MAX_POOL_SIZE) {
+                    System.out.println("Maximum pool size is reaced. Can not create connection");
                 }
+                CURRENT_POOL_SIZE++;
+                return DriverManager.getConnection(url, userName, password);
             } else {
-                //"Trying to release closed connection. Possible
-                // `leakage` of connections"
+                CURRENT_POOL_SIZE--;
+                return connectionList.remove(0);
             }
         } catch (SQLException e) {
-            //"SQLException at conection isClosed () checking.
-            // Connection not added", e
+            throw new PoolException();
         }
     }
 
-    private void clearConnectionQueue() throws SQLException {
-        Connection connection;
-        while ((connection = connectionQueue.poll()) != null) {
-            if (!connection.getAutoCommit()) {
-                connection.commit();
-            }
-            connection.close();
+    public static synchronized void addConnectionToPool(Connection conn) {
+        if (CURRENT_POOL_SIZE >= MAX_POOL_SIZE) {
+            System.out.println("Maximum pool size is reaced. Can not create connection");
         }
+        connectionList.add(conn);
     }
 }
-
