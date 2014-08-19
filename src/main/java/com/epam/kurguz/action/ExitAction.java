@@ -14,7 +14,6 @@ public class ExitAction implements Action {
         actionResult = new ActionResult(s);
     }
 
-
 }
 
 
