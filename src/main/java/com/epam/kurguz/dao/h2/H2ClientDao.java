@@ -2,7 +2,6 @@ package com.epam.kurguz.dao.h2;
 
 import com.epam.kurguz.entity.Client;
 import com.epam.kurguz.exception.PersistException;
-
 import java.sql.ResultSet;
 import java.util.List;
 

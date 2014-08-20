@@ -4,13 +4,33 @@ public class User {
     private int id;
     private String firstName;
     private String lastName;
+    private String birth;
     private String identityPapers;
     private String phone;
     private String userName;
     private String password;
 
+    public User(int id, String s, String name, String birth, String firstName, String lastName, String identityPapers, String phone) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.identityPapers = identityPapers;
+        this.phone = phone;
+    }
+
+    public User() {
+    }
+
     public String getUserName() {
         return userName;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 
     public void setUserName(String userName) {
@@ -23,18 +43,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public User() {
-
-    }
-
-    public User(int id, String firstName, String lastName, String identityPapers, String phone) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.identityPapers = identityPapers;
-        this.phone = phone;
     }
 
     public int getId() {
@@ -77,6 +85,5 @@ public class User {
         this.phone = phone;
     }
 
-    {
-    }
+
 }

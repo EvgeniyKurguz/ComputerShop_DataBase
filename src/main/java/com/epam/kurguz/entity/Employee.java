@@ -1,19 +1,15 @@
 package com.epam.kurguz.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Employee extends User {
 
     private String city;
     private String region;
     private String country;
     private String post;
+    private String separation;
+    private String identityPapers;
 
-    private List<Employee> employees = new ArrayList<Employee>();
-
-    public Employee(int id, String firstName, String lastName, String identityPapers, String phone) {
-        super(id, firstName, lastName, identityPapers, phone);
+    public Employee() {
     }
 
     public String getCity() {
@@ -22,6 +18,14 @@ public class Employee extends User {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getIdentityPapers() {
+        return identityPapers;
+    }
+
+    public void setIdentityPapers(String identityPapers) {
+        this.identityPapers = identityPapers;
     }
 
     public String getRegion() {
@@ -48,11 +52,11 @@ public class Employee extends User {
         this.post = post;
     }
 
-       public List<Employee> getEmployees() {
-        return employees;
+    public String getSeparation() {
+        return separation;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setSeparation(String separation) {
+        this.separation = separation;
     }
 }

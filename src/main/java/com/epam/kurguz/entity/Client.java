@@ -1,18 +1,12 @@
 package com.epam.kurguz.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Client extends User  {
+public class Client extends User {
 
     private String email;
-    private List<Client> clients = new ArrayList<Client>();
 
-    public Client() {
-    }
-
-    public Client(int id, String firstName, String lastName, String identityPapers, String phone) {
-        super(id, firstName, lastName, identityPapers, phone);
+    public Client(int id, String firstName, String lastName, String birth, String phone, String identityPapers, String username, String password, String email) {
+        super(id, firstName, lastName, birth, identityPapers, phone, username, password);
+        this.email = email;
     }
 
     public String getEmail() {
@@ -23,11 +17,15 @@ public class Client extends User  {
         this.email = email;
     }
 
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + getId() +
+                ", firstName=" + getFirstName() +
+                ", lastName=" + getLastName() +
+                ", phone=" + getPhone() +
+                ", birth=" + getBirth() +
+                ", email=" + email + '}' + "\n";
     }
 }
+

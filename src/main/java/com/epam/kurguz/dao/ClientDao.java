@@ -6,7 +6,6 @@ import com.epam.kurguz.entity.Client;
 import com.epam.kurguz.exception.PersistException;
 
 import java.sql.ResultSet;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ClientDao implements H2ClientDao {
@@ -40,25 +39,30 @@ public class ClientDao implements H2ClientDao {
 
     @Override
     public List<Client> parseResultSet(ResultSet rs) throws PersistException {
-        LinkedList<Client> result = new LinkedList<Client>();
-        try {
-            while (rs.next()) {
-                Client client = new Client();
-                client.setId(rs.getInt("ID"));
-                client.setFirstName(rs.getString("NAME"));
-                client.setLastName(rs.getString("LAST_NAME"));
-                client.setPhone(rs.getString("PHONE"));
-                client.setEmail(rs.getString("EMAIL"));
-                client.setIdentityPapers(rs.getString("IDENTITY_PAPERS"));
-                result.add(client);
-            }
-        } catch (Exception e) {
-            throw new PersistException(e);
-        }
-        return result;
+        return null;
     }
 
     @Override
+//    public List<Client> parseResultSet(ResultSet rs) throws PersistException {
+//        LinkedList<Client> result = new LinkedList<Client>();
+//        try {
+//            while (rs.next()) {
+//                Client client = new Client();
+//                client.setId(rs.getInt("ID"));
+//                client.setFirstName(rs.getString("NAME"));
+//                client.setLastName(rs.getString("LAST_NAME"));
+//                client.setPhone(rs.getString("PHONE"));
+//                client.setEmail(rs.getString("EMAIL"));
+//                client.setIdentityPapers(rs.getString("IDENTITY_PAPERS"));
+//                result.add(client);
+//            }
+//        } catch (Exception e) {
+//            throw new PersistException(e);
+//        }
+//        return result;
+//    }
+
+
     public String insertClient() {
         return null;
     }

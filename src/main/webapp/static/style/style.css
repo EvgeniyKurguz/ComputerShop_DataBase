@@ -1,7 +1,7 @@
 body {
-    background-image: url(1600.jpg);
-    background-repeat:  no-repeat;
-    /*background-color: #E6E6FA;*/
+    /*background-image: url(1600.jpg);*/
+    /*background-repeat:  no-repeat;*/
+    background-color: #E6E6FA;
 }
 .c {
     border: 1px solid #333; /* Рамка */

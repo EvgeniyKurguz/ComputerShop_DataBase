@@ -6,8 +6,8 @@ public class ExitAction implements Action {
     private ActionResult actionResult;
 
     public ActionResult execute(HttpServletRequest request) {
-        ActionResult login = new ActionResult("login");
-        return login;
+        ActionResult actionResult = new ActionResult("login");
+        return actionResult;
     }
 
     public ExitAction(String s) {
