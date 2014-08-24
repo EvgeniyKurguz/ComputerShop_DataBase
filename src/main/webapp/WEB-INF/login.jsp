@@ -27,7 +27,7 @@
     <meta name="MSSmartTagsPreventParsing" content="True" />
 
     <!-- Parent -->
-    <link rel="sitemap" href="imsitemap.html" title="Общая карта сайта" />
+    <link rel="sitemap" href="/static/imsitemap.html" title="Общая карта сайта" />
     <!-- Res -->
     <script type="text/javascript" src="/static/res/x5engine.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/res/styles.css" media="screen, print" />
@@ -38,7 +38,6 @@
     <script type="text/javascript" src="/static/res/x5cart.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/res/handheld.css" media="handheld" />
     <link rel="alternate stylesheet" title="Высокий контраст - Доступность" type="text/css" href="/static/res/accessibility.css" media="screen" />
-
     <script>
         function validate(form) {
             var reason = "";
@@ -167,32 +166,48 @@
                 <!-- Page START -->
                 <div id="imPage">
 
+                    <div id="imCel6_00">
+                        <div id="imCel6_00_Cont">
+                            <div id="imObj6_00">
+                                <div id="imSSCont_0">
+                                    <div id="imSSBackg_0" onmouseover="imSSDescrHide(0);" onmouseout="imSSDescrShow(0);">
+                                        <div id="imSSImages_0">
+                                            <img id="imSSImage_0" src="/static/slideshow/home_0_1.jpg" onclick="imLink(0);" alt="" style="opacity: 1" />
+                                            <img id="imSSImage_0_back" src="" onclick="imLink(0);" alt="" style="opacity: 0; display: none;" />
+                                        </div>
+                                        <div id="imSSDescr_0" style="display: none; bottom: 0;"><div id="imSSDescr_0_content"><div id="imSSDescr_0_bg"></div><div id="imSSDescr_0_text"></div></div></div>
+                                    </div>
+                                </div>
+                                <div id="imSSBtns_0"><img src="/static/res/ss_left4.gif" alt="" /><img class="imssBtn" src="/static/res/ss_fullscreen4.gif" onclick="javascript:imPopUpWin('fs_home6_00.html',-1,-1,'no','no');" alt="На весь экран" /><img class="imssBtn" src="/static/res/ss_prev4.gif" onclick="imDoTrans(0,-1)" alt="Далее" /><img class="imssBtn" src="/static/res/ss_play4.gif" id="imssPlay_0" onclick="imSSPlay(0,0,4)" alt="Play" /><img class="imssBtn" src="/static/res/ss_next4.gif" onclick="imDoTrans(0,1)" alt="Назад" /><img src="/static/res/ss_right4.gif" alt="" /></div>
+                                <script type="text/javascript">
+                                    imSSLoad(0,[["home_0_1.jpg",304,225,3,13,"","#"],["home_0_2.jpg",304,228,3,13,"","#"],["home_0_3.jpg",274,228,3,13,"","#"],["home_0_4.jpg",255,228,3,13,"","#"],["home_0_5.jpg",304,184,3,13,"","#"],["home_0_6.jpg",303,228,3,13,"","#"],["home_0_7.jpg",304,210,3,13,"","#"],["home_0_8.jpg",227,228,3,13,"","#"],["home_0_9.jpg",304,190,3,13,"","#"]]);
+                                    imLoadList += "imDoTrans(0,0);";
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- Page END -->
 
-
             </div>
             <div id="imFooter">
-                <div style="position: absolute; left: 810px; top: 21px; width: 152px; height: 21px; "><form id="imSearch_11" action="imsearch.php" method="get" style="white-space: nowrap"><fieldset><input type="text" name="search" value="" style="width: 75px; font: 11px Tahoma; color: #000000; background: #FFFFFF url('res/imsearch.gif') no-repeat 3px; padding: 3px 3px 3px 21px; border: 1px solid #000000; vertical-align: middle" /> <span style="font: 11px Tahoma; color: #000000; background-color: #808080; padding: 3px 6px 3px 6px; border: 1px solid #000000; vertical-align: middle; cursor: pointer; "
+                <div style="position: absolute; left: 810px; top: 21px; width: 152px; height: 21px; "><form id="imSearch_11" action="imsearch.php" method="get" style="white-space: nowrap"><fieldset><input type="text" name="search" value="" style="width: 75px; font: 11px Tahoma; color: #000000; background: #FFFFFF url('/static/res/imsearch.gif') no-repeat 3px; padding: 3px 3px 3px 21px; border: 1px solid #000000; vertical-align: middle" /> <span style="font: 11px Tahoma; color: #000000; background-color: #808080; padding: 3px 6px 3px 6px; border: 1px solid #000000; vertical-align: middle; cursor: pointer; "
                                                                                                                                                                                                                                                                                                                                                                                                                                                          onclick="alert('Команда поиска доступна, только если вебсайт опубликован.'); return false;" >Поиск</span>
                 </fieldset></form></div>
             </div>
         </div>
-    </div>
-    <div class="imInvisible">
-        <hr />
-        <a href="#imGoToCont" title="Просмотреть страницу еще раз">Назад к содержанию</a> | <a href="#imGoToMenu" title="Просмотреть сайт еще раз">Назад к главному меню</a>
-    </div>
+       </div>
+       <div class="imInvisible">
+           <hr />
+           <a href="#imGoToCont" title="Просмотреть страницу еще раз">Назад к содержанию</a> | <a href="#imGoToMenu" title="Просмотреть сайт еще раз">Назад к главному меню</a>
+       </div>
 
 
-    <div id="imShowBoxBG" style="display: none;" onclick="imShowBoxHide()"></div>
-    <div id="imShowBoxContainer" style="display: none;" onclick="imShowBoxHide()"><div id="imShowBox" style="height: 200px; width: 200px;"></div></div>
-    <div id="imBGSound"></div>
-    <div id="imToolTip"><script type="text/javascript">var imt = new IMTip;</script></div>
-    <script type="text/javascript">imPreloadImages('res/immnu_01b.gif,res/immnu_02b.gif,res/immnu_03b.gif,res/immnu_04b.gif,res/immnu_05b.gif,res/immnu_06b.gif')</script>
-
+       <div id="imShowBoxBG" style="display: none;" onclick="imShowBoxHide()"></div>
+       <div id="imShowBoxContainer" style="display: none;" onclick="imShowBoxHide()"><div id="imShowBox" style="height: 200px; width: 200px;"></div></div>
+       <div id="imBGSound"></div>
+       <div id="imToolTip"><script type="text/javascript">var imt = new IMTip;</script></div>
+       <script type="text/javascript">imPreloadImages('/static/res/immnu_01b.gif,/static/res/immnu_02b.gif,res/immnu_03b.gif,res/immnu_04b.gif,res/immnu_05b.gif,res/immnu_06b.gif')</script>
 </body>
 </html>
-
-
-

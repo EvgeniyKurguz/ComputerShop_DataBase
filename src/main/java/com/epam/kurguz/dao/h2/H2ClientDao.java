@@ -19,7 +19,7 @@ public class H2ClientDao implements ClientDao<Client> {
     private static final String DELETE_BY_EMAIL = "DELETE FROM CLIENTS WHERE EMAIL=?";
     private static final String DELETE_BY_LASTNAME = "DELETE FROM CLIENTS WHERE LASTNAME=?";
     private static final String UPDATE = "UPDATE  CLIENTS" +
-            " SET FIRSTNAME = ?, LASTNAME = ?, BIRTH = ?, PHONE = ?, ATTESTATION_NUMBER= ?, EMAIL= ? WHERE ID = ?";
+            " SET FIRSTNAME = ?, LASTNAME = ?, BIRTH = ?, PHONE = ?,  EMAIL= ? WHERE ID = ?";
     private static final String GET_CLIENT_LIST = "SELECT * FROM CLIENTS";
     private static final String GET_BY_USERNAME = "SELECT * FROM CLIENTS WHERE USERNAME=?";
     private static final String GET_BY_USERNAME_AND_PASSWORD = "SELECT * FROM CLIENTS WHERE USERNAME=? AND PASSWORD=?";
@@ -29,10 +29,9 @@ public class H2ClientDao implements ClientDao<Client> {
     private static final String LAST_NAME = "lastName";
     private static final String BIRTH = "birth";
     private static final String PHONE = "phone";
-    private static final String ATTESTATION_NUMBER = "attestation_Number";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
-    private static final String ROLE = "role";
+
     private static final String EMAIL = "email";
 
     @Override
