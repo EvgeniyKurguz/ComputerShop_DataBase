@@ -66,11 +66,11 @@
             <input name="action" type="hidden" value="login"/>
 
             <div align="right"> Имя:
-                <input type="text" name="username"/>
+                <input type="text" name="username" />
             </div>
 
             <p align="right"><span class="content">	Пароль:
-              <input type="password" name="password"/>
+              <input type="password" name="password" />
           </span></p>
 
 
@@ -109,7 +109,7 @@
                 <a name="imGoToMenu"></a><p class="imInvisible">Главное меню:</p>
                 <div id="imMnMn">
                     <ul>
-                        <li><a class="imMnItm_1" href="" title=""><span class="imHidden">Главная</span></a></li>
+                        <li><a class="imMnItm_1"  title=""><span class="imHidden">Главная</span></a></li>
                         <li><a class="imMnItm_2" ><span class="imHidden">Компьютеры, Ноутбуки, Игровые приставки</span></a>
                             <ul>
                                 <li><a href="ноутбуки.html" title="">Ноутбуки</a></li>

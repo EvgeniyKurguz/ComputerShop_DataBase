@@ -4,7 +4,15 @@ public class Client extends User {
 
     private String email;
 
-    public Client(int id, String firstName, String lastName, String birth, String phone, String identityPapers, String username, String password, String email) {
+    public Client(int id,
+                  String firstName,
+                  String lastName,
+                  String birth,
+                  String phone,
+                  String identityPapers,
+                  String username,
+                  String password,
+                  String email) {
         super(id, firstName, lastName, birth, identityPapers, phone, username, password);
         this.email = email;
     }

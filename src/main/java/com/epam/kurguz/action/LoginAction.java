@@ -1,5 +1,6 @@
 package com.epam.kurguz.action;
 
+import com.epam.kurguz.dao.DaoException;
 import com.epam.kurguz.dao.UserDao;
 import com.epam.kurguz.entity.User;
 
@@ -18,7 +19,12 @@ public class LoginAction implements Action {
         String username = request.getParameter(USERNAME);
         String password = request.getParameter(PASSWORD);
 
-        UserDao userDao = new UserDao();
+        UserDao userDao = new UserDao() {
+            @Override
+            public User getByUsernameAndPassword(String username, String password) throws DaoException {
+                return null;
+            }
+        };
         User user = userDao.findByCredentials(username, password);
 
         if (user == null) {

@@ -1,7 +1,17 @@
 package com.epam.kurguz.dao;
 
 
-import com.epam.kurguz.dao.h2.H2EmployeeDao;
+import com.epam.kurguz.entity.Employee;
 
-public class EmployeeDao extends UserDao implements H2EmployeeDao {
+import java.util.List;
+
+public interface EmployeeDao<T> extends Dao<Employee> {
+
+    T getByPost(String post) throws DaoException;
+
+    T getByLastName(String lastName) throws DaoException;
+
+    void deleteByLastName(String lastName) throws DaoException;
+
+    List<T> getEmployeeList() throws DaoException;
 }

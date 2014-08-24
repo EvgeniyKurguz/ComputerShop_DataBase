@@ -130,7 +130,13 @@
 
         </div>
         <div id="imFooter">
-            <div style="position: absolute; left: 810px; top: 21px; width: 152px; height: 21px; "><form id="imSearch_11" action="imsearch.php" method="get" style="white-space: nowrap"><fieldset><input type="text" name="search" value="" style="width: 75px; font: 11px Tahoma; color: #000000; background: #FFFFFF url('res/imsearch.gif') no-repeat 3px; padding: 3px 3px 3px 21px; border: 1px solid #000000; vertical-align: middle" /> <span style="font: 11px Tahoma; color: #000000; background-color: #808080; padding: 3px 6px 3px 6px; border: 1px solid #000000; vertical-align: middle; cursor: pointer; "
+            <div style="position: absolute; left: 810px; top: 21px; width: 152px; height: 21px; ">
+                <form id="imSearch_11" action="imsearch.php" method="get" style="white-space: nowrap">
+                    <fieldset><input type="text" name="search" value="" style="width: 75px; font: 11px
+                    Tahoma; color: #000000; background: #FFFFFF url('/static/res/imsearch.gif')
+                    no-repeat 3px; padding: 3px 3px 3px 21px; border: 1px solid #000000; vertical-align: middle" />
+                        <span style="font: 11px Tahoma; color: #000000; background-color: #808080;
+                        padding: 3px 6px 3px 6px; border: 1px solid #000000; vertical-align: middle; cursor: pointer; "
                                                                                                                                                                                                                                                                                                                                                                                                                                                      onclick="alert('Команда поиска доступна, только если вебсайт опубликован.'); return false;" >Поиск</span>
             </fieldset></form></div>
         </div>
