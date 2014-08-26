@@ -13,7 +13,7 @@ public class ActionFactory {
         actionMap.put("GET/index", new ShowPageAction("index"));
         actionMap.put("GET/registration", new FormRegistrationAction("registration"));
         actionMap.put("GET/login",  new ExitAction("login"));
-        actionMap.put("GET/logout", new LogoutAction());
+
     }
 
     public static Action getAction(String actionName) {
