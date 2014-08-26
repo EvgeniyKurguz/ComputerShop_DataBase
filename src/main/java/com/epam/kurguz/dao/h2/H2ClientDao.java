@@ -28,7 +28,6 @@ public abstract class H2ClientDao implements ClientDao {
             " SET FIRSTNAME = ?, LASTNAME = ?, BIRTH = ?, PHONE = ?,  EMAIL= ? WHERE ID = ?";
     private static final String GET_CLIENT_LIST = "SELECT * FROM CLIENTS";
     private static final String GET_BY_USERNAME = "SELECT * FROM CLIENTS WHERE USERNAME=?";
-    //    private static final String GET_BY_USERNAME_AND_PASSWORD = "SELECT * FROM CLIENTS WHERE USERNAME=? AND PASSWORD=?";
     private static final BoneCP pool;
     H2AbstractDao dao = new H2AbstractDao();
     Connection connection = null;
@@ -245,7 +244,7 @@ public abstract class H2ClientDao implements ClientDao {
 
     private Client getClientFromResultSet(ResultSet resultSet) throws DaoException {
         Client client = null;
-        try {//может в этом методе иф? чтобы  либо клиент, либо нулл если нет такого
+        try {
             if (resultSet.next()) {
                 client = new Client();
                 client.setId(resultSet.getInt(ID));
@@ -253,7 +252,6 @@ public abstract class H2ClientDao implements ClientDao {
                 client.setLastName(resultSet.getString(LAST_NAME));
                 client.setBirth(resultSet.getString(BIRTH));
                 client.setPhone(resultSet.getString(PHONE));
-
                 client.setUserName(resultSet.getString(USERNAME));
                 client.setPassword(resultSet.getString(PASSWORD));
 
@@ -266,18 +264,6 @@ public abstract class H2ClientDao implements ClientDao {
 
     @Override
     public Client findClientByUsernameAndPassword(String username, String password) throws DaoException {
-        /* PreparedStatement!!! это когда не + + + +
-         а когда вот такая шняга:
-         SELECT * FROM CLIENTS where USERNAME = ? and PASSWORD = ?
-         переделай
-
-         теперь я смотрю у тебя пипец с пулами
-         пул в приложении должен быть один на всех-всех-всех
-         сколькоб у тебя дао не было пул один на всех них
-         поэтому уже можешь думать про фабрику, она будет синглтоном, в ней будет один пул коннекшнов
-         Роде рассказывал и показывал, общаешься с ним?да
-         скооперируйся.
-          */
 
         String sql = "SELECT *" +
                 "FROM CLIENTS " +
