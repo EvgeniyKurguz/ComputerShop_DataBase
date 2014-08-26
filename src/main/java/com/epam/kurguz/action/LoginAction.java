@@ -20,7 +20,8 @@ public class LoginAction implements Action {
         String password = request.getParameter(PASSWORD);
 
         UserDao userDao = new UserDao() {
-            @Override
+
+
             public User getByUsernameAndPassword(String username, String password) throws DaoException {
                 return null;
             }

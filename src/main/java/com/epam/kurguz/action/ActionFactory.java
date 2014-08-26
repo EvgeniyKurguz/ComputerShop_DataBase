@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ActionFactory {
-    //    private static Logger logger = LoggerFactory.getLogger(ActionFactory.class);
-    static Map<String, Action> actionMap = new HashMap<>();
+      static Map<String, Action> actionMap = new HashMap<>();
 
     static {
         ShowLoginPageAction showLoginPageAction = new ShowLoginPageAction();
@@ -14,6 +13,7 @@ public class ActionFactory {
         actionMap.put("GET/index", new ShowPageAction("index"));
         actionMap.put("GET/registration", new FormRegistrationAction("registration"));
         actionMap.put("GET/login",  new ExitAction("login"));
+        actionMap.put("GET/logout", new LogoutAction());
     }
 
     public static Action getAction(String actionName) {
@@ -21,15 +21,3 @@ public class ActionFactory {
     }
 }
 
-//{
-//    private static Logger logger = LoggerFactory.getLogger(ActionFactory.class);
-//    static Map<String, Action> actionMap = new HashMap<String, Action>();
-//
-//    static {
-//        actionMap.put("registrationAction", new ParseAction());
-//    }
-//
-//    public static Action getAction(String actionName) {
-//        return actionMap.get(actionName);
-//    }
-//}

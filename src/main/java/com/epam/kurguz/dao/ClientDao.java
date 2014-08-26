@@ -6,17 +6,21 @@ import java.util.List;
 
 public interface ClientDao<T> extends Dao<Client> {
 
-    T getByLastName(String lastName) throws DaoException;
+    void insert(Client client) throws DaoException;
 
-    T getByEmail(String email) throws DaoException;
+    void update(Client client) throws DaoException;
 
-    T getByUsername(String username) throws DaoException;
+    Client getByLastName(String lastName) throws DaoException;
 
-    T getByUsernameAndPassword(String username, String password) throws DaoException;
+    Client getByEmail(String email) throws DaoException;
+
+    Client getByUsername(String username) throws DaoException;
+
+    Client findClientByUsernameAndPassword(String username, String password) throws DaoException;
 
     void deleteByEmail(String email) throws DaoException;
 
     void deleteByLastName(String lastName) throws DaoException;
 
-    List<T> getClientList() throws DaoException;
+    List<Client> getClientList() throws DaoException;
 }

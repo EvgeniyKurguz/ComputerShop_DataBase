@@ -1,21 +1,15 @@
 package com.epam.kurguz.dao.h2;
 
-import com.epam.kurguz.dao.ClientDao;
+import com.epam.kurguz.dao.DaoException;
 import com.epam.kurguz.dao.DaoFactory;
+import com.epam.kurguz.pool.PoolException;
 import com.epam.kurguz.pool.PropertyManager;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
-public class H2DaoFactory implements DaoFactory {
-    @Override
-    public ClientDao getClientDao() {
-        return null;
-    }
+import java.sql.SQLException;
 
-    @Override
-    public H2EmployeeDao getEmployeeDao() {
-        return null;
-    }
+public class H2DaoFactory implements DaoFactory {
     public static final String PROPERTIES_FILE = "database.properties";
     private static BoneCP connectionPool;
     private static BoneCPConfig config;
@@ -36,30 +30,46 @@ public class H2DaoFactory implements DaoFactory {
 
         return config;
     }
-//
-//    public static BoneCP getH2ConnectionPool() throws PoolException {
-//        try {
-//            Class.forName("org.h2.Driver");
-//            if (connectionPool == null) {
-//                if (config == null) {
-//                    config = getConfig(PROPERTIES_FILE);
-//                }
-//                connectionPool = new BoneCP(config);
-//            }
-//        } catch (SQLException | ClassNotFoundException e) {
-//            throw new PoolException();
-//        }
-//        return connectionPool;
-//    }
-//
-//    @Override
-//    public H2ClientDao getClientDao() {
-//        return new H2ClientDao();
-//    }
-//
-//    @Override
-//    public H2EmployeeDao getEmployeeDao() {
-//        return null;
-//    }
+
+    public static BoneCP getH2ConnectionPool() throws PoolException {
+        try {
+            Class.forName("org.h2.Driver");
+            if (connectionPool == null) {
+                if (config == null) {
+                    config = getConfig(PROPERTIES_FILE);
+                }
+                connectionPool = new BoneCP(config);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new PoolException();
+        }
+        return connectionPool;
+    }
+
+    @Override
+    public H2ClientDao getClientDao() {
+        return new H2ClientDao() {
+
+            @Override
+            public void insert(Object entityToCreate) throws DaoException, SQLException {
+
+            }
+
+            @Override
+            public void update(Object entityToUpdate) throws DaoException, SQLException {
+
+            }
+
+            @Override
+            public void delete(Object entityToCreate) throws DaoException, SQLException {
+
+            }
+        };
+    }
+
+    @Override
+    public H2EmployeeDao getEmployeeDao() {
+        return null;
+    }
 
 }

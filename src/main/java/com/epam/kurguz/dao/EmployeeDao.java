@@ -3,15 +3,24 @@ package com.epam.kurguz.dao;
 
 import com.epam.kurguz.entity.Employee;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface EmployeeDao<T> extends Dao<Employee> {
 
-    T getByPost(String post) throws DaoException;
+    Employee getByPost(String post) throws DaoException;
 
-    T getByLastName(String lastName) throws DaoException;
+    Employee getByLastName(String lastName) throws DaoException;
+
+    void insert(Employee employee) throws DaoException;
+
+    void update(Employee employee) throws DaoException, SQLException;
+
+    void delete(int id) throws DaoException, SQLException;
 
     void deleteByLastName(String lastName) throws DaoException;
 
-    List<T> getEmployeeList() throws DaoException;
+    List<Employee> getEmployeeList() throws DaoException;
+
+    Employee findEmployeeByUsernameAndPassword(String username, String password) throws DaoException;
 }

@@ -23,9 +23,12 @@
     <meta http-equiv="ImageToolbar" content="False" />
     <meta name="MSSmartTagsPreventParsing" content="True" />
 
+    <%--Style--%>
+    <link rel="stylesheet" href="../static/style/style.css">
     <!-- Parent -->
     <link rel="sitemap" href="imsitemap.html" title="Общая карта сайта" />
     <!-- Res -->
+
     <script type="text/javascript" src="/static/res/x5engine.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/res/styles.css" media="screen, print" />
     <link rel="stylesheet" type="text/css" href="/static/res/template.css" media="screen" />
@@ -38,6 +41,10 @@
 
 </head>
 <body>
+<div align="right" >
+
+    <a href="login" class="c">Выйти</a>
+
 <div id="imSite">
     <div id="imHeader">
         <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="992" height="147" >
