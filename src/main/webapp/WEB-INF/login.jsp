@@ -197,7 +197,7 @@
                             </div>
                             <div id="imSSBtns_0"><img src="/static/res/ss_left4.gif" alt=""/><img class="imssBtn"
                                                                                                   src="/static/res/ss_fullscreen4.gif"
-                                                                                                  onclick="javascript:imPopUpWin('fs_home6_00.html',-1,-1,'no','no');"
+                                                                                                  onclick="javascript:imPopUpWin('fullscreen',-1,-1,'no','no');"
                                                                                                   alt="На весь экран"/><img
                                     class="imssBtn" src="/static/res/ss_prev4.gif" onclick="imDoTrans(0,-1)"
                                     alt="Далее"/><img class="imssBtn" src="/static/res/ss_play4.gif" id="imssPlay_0"

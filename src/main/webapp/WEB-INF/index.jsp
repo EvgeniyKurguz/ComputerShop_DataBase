@@ -88,7 +88,7 @@
                         <li><a class="imMnItm_2"><span
                                 class="imHidden">Компьютеры, Ноутбуки, Игровые приставки</span></a>
                             <ul>
-                                <li><a href="ноутбуки.html" title="">Ноутбуки</a></li>
+                                <li><a href="laptop" title="">Ноутбуки</a></li>
                                 <li><a href="настольные_пк.html" title="">Настольные ПК</a></li>
                                 <li><a href="ультрабуки.html" title="">Ультрабуки</a></li>
                                 <li><a href="игровые_приставки.html" title="">Игровые приставки</a></li>
