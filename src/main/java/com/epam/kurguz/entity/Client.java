@@ -13,11 +13,10 @@ public class Client extends User {
                   String lastName,
                   String birth,
                   String phone,
-                  String identityPapers,
                   String username,
                   String password,
                   String email) {
-        super(id, firstName, lastName, birth, identityPapers, phone, username, password);
+        super(id, firstName, lastName, birth, phone, username, password);
         this.email = email;
     }
 
@@ -99,7 +98,7 @@ public class Client extends User {
         }
 
         public Client build() {
-            return new Client(id, firstName, lastName, birth, phone, attestation_Number, username, password, email);
+            return new Client(id, firstName, lastName, birth, phone,  username, password, email);
         }
     }
 }
