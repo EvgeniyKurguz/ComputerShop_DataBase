@@ -9,7 +9,7 @@ public class Product {
     private String maker;
     private String model;
 
-    List<Product> products = new ArrayList<Product>();
+    List<Product> products = new ArrayList<>();
 
     public int getId() {
         return id;

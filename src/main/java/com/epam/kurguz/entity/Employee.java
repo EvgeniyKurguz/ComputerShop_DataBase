@@ -14,12 +14,11 @@ public class Employee extends User {
                     String lastName,
                     String birth,
                     String phone,
-                    String attestation_Number,
                     String username,
                     String password,
 
                     String post) {
-        super(id, firstName, lastName, birth, phone, attestation_Number, username, password);
+        super(id, firstName, lastName, birth, phone, username, password);
         this.post = post;
     }
 
@@ -81,7 +80,7 @@ public class Employee extends User {
         private String lastName;
         private String birth;
         private String phone;
-        private String attestation_Number;
+
         private String username;
         private String password;
 
@@ -117,10 +116,7 @@ public class Employee extends User {
             return this;
         }
 
-        public Builder attestation_Number(String attestation_Number) {
-            this.attestation_Number = attestation_Number;
-            return this;
-        }
+
 
         public Builder phone(String phone) {
             this.phone = phone;
@@ -133,7 +129,7 @@ public class Employee extends User {
         }
 
         public Employee build() {
-            return new Employee(id, firstName, lastName, birth, phone, attestation_Number, username, password, post);
+            return new Employee(id, firstName, lastName, birth, phone,  username, password, post);
         }
     }
 }
