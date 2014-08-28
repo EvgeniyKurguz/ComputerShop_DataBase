@@ -14,6 +14,7 @@ public class ActionFactory {
         actionMap.put("GET/registration", new FormRegistrationAction("registration"));
         actionMap.put("GET/login",  new ExitAction("login"));
         actionMap.put("GET/fullscreen",  new FullscreenAction("fullscreen"));
+        actionMap.put("GET/imagebrowser",  new ProductAction("imagebrowser"));
         actionMap.put("GET/laptop",  new ProductAction("laptop"));
     }
 

@@ -50,7 +50,7 @@ imOpenedSM = menu.parentNode.getElementsByTagName('ul')[0]; menu.focus(); menu.c
 else
 imOpenedSM = null; }}
 function imX5ShowImg(sMode, cW, cH, xC, sFile, sFileZ, iMove) {
-document.write('<embed src="res/x5im'+sMode+'.swf?cW='+cW+'&cH='+cH+'&xC='+xC+'&File='+sFile+'&FileZ='+sFileZ+'&Move='+iMove+'" '+
+document.write('<embed src="/static/res/x5im'+sMode+'.swf?cW='+cW+'&cH='+cH+'&xC='+xC+'&File='+sFile+'&FileZ='+sFileZ+'&Move='+iMove+'" '+
 'type="application/x-shockwave-flash" width="'+cW+'" height="'+cH+'" wmode="transparent" menu="false" scale="exactfit" '+
 'allowscriptaccess="always" quality="high" flashvars="Licence=Only_For_Incomedia_WebSiteX5&Copyrights=WebSiteX5.com">'+
 '</embed>'); }
@@ -233,7 +233,7 @@ l=(screen.width)?(screen.width-w)/2:100; t=(screen.height)?(screen.height-h)/2:1
 oWin=window.open(sUrl,'',sProp); oWin.focus(); }
 var msSSTrans = new Array(75); msSSTrans[0] = "BasicImage(grayscale=0, xray=0, mirror=0, invert=0, opacity=1, rotation=0)"; msSSTrans[1] = "rnd"; msSSTrans[2] = "Barn(motion='out',orientation='vertical')"; msSSTrans[3] = "Barn(motion='out',orientation='horizontal')"; msSSTrans[4] = "Barn(motion='in',orientation='vertical')"; msSSTrans[5] = "Barn(motion='in',orientation='horizontal')"; msSSTrans[6] = "Blinds(Bands=2,direction='up')"; msSSTrans[7] = "Blinds(Bands=2,direction='down')"; msSSTrans[8] = "Blinds(Bands=2,direction='left')"; msSSTrans[9] = "Blinds(Bands=2,direction='right')"; msSSTrans[10] = "Blinds(Bands=15,direction='up')"; msSSTrans[11] = "Blinds(Bands=15,direction='down')"; msSSTrans[12] = "Blinds(Bands=15,direction='left')"; msSSTrans[13] = "Blinds(Bands=15,direction='right')"; msSSTrans[14] = "Checkerboard(Direction='up',SquaresX=4,SquaresY=4)"; msSSTrans[15] = "Checkerboard(Direction='down',SquaresX=4,SquaresY=4)"; msSSTrans[16] = "Checkerboard(Direction='left',SquaresX=4,SquaresY=4)"; msSSTrans[17] = "Checkerboard(Direction='right',SquaresX=4,SquaresY=4)"; msSSTrans[18] = "Checkerboard(Direction='up',SquaresX=50,SquaresY=12)"; msSSTrans[19] = "Checkerboard(Direction='down',SquaresX=50,SquaresY=12)"; msSSTrans[20] = "Checkerboard(Direction='left',SquaresX=50,SquaresY=12)"; msSSTrans[21] = "Checkerboard(Direction='right',SquaresX=50,SquaresY=12)"; msSSTrans[22] = "Fade(Overlap=1.00)"; msSSTrans[23] = "Fade(Overlap=0.00)"; msSSTrans[24] = "GradientWipe(GradientSize=0.00,wipestyle=0,motion='forward')"; msSSTrans[25] = "GradientWipe(GradientSize=0.00,wipestyle=0,motion='reverse')"; msSSTrans[26] = "GradientWipe(GradientSize=0.00,wipestyle=1,motion='forward')"; msSSTrans[27] = "GradientWipe(GradientSize=0.00,wipestyle=1,motion='reverse')"; msSSTrans[28] = "GradientWipe(GradientSize=0.75,wipestyle=0,motion='forward')"; msSSTrans[29] = "GradientWipe(GradientSize=0.75,wipestyle=0,motion='reverse')"; msSSTrans[30] = "GradientWipe(GradientSize=0.75,wipestyle=1,motion='forward')"; msSSTrans[31] = "GradientWipe(GradientSize=0.75,wipestyle=1,motion='reverse')"; msSSTrans[32] = "Iris(irisstyle='PLUS',motion='out')"; msSSTrans[33] = "Iris(irisstyle='PLUS',motion='in')"; msSSTrans[34] = "Iris(irisstyle='DIAMOND',motion='out')"; msSSTrans[35] = "Iris(irisstyle='DIAMOND',motion='in')"; msSSTrans[36] = "Iris(irisstyle='CIRCLE',motion='out')"; msSSTrans[37] = "Iris(irisstyle='CIRCLE',motion='in')"; msSSTrans[38] = "Iris(irisstyle='CROSS',motion='out')"; msSSTrans[39] = "Iris(irisstyle='CROSS',motion='in')"; msSSTrans[40] = "Iris(irisstyle='SQUARE',motion='out')"; msSSTrans[41] = "Iris(irisstyle='SQUARE',motion='in')"; msSSTrans[42] = "Iris(irisstyle='STAR',motion='out')"; msSSTrans[43] = "Iris(irisstyle='STAR',motion='in')"; msSSTrans[44] = "RadialWipe(wipestyle='CLOCK')"; msSSTrans[45] = "RadialWipe(wipestyle='WEDGE')"; msSSTrans[46] = "RadialWipe(wipestyle='RADIAL')"; msSSTrans[47] = "Wheel(spokes=2)"; msSSTrans[48] = "Wheel(spokes=4)"; msSSTrans[49] = "Wheel(spokes=10)"; msSSTrans[50] = "RandomBars(orientation='horizontal')"; msSSTrans[51] = "RandomBars(orientation='vertical')"; msSSTrans[52] = "RandomDissolve(duration=1)"; msSSTrans[53] = "Slide(slidestyle='HIDE',Bands=1)"; msSSTrans[54] = "Slide(slidestyle='SWAP',Bands=1)"; msSSTrans[55] = "Slide(slidestyle='PUSH',Bands=1)"; msSSTrans[56] = "Slide(slidestyle='HIDE',Bands=2)"; msSSTrans[57] = "Slide(slidestyle='SWAP',Bands=2)"; msSSTrans[58] = "Slide(slidestyle='PUSH',Bands=2)"; msSSTrans[59] = "Slide(slidestyle='HIDE',Bands=10)"; msSSTrans[60] = "Slide(slidestyle='SWAP',Bands=10)"; msSSTrans[61] = "Slide(slidestyle='PUSH',Bands=10)"; msSSTrans[62] = "Spiral(GridSizeX=8,GridSizeY=8)"; msSSTrans[63] = "Spiral(GridSizeX=16,GridSizeY=16)"; msSSTrans[64] = "Zigzag(GridSizeX=6,GridSizeY=6)"; msSSTrans[65] = "Zigzag(GridSizeX=12,GridSizeY=12)"; msSSTrans[66] = "Stretch(stretchstyle='HIDE')"; msSSTrans[67] = "Stretch(stretchstyle='PUSH')"; msSSTrans[68] = "Stretch(stretchstyle='SPIN')"; msSSTrans[69] = "Strips(motion='rightdown')"; msSSTrans[70] = "Strips(motion='leftdown')"; msSSTrans[71] = "Strips(motion='rightup')"; msSSTrans[72] = "Strips(motion='leftup')"; msSSTrans[73] = "Pixelate(MaxSquare=5)"; msSSTrans[74] = "Pixelate(MaxSquare=50)"; msSSTrans[75] = "Inset()"; var msMESSImage = new Array(); var miMESSEffect = new Array(); var miMESSDelay = new Array(); var miMESSCount = new Array(); var moMESSTime = new Array(); var moMESSTimeImg = new Array(); function imMESSPlay(iID,bMode,oImgData) {
 msMESSImage[iID] = new Array(); miMESSEffect[iID] = new Array(); miMESSDelay[iID] = new Array(); for(i=0;i<oImgData.length;i++){
-msMESSImage[iID][i+1] = "slideshow/"+oImgData[i][0]; miMESSEffect[iID][i+1] = oImgData[i][1]; miMESSDelay[iID][i+1] = oImgData[i][2]*1000; }
+msMESSImage[iID][i+1] = "/static/slideshow/"+oImgData[i][0]; miMESSEffect[iID][i+1] = oImgData[i][1]; miMESSDelay[iID][i+1] = oImgData[i][2]*1000; }
 if(!miMESSCount[iID]) miMESSCount[iID]=0; imGetLayer("imMEObj_"+iID).innerHTML = "<div id=\"imMESSImage_"+iID+"_back\" style=\"width: 100%; height: 100%; \"></div><div id=\"imMESSImage_"+iID+"\" style=\"position: absolute; top: 0; width: 100%; height: 100%; \"></div>"; imMESSDoAuto(iID,bMode); }
 function imMESSDoAuto(iID,bMode) {
 imMESSDoTrans(iID,bMode); iAutoDelay=miMESSDelay[iID][miMESSCount[iID]]; moMESSTime[iID]=setTimeout("imMESSDoAuto("+iID+","+bMode+")", iAutoDelay); }
@@ -257,7 +257,7 @@ if (iNext <= iLast) {
 oImg = new Image(); oImg.src = msMESSImage[iID][iNext]; }}
 var miSSH = new Array(); var miSSW = new Array(); var msImgList = new Array(); var miImgW = new Array(); var miImgH = new Array(); var miSSDelay = new Array(); var miSSEffect = new Array(); var msSSDescr = new Array(); var msSSLink = new Array(); var miSSCount = new Array(); var moSSTime = new Array(); var moSSTimeImg = new Array(); var moSSTimeDescr = new Array(); var moSSTransTimer = new Array(); function imSSLoad(iID,oImgData) {
 msImgList[iID] = new Array(); miImgW[iID] = new Array(); miImgH[iID] = new Array(); miSSEffect[iID] = new Array(); miSSDelay[iID] = new Array(); msSSDescr[iID] = new Array(); msSSLink[iID] = new Array(); moSSTransTimer[iID] = null; for(i=0;i<oImgData.length;i++){
-msImgList[iID][i+1] = "slideshow/"+oImgData[i][0]; miImgW[iID][i+1] = oImgData[i][1]; miImgH[iID][i+1] = oImgData[i][2]; miSSDelay[iID][i+1] = oImgData[i][3]*1000; miSSEffect[iID][i+1] = oImgData[i][4]; msSSDescr[iID][i+1] = oImgData[i][5]; msSSLink[iID][i+1] = oImgData[i][6]; }
+msImgList[iID][i+1] = "/static/slideshow/"+oImgData[i][0]; miImgW[iID][i+1] = oImgData[i][1]; miImgH[iID][i+1] = oImgData[i][2]; miSSDelay[iID][i+1] = oImgData[i][3]*1000; miSSEffect[iID][i+1] = oImgData[i][4]; msSSDescr[iID][i+1] = oImgData[i][5]; msSSLink[iID][i+1] = oImgData[i][6]; }
 if(!miSSCount[iID]) miSSCount[iID]=1; if (!imEffectEnabled)
 imGetLayer("imSSImage_"+iID+"_back").style.display = ''; }
 function imSSFade(iID) {
@@ -320,9 +320,9 @@ if (Auto == 1) {
 imDoTrans(iID,0); miSSCount[iID]=1; iAutoDelay=miSSDelay[iID][miSSCount[iID]]; moSSTime[iID]=setTimeout("imDoAuto("+iID+")", iAutoDelay); }
 else {
 cmd_Auto = imGetLayer('imssPlay_' + iID); if (cmd_Auto.alt == 'Pause') {
-cmd_Auto.alt='Play'; cmd_Auto.src='res/ss_play'+iBtnType+'.gif'; clearTimeout(moSSTime[iID]); }
+cmd_Auto.alt='Play'; cmd_Auto.src='/static/res/ss_play'+iBtnType+'.gif'; clearTimeout(moSSTime[iID]); }
 else {
-cmd_Auto.alt='Pause'; cmd_Auto.src='res/ss_pause'+iBtnType+'.gif'; imDoTrans(iID, 1); iAutoDelay=miSSDelay[iID][miSSCount[iID]]; moSSTime[iID]=setTimeout("imDoAuto("+iID+")", iAutoDelay); }}
+cmd_Auto.alt='Pause'; cmd_Auto.src='/static/res/ss_pause'+iBtnType+'.gif'; imDoTrans(iID, 1); iAutoDelay=miSSDelay[iID][miSSCount[iID]]; moSSTime[iID]=setTimeout("imDoAuto("+iID+")", iAutoDelay); }}
 }
 var iMMCurPos=0; var iMMEnd = 0; var iMMEndDisplace = 0; var oMMTime = null; var imMMVel=0; var iMMHeaderSize = 0; var iMMFooterSize = 0; var iMMTimerInt = 0; function imGetOffset(sName) {return imGetLayer(sName).offsetHeight ?
 imGetLayer(sName).offsetHeight :
@@ -532,7 +532,7 @@ else {
 clearInterval(moFGTimeImg[iID]); div_Image.src = div_ImageBack.src; div_Image.style.top = div_ImageBack.style.top; div_Image.style.left = div_ImageBack.style.left; div_Image.style.opacity = 1; div_ImageBack.style.opacity = 0; }}
 function imFGShow(iIndex,sImageSrc,iImageH,iImageW,sDescr,sLink,iEffect){
 if(moFGTimeNextImg[iIndex] != undefined)
-clearTimeout(moFGTimeNextImg[iIndex]); oImg = new Image(); oImg.src = 'imagebrowser/' + sImageSrc; if(oImg.complete) {
+clearTimeout(moFGTimeNextImg[iIndex]); oImg = new Image(); oImg.src = 'imagebrowser)' + sImageSrc; if(oImg.complete) {
 var div_FGMain = imGetLayer("imFGMain_" + iIndex); var div_FGImageCont = imGetLayer("imFGImage_" + iIndex + "_cont"); var div_FGImage = imGetLayer("imFGImage_" + iIndex); var div_FGImageBack = imGetLayer("imFGImage_" + iIndex + "_back"); var div_FGDescr = imGetLayer("imFGDescr_" + iIndex); var div_FGDescrText = imGetLayer("imFGDescr_" + iIndex + "_text"); var div_FGDescrBG = imGetLayer("imFGDescr_" + iIndex + "_bg"); if (imEffectEnabled && iEffect != 0) {
 if (iEffect == 1) iEffect = Math.floor(Math.random()*73) + 2; div_FGImageCont.style.filter="progid:DXImageTransform.Microsoft."+msSSTrans[iEffect]; div_FGImageCont.filters.item(0).Apply(); }
 var iTop = parseInt((div_FGMain.offsetHeight-iImageH)/2); var iLeft = parseInt((div_FGMain.offsetWidth-iImageW)/2); if(sDescr != '') {
@@ -541,9 +541,9 @@ else {
 div_FGDescr.style.display = 'none'; }
 if(div_FGImage.style.display == 'none')
 div_FGImage.style.display = ''; if(iEffect != 0 && !imEffectEnabled) {
-div_FGImageBack.src = 'imagebrowser/' + sImageSrc; div_FGImageBack.style.top = iTop + 'px'; div_FGImageBack.style.left = iLeft + 'px'; div_FGImageBack.style.display = ''; clearInterval(moFGTimeImg[iIndex]); moFGTimeImg[iIndex]=setInterval("imFGFade("+iIndex+")", 10); }
+div_FGImageBack.src = 'imagebrowser' + sImageSrc; div_FGImageBack.style.top = iTop + 'px'; div_FGImageBack.style.left = iLeft + 'px'; div_FGImageBack.style.display = ''; clearInterval(moFGTimeImg[iIndex]); moFGTimeImg[iIndex]=setInterval("imFGFade("+iIndex+")", 10); }
 else {
-div_FGImage.style.visible = 'hidden'; div_FGImage.src = 'imagebrowser/' + sImageSrc; div_FGImage.style.top = iTop + 'px'; div_FGImage.style.left = iLeft + 'px'; div_FGImage.style.visible = 'visible'; }
+div_FGImage.style.visible = 'hidden'; div_FGImage.src = 'imagebrowse' + sImageSrc; div_FGImage.style.top = iTop + 'px'; div_FGImage.style.left = iLeft + 'px'; div_FGImage.style.visible = 'visible'; }
 if (sLink!="#") {
  div_FGMain.onclick= function onclick(event) {location = sLink};   div_FGMain.style.cursor="pointer"; } else {
     div_FGMain.onclick="";  div_FGMain.style.cursor="default"; }
