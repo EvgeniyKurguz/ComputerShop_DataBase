@@ -1,6 +1,6 @@
 package com.epam.kurguz.action;
 
-import com.epam.kurguz.dao.DaoException;
+import com.epam.kurguz.exception.DaoException;
 import com.epam.kurguz.dao.UserDao;
 import com.epam.kurguz.entity.User;
 

@@ -2,25 +2,26 @@ package com.epam.kurguz.dao;
 
 
 import com.epam.kurguz.entity.Employee;
+import com.epam.kurguz.exception.DaoException;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface EmployeeDao<T> extends Dao<Employee> {
 
-    Employee getByPost(String post) throws DaoException;
+    void insert(Employee employee) throws DaoException, SQLException;
 
-    Employee getByLastName(String lastName) throws DaoException;
+    Employee findByLastName(String lastName) throws DaoException;
 
-    void insert(Employee employee) throws DaoException;
+    void update(Employee employee) throws DaoException;
 
-    void update(Employee employee) throws DaoException, SQLException;
+    void deleteById(Employee employee) throws DaoException;
 
-    void delete(int id) throws DaoException, SQLException;
-
-    void deleteByLastName(String lastName) throws DaoException;
+    void deleteByLastName(Employee employee) throws DaoException;
 
     List<Employee> getEmployeeList() throws DaoException;
 
     Employee findEmployeeByUsernameAndPassword(String username, String password) throws DaoException;
+
+    boolean employeeLoginIsOccupied(String username) throws DaoException;
 }

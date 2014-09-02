@@ -1,23 +1,51 @@
 package com.epam.kurguz.entity;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Client extends User {
 
     private String email;
+    private String city;
+    private String country;
+    private List<Client> clientList = new ArrayList<>();
 
     public Client() {
 
+
     }
 
-    public Client(int id,
-                  String firstName,
-                  String lastName,
-                  String birth,
-                  String phone,
-                  String username,
-                  String password,
-                  String email) {
-        super(id, firstName, lastName, birth, phone, username, password);
-        this.email = email;
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+
+    private Client(int id,
+                   String firstName,
+                   String lastName,
+                   Date birth,
+                   String phone,
+                   String username,
+                   String password,
+                   String email,
+                   String city,
+                   String country) {
+        super(id, firstName, lastName, birth, phone, username, password, email);
+        this.city = city;
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getEmail() {
@@ -39,18 +67,20 @@ public class Client extends User {
                 ", email=" + email + '}' + "\n";
     }
 
+    public void setBirth(Date date) {
+    }
+
     public static class Builder {
         private int id;
         private String firstName;
         private String lastName;
-        private String birth;
+        private Date birth;
         private String phone;
-        private String attestation_Number;
         private String username;
         private String password;
-
         private String email;
-
+        private String city;
+        private String country;
         public Builder id(int id) {
             this.id = id;
             return this;
@@ -72,7 +102,7 @@ public class Client extends User {
             return this;
         }
 
-        public Builder birth(String birth) {
+        public Builder birth(Date birth) {
             this.birth = birth;
             return this;
         }
@@ -82,10 +112,6 @@ public class Client extends User {
             return this;
         }
 
-        public Builder attestation_Number(String attestation_Number) {
-            this.attestation_Number = attestation_Number;
-            return this;
-        }
 
         public Builder phone(String phone) {
             this.phone = phone;
@@ -96,9 +122,18 @@ public class Client extends User {
             this.email = email;
             return this;
         }
+        public Builder city(String city) {
+            this.city = city;
+            return this;
+        }
+
+        public Builder country(String country) {
+            this.country = country;
+            return this;
+        }
 
         public Client build() {
-            return new Client(id, firstName, lastName, birth, phone,  username, password, email);
+            return new Client(id, firstName, lastName, birth, phone,  username, password, email, city, country);
         }
     }
 }

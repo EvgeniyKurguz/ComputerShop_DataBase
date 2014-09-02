@@ -3,6 +3,7 @@ package com.epam.kurguz.servlet;
 import com.epam.kurguz.action.Action;
 import com.epam.kurguz.action.ActionFactory;
 import com.epam.kurguz.action.ActionResult;
+import com.epam.kurguz.exception.ActionException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,7 +26,12 @@ public class Controller extends HttpServlet {
             return;
         }
 
-        ActionResult result = action.execute(req);
+        ActionResult result = null;
+        try {
+            result = action.execute(req);
+        } catch (ActionException e) {
+            e.printStackTrace();
+        }
 
         if (result.isRedirection()) {
             resp.sendRedirect(req.getContextPath() + "/" + result.getView());

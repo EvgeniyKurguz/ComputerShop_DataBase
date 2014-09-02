@@ -1,21 +1,39 @@
 package com.epam.kurguz.entity;
 
+import java.util.Date;
+
 public class User {
     private int id;
     private String firstName;
     private String lastName;
-    private String birth;
+    private Date birth;
     private String identityPapers;
     private String phone;
     private String userName;
     private String password;
+    private String email;
 
-    public User(int id, String s, String name, String birth, String firstName, String lastName, String identityPapers) {
+    public User(String username, String password) {
+    }
+
+    public User(String username) {
+        this.userName = userName;
+    }
+
+    public User(int id, String firstName, String lastName, String userName, String password,  Date birth,  String identityPapers, String email, String phone) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.identityPapers = identityPapers;
         this.phone = phone;
+        this.email = email;
+        this.identityPapers = identityPapers;
+        this.birth = birth;
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public User(int id, String firstName, String lastName, Date birth, String phone, String username, String password, String email) {
     }
 
     public User() {
@@ -25,11 +43,19 @@ public class User {
         return userName;
     }
 
-    public String getBirth() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getBirth() {
         return birth;
     }
 
-    public void setBirth(String birth) {
+    public void setBirth(Date birth) {
         this.birth = birth;
     }
 

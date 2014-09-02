@@ -2,37 +2,35 @@ package com.epam.kurguz.dao.h2;
 
 
 import com.epam.kurguz.dao.ClientDao;
-import com.epam.kurguz.dao.DaoException;
+import com.epam.kurguz.exception.DaoException;
 import com.epam.kurguz.entity.Client;
-import com.epam.kurguz.pool.PoolException;
-import com.jolbox.bonecp.BoneCP;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class H2ClientDao implements ClientDao {
-
-    private static final String CREATE_CLIENT = "INSERT INTO  CLIENTS VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String DELETE_CLIENT = "DELETE FROM CLIENTS WHERE ID= ?";
-    private static final String FIND_BY_ID = "SELECT * FROM CLIENTS WHERE ID=?";
-    private static final String FIND_BY_LASTNAME = "SELECT * FROM CLIENTS WHERE LASTNAME=?";
-    private static final String FIND_BY_EMAIL = "SELECT * FROM CLIENTS WHERE EMAIL=?";
-    private static final String DELETE_BY_ID = "DELETE FROM CLIENTS WHERE ID=?";
+public  abstract class H2ClientDao implements ClientDao {
+    private static final String JOIN =" inner join CITY on CLIENTS.ID_CITY = CITY.ID" +
+            " inner join COUNTRY on CLIENTS.ID_COUNTRY = COUNTRY.ID";
+    private static final String FIND_BY_ID = "SELECT * FROM CLIENTS " + JOIN + " WHERE CLIENTS.ID=?";
+    private static final String FIND_BY_LASTNAME = "SELECT * FROM CLIENTS " + JOIN + " WHERE LASTNAME=?";
+    private static final String FIND_BY_EMAIL = "SELECT * FROM CLIENTS " + JOIN + " WHERE EMAIL=?";
+    private static final String FIND_BY_USERNAME = "SELECT * FROM CLIENTS " + JOIN + " WHERE USERNAME=?";
+    private static final String FIND_CLIENT_BY_USERNAME_AND_PASSWORD = "SELECT * FROM CLIENTS " + JOIN +
+            " WHERE USERNAME = ? and PASSWORD = ?";
+    private static final String DELETE_BY_ID = "DELETE FROM CLIENTS WHERE ID = ?";
     private static final String DELETE_BY_EMAIL = "DELETE FROM CLIENTS WHERE EMAIL=?";
     private static final String DELETE_BY_LASTNAME = "DELETE FROM CLIENTS WHERE LASTNAME=?";
     private static final String UPDATE = "UPDATE  CLIENTS" +
-            " SET FIRSTNAME = ?, LASTNAME = ?, BIRTH = ?, PHONE = ?,  EMAIL= ? WHERE ID = ?";
-    private static final String GET_CLIENT_LIST = "SELECT * FROM CLIENTS";
-    private static final String GET_BY_USERNAME = "SELECT * FROM CLIENTS WHERE USERNAME=?";
-    private static final BoneCP pool;
-    H2AbstractDao dao = new H2AbstractDao();
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null;
+            " SET FIRSTNAME = ?, LASTNAME = ?, BIRTH = ?, PHONE = ?," +
+            " ATTESTATION_NUMBER= ?, EMAIL= ?, USERNAME=?, PASSWORD=?, " +
+            "ID_CITY=(select id from CITY where CITY = ?), " +
+            "ID_COUNTRY=(select id from COUNTRY where COUNTRY = ?) WHERE ID = ?";
+    private static final String CREATE_CLIENT = "INSERT INTO  CLIENTS VALUES (default , ?, ?, ?, ?, ?, ?, ?, ?," +
+            " (select id from role where role = ?)," +
+            " ?," +
+            " ?)";
+    private static final String GET_CLIENT_LIST = "SELECT * FROM CLIENTS" + JOIN;
     private static final String ID = "id";
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
@@ -41,34 +39,60 @@ public abstract class H2ClientDao implements ClientDao {
 
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
-    private static final String ROLE = "role";
     private static final String EMAIL = "email";
+    private static final String CITY = "city";
+    private static final String COUNTRY = "country";
 
-    static {
-        BoneCP tmp = null;
+    H2AbstractDao dao = new H2AbstractDao();
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+    private Connection connection;
+
+    public H2ClientDao(Connection connection) {
+        this.connection = connection;
+    }
+
+
+    @Override
+    public void update(Client client) throws DaoException {
         try {
-            tmp = H2DaoFactory.getH2ConnectionPool();
-        } catch (PoolException e) {
-            //add
+            preparedStatement = connection.prepareStatement(UPDATE);
+            preparedStatement.setString(1, client.getFirstName());
+            preparedStatement.setString(2, client.getLastName());
+            preparedStatement.setString(3, String.valueOf(client.getBirth()));
+            preparedStatement.setString(4, client.getPhone());
+            preparedStatement.setString(5, client.getEmail());
+            preparedStatement.setString(6, client.getUserName());
+            preparedStatement.setString(7, client.getPassword());
+            preparedStatement.setString(8, client.getCity());
+            preparedStatement.setString(9, client.getCountry());
+            preparedStatement.setInt(10, client.getId());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            dao.closingPreparedStatAndConn(preparedStatement, connection);
         }
-        pool = tmp;
     }
 
     @Override
     public void insert(Client client) throws DaoException {
         try {
-            connection = pool.getConnection();
             preparedStatement = connection.prepareStatement(CREATE_CLIENT);
             preparedStatement.setString(1, client.getFirstName());
             preparedStatement.setString(2, client.getLastName());
-            preparedStatement.setString(3, client.getBirth());
+            preparedStatement.setString(3, String.valueOf(client.getBirth()));
             preparedStatement.setString(4, client.getPhone());
 
             preparedStatement.setString(6, client.getEmail());
-            preparedStatement.setInt(7, client.getId());
-            preparedStatement.setString(8, client.getUserName());
-            preparedStatement.setString(9, client.getPassword());
+            preparedStatement.setString(7, client.getUserName());
+            preparedStatement.setString(8, client.getPassword());
 
+            preparedStatement.setString(9, client.getCity());
+            preparedStatement.setString(10, client.getCountry());
+//            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+//            int anInt = generatedKeys.getInt(1);
+//            preparedStatement.setInt(anInt, client.getId());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -77,44 +101,23 @@ public abstract class H2ClientDao implements ClientDao {
         }
     }
 
-    @Override
-    public void update(Client client) throws DaoException {
-        try {
-            connection = pool.getConnection();
-            preparedStatement = connection.prepareStatement(UPDATE);
-            preparedStatement.setInt(1, client.getId());
-            preparedStatement.setString(3, client.getLastName());
-            preparedStatement.setString(4, client.getBirth());
-            preparedStatement.setString(5, client.getPhone());
 
-            preparedStatement.setString(6, client.getEmail());
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        } finally {
-            dao.closingPreparedStatAndConn(preparedStatement, connection);
-        }
-    }
 
     @Override
-    public Client getById(int id) throws DaoException {
+    public Client findById(int id) throws DaoException {
         try {
-            connection = pool.getConnection();
             preparedStatement = connection.prepareStatement(FIND_BY_ID);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             return getClientFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
-        } finally {
-            dao.closing(resultSet, preparedStatement, connection);
         }
     }
 
     @Override
-    public Client getByLastName(String lastName) throws DaoException {
+    public Client findByLastName(String lastName) throws DaoException {
         try {
-            connection = pool.getConnection();
             preparedStatement = connection.prepareStatement(FIND_BY_LASTNAME);
             preparedStatement.setString(1, lastName);
             resultSet = preparedStatement.executeQuery();
@@ -127,9 +130,8 @@ public abstract class H2ClientDao implements ClientDao {
     }
 
     @Override
-    public Client getByEmail(String email) throws DaoException {
+    public Client findByEmail(String email) throws DaoException {
         try {
-            connection = pool.getConnection();
             preparedStatement = connection.prepareStatement(FIND_BY_EMAIL);
             preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
@@ -142,10 +144,9 @@ public abstract class H2ClientDao implements ClientDao {
     }
 
     @Override
-    public Client getByUsername(String username) throws DaoException {
+    public Client findByUsername(String username) throws DaoException {
         try {
-            connection = pool.getConnection();
-            preparedStatement = connection.prepareStatement(GET_BY_USERNAME);
+            preparedStatement = connection.prepareStatement(FIND_BY_USERNAME);
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             return getClientFromResultSet(resultSet);
@@ -157,11 +158,10 @@ public abstract class H2ClientDao implements ClientDao {
     }
 
     @Override
-    public void deleteById(int id) throws DaoException {
+    public void deleteById(Client client) throws DaoException {
         try {
-            connection = pool.getConnection();
             preparedStatement = connection.prepareStatement(DELETE_BY_ID);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, client.getId());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -171,11 +171,10 @@ public abstract class H2ClientDao implements ClientDao {
     }
 
     @Override
-    public void deleteByEmail(String email) throws DaoException {
+    public void deleteByEmail(Client client) throws DaoException {
         try {
-            connection = pool.getConnection();
             preparedStatement = connection.prepareStatement(DELETE_BY_EMAIL);
-            preparedStatement.setString(1, email);
+            preparedStatement.setString(1, client.getEmail());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -185,11 +184,10 @@ public abstract class H2ClientDao implements ClientDao {
     }
 
     @Override
-    public void deleteByLastName(String lastName) throws DaoException {
+    public void deleteByLastName(Client client) throws DaoException {
         try {
-            connection = pool.getConnection();
             preparedStatement = connection.prepareStatement(DELETE_BY_LASTNAME);
-            preparedStatement.setString(1, lastName);
+            preparedStatement.setString(1, client.getLastName());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -202,7 +200,6 @@ public abstract class H2ClientDao implements ClientDao {
     public List<Client> getClientList() throws DaoException {
         try {
             List<Client> clients = new ArrayList<>();
-            connection = pool.getConnection();
             preparedStatement = connection.prepareStatement(GET_CLIENT_LIST);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -216,27 +213,26 @@ public abstract class H2ClientDao implements ClientDao {
         }
     }
 
-    private Client createClient(ResultSet resultSet) throws DaoException {
+    @Override
+    public Client findClientByUsernameAndPassword(String username, String password) throws DaoException {
         try {
-            int id = resultSet.getInt(ID);
-            String firstName = resultSet.getString(FIRST_NAME);
-            String lastName = resultSet.getString(LAST_NAME);
-            String birth = resultSet.getString(BIRTH);
-            String phone = resultSet.getString(PHONE);
-            String username = resultSet.getString(USERNAME);
-            String password = resultSet.getString(PASSWORD);
+            preparedStatement = connection.prepareStatement(FIND_CLIENT_BY_USERNAME_AND_PASSWORD);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
+            return getClientFromResultSet(resultSet);
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
 
-            String email = resultSet.getString(EMAIL);
-            return new Client.Builder()
-                    .id(id)
-                    .firstName(firstName)
-                    .lastName(lastName)
-                    .birth(birth)
-                    .phone(phone)
-                    .username(username)
-                    .password(password)
-                    .email(email)
-                    .build();
+    @Override
+    public boolean clientLoginIsOccupied(String username) throws DaoException {
+        try {
+            preparedStatement = connection.prepareStatement(FIND_BY_USERNAME);
+            preparedStatement.setString(1, username);
+            resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -250,11 +246,15 @@ public abstract class H2ClientDao implements ClientDao {
                 client.setId(resultSet.getInt(ID));
                 client.setFirstName(resultSet.getString(FIRST_NAME));
                 client.setLastName(resultSet.getString(LAST_NAME));
-                client.setBirth(resultSet.getString(BIRTH));
+                client.setBirth(Date.valueOf(resultSet.getString(BIRTH)));
                 client.setPhone(resultSet.getString(PHONE));
+
                 client.setUserName(resultSet.getString(USERNAME));
                 client.setPassword(resultSet.getString(PASSWORD));
+                client.setEmail(resultSet.getString(EMAIL));
 
+                client.setCity(resultSet.getString(CITY));
+                client.setCountry(resultSet.getString(COUNTRY));
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -262,35 +262,36 @@ public abstract class H2ClientDao implements ClientDao {
         return client;
     }
 
-    @Override
-    public Client findClientByUsernameAndPassword(String username, String password) throws DaoException {
-
-        String sql = "SELECT *" +
-                "FROM CLIENTS " +
-                "where USERNAME = " + "'" + username + "'" + "and PASSWORD = " + "'" + password + "'";
+    private Client createClient(ResultSet resultSet) throws DaoException {
         try {
-            connection = pool.getConnection();
-            preparedStatement = connection.prepareStatement(sql);
-            resultSet = preparedStatement.executeQuery();
-            return getClientFromResultSet(resultSet);
+            int id = resultSet.getInt(ID);
+            String firstName = resultSet.getString(FIRST_NAME);
+            String lastName = resultSet.getString(LAST_NAME);
+            String birth = resultSet.getString(BIRTH);
+            String phone = resultSet.getString(PHONE);
+
+            String username = resultSet.getString(USERNAME);
+            String password = resultSet.getString(PASSWORD);
+            String email = resultSet.getString(EMAIL);
+
+            String city = resultSet.getString(CITY);
+            String country = resultSet.getString(COUNTRY);
+            return new Client.Builder()
+                    .id(id)
+                    .firstName(firstName)
+                    .lastName(lastName)
+                    .birth(Date.valueOf(birth))
+                    .phone(phone)
+
+                    .username(username)
+                    .password(password)
+                    .email(email)
+
+                    .city(city)
+                    .country(country)
+                    .build();
         } catch (SQLException e) {
             throw new DaoException(e);
-        } finally {
-            dao.closing(resultSet, preparedStatement, connection);
-        }
-    }
-
-    public boolean loginIsOccupied(String username) throws DaoException {
-        try {
-            connection = pool.getConnection();
-            preparedStatement = connection.prepareStatement(GET_BY_USERNAME);
-            preparedStatement.setString(1, username);
-            resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        } finally {
-            dao.closing(resultSet, preparedStatement, connection);
         }
     }
 }

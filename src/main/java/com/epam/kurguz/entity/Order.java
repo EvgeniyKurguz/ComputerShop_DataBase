@@ -13,4 +13,7 @@ public class Order extends User {
     private Date date;
 
 
+    public Order() {
+
+    }
 }

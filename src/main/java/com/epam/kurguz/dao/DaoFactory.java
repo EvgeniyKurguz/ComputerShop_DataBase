@@ -1,8 +1,12 @@
 package com.epam.kurguz.dao;
 
+import com.epam.kurguz.exception.DaoException;
+
 public interface DaoFactory {
 
-    public ClientDao getClientDao();
+    public ClientDao getClientDao() throws DaoException;
 
-    public com.epam.kurguz.dao.h2.H2EmployeeDao getEmployeeDao();
+    public EmployeeDao getEmployeeDao() throws DaoException;
+
+    public UserDao getUserDao() throws DaoException;
 }

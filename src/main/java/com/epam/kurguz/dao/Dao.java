@@ -1,20 +1,17 @@
 package com.epam.kurguz.dao;
 
+
+import com.epam.kurguz.exception.DaoException;
+
 import java.sql.SQLException;
 
-/**
- * Created by Евгений on 21.08.2014.
- */
 public interface Dao<T> {
 
     void insert(T entityToCreate) throws DaoException, SQLException;
 
-    T getById(int id) throws DaoException, SQLException;
+    T findById(int id) throws DaoException;
 
-    void update(T entityToUpdate) throws DaoException, SQLException;
+    void update(T entityToUpdate) throws DaoException;
 
-    void delete(T entityToCreate) throws DaoException, SQLException;
-
-    void deleteById(int id) throws SQLException, DaoException;
-
+    void deleteById(T entityToDelete) throws DaoException;
 }

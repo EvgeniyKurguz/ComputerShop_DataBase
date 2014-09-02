@@ -16,6 +16,15 @@ public class ActionFactory {
         actionMap.put("GET/fullscreen",  new FullscreenAction("fullscreen"));
         actionMap.put("GET/imagebrowser",  new ProductAction("imagebrowser"));
         actionMap.put("GET/laptop",  new ProductAction("laptop"));
+
+        actionMap.put("GET/clientTable", new ClientTableAction());
+
+
+        actionMap.put("GET/clientRegistration", new ShowPageAction("clientRegistration"));
+        actionMap.put("POST/clientRegistration", new ClientRegisterAction());
+
+        actionMap.put("GET/createClient", new ShowPageAction("createClient"));
+        actionMap.put("POST/createClient", new CreateClientAction());
     }
 
     public static Action getAction(String actionName) {

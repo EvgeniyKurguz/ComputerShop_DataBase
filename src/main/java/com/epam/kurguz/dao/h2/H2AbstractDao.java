@@ -1,6 +1,6 @@
 package com.epam.kurguz.dao.h2;
 
-import com.epam.kurguz.dao.DaoException;
+import com.epam.kurguz.exception.DaoException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

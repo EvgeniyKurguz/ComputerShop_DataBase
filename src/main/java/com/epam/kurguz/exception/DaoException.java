@@ -1,4 +1,4 @@
-package com.epam.kurguz.dao;
+package com.epam.kurguz.exception;
 
 public class DaoException extends Exception {
 

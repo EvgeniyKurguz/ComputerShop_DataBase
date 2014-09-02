@@ -1,20 +1,21 @@
 package com.epam.kurguz.dao.h2;
 
-import com.epam.kurguz.dao.DaoException;
+import com.epam.kurguz.entity.Employee;
+import com.epam.kurguz.exception.DaoException;
 import com.epam.kurguz.dao.DaoFactory;
-import com.epam.kurguz.pool.PoolException;
 import com.epam.kurguz.pool.PropertyManager;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class H2DaoFactory implements DaoFactory {
     public static final String PROPERTIES_FILE = "database.properties";
+    private static PropertyManager propertyManager = new PropertyManager(PROPERTIES_FILE);
     private static BoneCP connectionPool;
     private static BoneCPConfig config;
-    private static PropertyManager propertyManager = new PropertyManager(PROPERTIES_FILE);
-
+    private static H2DaoFactory instance = new H2DaoFactory();
 
     public static BoneCPConfig getConfig(String propertyFileName) {
         String jdbcUrl = propertyManager.getProperty("db.url");
@@ -31,9 +32,9 @@ public class H2DaoFactory implements DaoFactory {
         return config;
     }
 
-    public static BoneCP getH2ConnectionPool() throws PoolException {
+    private H2DaoFactory() {
         try {
-            Class.forName("org.h2.Driver");
+            Class.forName(propertyManager.getProperty("db.driver"));
             if (connectionPool == null) {
                 if (config == null) {
                     config = getConfig(PROPERTIES_FILE);
@@ -41,35 +42,90 @@ public class H2DaoFactory implements DaoFactory {
                 connectionPool = new BoneCP(config);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new PoolException();
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return connectionPool;
+    }
+
+    public static DaoFactory getInstance() {
+        return instance;
     }
 
     @Override
-    public H2ClientDao getClientDao() {
-        return new H2ClientDao() {
-
+    public H2ClientDao getClientDao() throws DaoException {
+        Connection connection = null;
+        try {
+            connection = connectionPool.getConnection();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return new H2ClientDao(connection) {
             @Override
-            public void insert(Object entityToCreate) throws DaoException, SQLException {
+            public void insert(Object entityToCreate) throws DaoException {
 
             }
 
             @Override
-            public void update(Object entityToUpdate) throws DaoException, SQLException {
+            public void update(Object entityToUpdate) throws DaoException {
 
             }
 
             @Override
-            public void delete(Object entityToCreate) throws DaoException, SQLException {
+            public void deleteById(Object entityToDelete) throws DaoException {
 
             }
         };
     }
 
     @Override
-    public H2EmployeeDao getEmployeeDao() {
-        return null;
+    public H2EmployeeDao getEmployeeDao() throws DaoException {
+        Connection connection = null;
+        try {
+            connection = connectionPool.getConnection();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return new H2EmployeeDao(connection) {
+            @Override
+            public Employee findByLastName(String lastName) throws DaoException {
+                return null;
+            }
+
+            @Override
+            public void deleteByLastName(Employee employee) throws DaoException {
+
+            }
+
+            @Override
+            public boolean employeeLoginIsOccupied(String username) throws DaoException {
+                return false;
+            }
+
+            @Override
+            public void insert(Object entityToCreate) throws DaoException, SQLException {
+
+            }
+
+                       @Override
+            public void update(Object entityToUpdate) throws DaoException {
+
+            }
+
+            @Override
+            public void deleteById(Object entityToDelete) throws DaoException {
+
+            }
+        };
     }
 
+    @Override
+    public H2UserDao getUserDao() throws DaoException {
+        Connection connection = null;
+        try {
+            connection = connectionPool.getConnection();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return new H2UserDao(connection);
+    }
 }
