@@ -15,22 +15,18 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getPathInfo().contains("static")) {
-            return;
-        }
-        String actionName = req.getMethod() + req.getPathInfo();
 
+        String actionName = req.getMethod() + req.getPathInfo();
         Action action = ActionFactory.getAction(actionName);
         if (action == null) {
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND, "url.not.found");
+            resp.sendError(HttpServletResponse.SC_NOT_FOUND, "url not found");
             return;
         }
-
         ActionResult result = null;
         try {
             result = action.execute(req);
         } catch (ActionException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         if (result.isRedirection()) {
