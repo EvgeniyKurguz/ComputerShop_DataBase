@@ -5,7 +5,7 @@ import com.epam.kurguz.exception.DaoException;
 
 import java.util.List;
 
-public interface ClientDao<T> extends Dao<Client> {
+public interface ClientDao extends Dao<Client> {
 
     void update(Client client) throws DaoException;
 

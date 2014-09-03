@@ -1,5 +1,10 @@
 package com.epam.kurguz.action;
 
+
+import com.epam.kurguz.action.table.ClientTableAction;
+import com.epam.kurguz.action.table.CreateClientAction;
+import com.epam.kurguz.action.table.UpdateClientAction;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +30,9 @@ public class ActionFactory {
 
         actionMap.put("GET/createClient", new ShowPageAction("createClient"));
         actionMap.put("POST/createClient", new CreateClientAction());
+
+        actionMap.put("GET/updateClient", new ShowPageAction("updateClient"));
+        actionMap.put("POST/updateClient", new UpdateClientAction());
     }
 
     public static Action getAction(String actionName) {

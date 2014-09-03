@@ -1,8 +1,7 @@
 package com.epam.kurguz.dao.h2;
 
-import com.epam.kurguz.entity.Employee;
-import com.epam.kurguz.exception.DaoException;
 import com.epam.kurguz.dao.DaoFactory;
+import com.epam.kurguz.exception.DaoException;
 import com.epam.kurguz.pool.PropertyManager;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
@@ -43,11 +42,11 @@ public class H2DaoFactory implements DaoFactory {
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); //enum?c ним беда?
         }
     }
 
-    public static DaoFactory getInstance() {
+    public static H2DaoFactory getInstance() {
         return instance;
     }
 
@@ -59,22 +58,7 @@ public class H2DaoFactory implements DaoFactory {
         } catch (SQLException e) {
             throw new DaoException(e);
         }
-        return new H2ClientDao(connection) {
-            @Override
-            public void insert(Object entityToCreate) throws DaoException {
-
-            }
-
-            @Override
-            public void update(Object entityToUpdate) throws DaoException {
-
-            }
-
-            @Override
-            public void deleteById(Object entityToDelete) throws DaoException {
-
-            }
-        };
+        return new H2ClientDao(connection);
     }
 
     @Override
@@ -85,37 +69,7 @@ public class H2DaoFactory implements DaoFactory {
         } catch (SQLException e) {
             throw new DaoException(e);
         }
-        return new H2EmployeeDao(connection) {
-            @Override
-            public Employee findByLastName(String lastName) throws DaoException {
-                return null;
-            }
-
-            @Override
-            public void deleteByLastName(Employee employee) throws DaoException {
-
-            }
-
-            @Override
-            public boolean employeeLoginIsOccupied(String username) throws DaoException {
-                return false;
-            }
-
-            @Override
-            public void insert(Object entityToCreate) throws DaoException, SQLException {
-
-            }
-
-                       @Override
-            public void update(Object entityToUpdate) throws DaoException {
-
-            }
-
-            @Override
-            public void deleteById(Object entityToDelete) throws DaoException {
-
-            }
-        };
+        return new H2EmployeeDao(connection);
     }
 
     @Override

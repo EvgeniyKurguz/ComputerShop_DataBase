@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class H2EmployeeDao implements EmployeeDao {
+public class H2EmployeeDao implements EmployeeDao {
     private static final String JOIN = " inner join SEPARATION on EMPLOYEES.ID_SEPARATION = SEPARATION.ID" +
             " inner join ROLE on EMPLOYEES.ID_ROLE = ROLE.ID";
     private static final String UPDATE = "UPDATE  EMPLOYEES" +

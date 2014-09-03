@@ -64,7 +64,12 @@ public class Client extends User {
                 ", lastName=" + getLastName() +
                 ", phone=" + getPhone() +
                 ", birth=" + getBirth() +
-                ", email=" + email + '}' + "\n";
+                ", email=" + email + '}' + "\n" +
+                ", username='" + getUserName() + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", city=" + getCity() + '\'' +
+                ", country=" + getCountry() + '\'' +
+                '}';
     }
 
     public void setBirth(Date date) {
@@ -133,7 +138,16 @@ public class Client extends User {
         }
 
         public Client build() {
-            return new Client(id, firstName, lastName, birth, phone,  username, password, email, city, country);
+            return new Client(id,
+                    firstName,
+                    lastName,
+                    birth,
+                    phone,
+                    username,
+                    password,
+                    email,
+                    city,
+                    country);
         }
     }
 }

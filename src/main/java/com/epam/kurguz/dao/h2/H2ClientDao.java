@@ -1,6 +1,5 @@
 package com.epam.kurguz.dao.h2;
 
-
 import com.epam.kurguz.dao.ClientDao;
 import com.epam.kurguz.exception.DaoException;
 import com.epam.kurguz.entity.Client;
@@ -9,8 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public  abstract class H2ClientDao implements ClientDao {
-    private static final String JOIN =" inner join CITY on CLIENTS.ID_CITY = CITY.ID" +
+public class H2ClientDao implements ClientDao {
+    private static final String JOIN = " inner join CITY on CLIENTS.ID_CITY = CITY.ID" +
             " inner join COUNTRY on CLIENTS.ID_COUNTRY = COUNTRY.ID";
     private static final String FIND_BY_ID = "SELECT * FROM CLIENTS " + JOIN + " WHERE CLIENTS.ID=?";
     private static final String FIND_BY_LASTNAME = "SELECT * FROM CLIENTS " + JOIN + " WHERE LASTNAME=?";
@@ -36,13 +35,11 @@ public  abstract class H2ClientDao implements ClientDao {
     private static final String LAST_NAME = "lastName";
     private static final String BIRTH = "birth";
     private static final String PHONE = "phone";
-
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String EMAIL = "email";
     private static final String CITY = "city";
     private static final String COUNTRY = "country";
-
     H2AbstractDao dao = new H2AbstractDao();
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
@@ -51,7 +48,6 @@ public  abstract class H2ClientDao implements ClientDao {
     public H2ClientDao(Connection connection) {
         this.connection = connection;
     }
-
 
     @Override
     public void update(Client client) throws DaoException {
@@ -83,16 +79,11 @@ public  abstract class H2ClientDao implements ClientDao {
             preparedStatement.setString(2, client.getLastName());
             preparedStatement.setString(3, String.valueOf(client.getBirth()));
             preparedStatement.setString(4, client.getPhone());
-
             preparedStatement.setString(6, client.getEmail());
             preparedStatement.setString(7, client.getUserName());
             preparedStatement.setString(8, client.getPassword());
-
             preparedStatement.setString(9, client.getCity());
             preparedStatement.setString(10, client.getCountry());
-//            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-//            int anInt = generatedKeys.getInt(1);
-//            preparedStatement.setInt(anInt, client.getId());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -100,8 +91,6 @@ public  abstract class H2ClientDao implements ClientDao {
             dao.closingPreparedStatAndConn(preparedStatement, connection);
         }
     }
-
-
 
     @Override
     public Client findById(int id) throws DaoException {
@@ -199,7 +188,7 @@ public  abstract class H2ClientDao implements ClientDao {
     @Override
     public List<Client> getClientList() throws DaoException {
         try {
-            List<Client> clients = new ArrayList<>();
+            List<Client> clients = new ArrayList<Client>();
             preparedStatement = connection.prepareStatement(GET_CLIENT_LIST);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -248,11 +237,9 @@ public  abstract class H2ClientDao implements ClientDao {
                 client.setLastName(resultSet.getString(LAST_NAME));
                 client.setBirth(Date.valueOf(resultSet.getString(BIRTH)));
                 client.setPhone(resultSet.getString(PHONE));
-
                 client.setUserName(resultSet.getString(USERNAME));
                 client.setPassword(resultSet.getString(PASSWORD));
                 client.setEmail(resultSet.getString(EMAIL));
-
                 client.setCity(resultSet.getString(CITY));
                 client.setCountry(resultSet.getString(COUNTRY));
             }
@@ -269,11 +256,9 @@ public  abstract class H2ClientDao implements ClientDao {
             String lastName = resultSet.getString(LAST_NAME);
             String birth = resultSet.getString(BIRTH);
             String phone = resultSet.getString(PHONE);
-
             String username = resultSet.getString(USERNAME);
             String password = resultSet.getString(PASSWORD);
             String email = resultSet.getString(EMAIL);
-
             String city = resultSet.getString(CITY);
             String country = resultSet.getString(COUNTRY);
             return new Client.Builder()
@@ -282,11 +267,9 @@ public  abstract class H2ClientDao implements ClientDao {
                     .lastName(lastName)
                     .birth(Date.valueOf(birth))
                     .phone(phone)
-
                     .username(username)
                     .password(password)
                     .email(email)
-
                     .city(city)
                     .country(country)
                     .build();

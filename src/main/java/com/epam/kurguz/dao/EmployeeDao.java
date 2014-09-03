@@ -7,7 +7,7 @@ import com.epam.kurguz.exception.DaoException;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface EmployeeDao<T> extends Dao<Employee> {
+public interface EmployeeDao extends Dao<Employee> {
 
     void insert(Employee employee) throws DaoException, SQLException;
 

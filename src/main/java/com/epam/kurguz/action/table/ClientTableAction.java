@@ -1,6 +1,8 @@
-package com.epam.kurguz.action;
+package com.epam.kurguz.action.table;
 
 
+import com.epam.kurguz.action.Action;
+import com.epam.kurguz.action.ActionResult;
 import com.epam.kurguz.dao.h2.H2ClientDao;
 import com.epam.kurguz.dao.h2.H2DaoFactory;
 import com.epam.kurguz.entity.Client;
@@ -13,6 +15,7 @@ import java.util.List;
 public class ClientTableAction implements Action {
 
     private ActionResult clientTable = new ActionResult("clientTable");
+
     //    private ActionResult updateClient = new ActionResult("updateClient");
     @Override
     public ActionResult execute(HttpServletRequest request) throws ActionException {
