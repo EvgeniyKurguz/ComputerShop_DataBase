@@ -1,5 +1,6 @@
 package com.epam.kurguz.dao.h2;
 
+import com.epam.kurguz.dao.JDBCDao;
 import com.epam.kurguz.exception.DaoException;
 import com.epam.kurguz.dao.EmployeeDao;
 import com.epam.kurguz.entity.Employee;
@@ -8,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class H2EmployeeDao implements EmployeeDao {
+public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
     private static final String JOIN = " inner join SEPARATION on EMPLOYEES.ID_SEPARATION = SEPARATION.ID" +
             " inner join ROLE on EMPLOYEES.ID_ROLE = ROLE.ID";
     private static final String UPDATE = "UPDATE  EMPLOYEES" +
@@ -45,6 +46,7 @@ public class H2EmployeeDao implements EmployeeDao {
     private Connection connection;
 
     public H2EmployeeDao(Connection connection) {
+        super(connection);
         this.connection = connection;
     }
 
