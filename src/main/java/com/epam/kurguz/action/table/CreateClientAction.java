@@ -2,11 +2,13 @@ package com.epam.kurguz.action.table;
 
 import com.epam.kurguz.action.Action;
 import com.epam.kurguz.action.ActionResult;
-import com.epam.kurguz.exception.DaoException;
-import com.epam.kurguz.dao.h2.H2ClientDao;
+import com.epam.kurguz.action.Validator;
+import com.epam.kurguz.dao.ClientDao;
+import com.epam.kurguz.dao.DaoManager;
 import com.epam.kurguz.dao.h2.H2DaoFactory;
 import com.epam.kurguz.entity.Client;
 import com.epam.kurguz.exception.ActionException;
+import com.epam.kurguz.exception.DaoException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,6 +25,7 @@ public class CreateClientAction implements Action {
     private static final String EMAIL = "email";
     private static final String CITY = "city";
     private static final String COUNTRY = "country";
+    Validator validator;
     ActionResult clientTable = new ActionResult("clientTable", true);
     ActionResult createClient = new ActionResult("createClient");
 
@@ -38,12 +41,39 @@ public class CreateClientAction implements Action {
         String city = request.getParameter(CITY);
         String country = request.getParameter(COUNTRY);
 
-        H2DaoFactory factory = H2DaoFactory.getInstance();
-        H2ClientDao clientDao = null;
+        H2DaoFactory factory = null;
         try {
-            clientDao = factory.getClientDao();
+            factory = new H2DaoFactory();
         } catch (DaoException e) {
             throw new ActionException(e);
+        }
+        DaoManager daoManager = null;
+        try {
+            daoManager = factory.getDaoManager();
+        } catch (DaoException e) {
+            throw new ActionException(e);
+        }
+
+        ClientDao clientDao = null;
+        try {
+            clientDao = daoManager.getClientDao();
+        } catch (DaoException e) {
+            throw new ActionException(e);
+        }
+
+        if (!(validator.usernameValidation(username))) {
+            request.setAttribute("loginRegexError", "Login entered incorrectly");
+            return createClient;
+        }
+
+        if (!(validator.passwordValidation(password))) {
+            request.setAttribute("passwordRegexError", "The password is not suitable");
+            return createClient;
+        }
+
+        if (!(validator.emailValidation(email))) {
+            request.setAttribute("emailRegexError", "Email entered incorrectly");
+            return createClient;
         }
 
         Client client = new Client();
@@ -65,5 +95,5 @@ public class CreateClientAction implements Action {
         HttpSession session = request.getSession();
         session.setAttribute("user", client);
         return clientTable;
-   }
+    }
 }

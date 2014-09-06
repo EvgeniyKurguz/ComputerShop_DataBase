@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class H2UserDao extends UserDao {
+public class H2UserDao  extends UserDao {
 
     private static BoneCP pool;
     H2AbstractDao dao = new H2AbstractDao();

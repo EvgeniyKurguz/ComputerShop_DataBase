@@ -3,7 +3,8 @@ package com.epam.kurguz.action.table;
 
 import com.epam.kurguz.action.Action;
 import com.epam.kurguz.action.ActionResult;
-import com.epam.kurguz.dao.h2.H2ClientDao;
+import com.epam.kurguz.dao.ClientDao;
+import com.epam.kurguz.dao.DaoManager;
 import com.epam.kurguz.dao.h2.H2DaoFactory;
 import com.epam.kurguz.entity.Client;
 import com.epam.kurguz.exception.ActionException;
@@ -20,7 +21,6 @@ public class UpdateClientAction implements Action {
     private static final String FIRSTNAME = "firstName";
     private static final String LASTNAME = "lastName";
     private static final String BIRTH = "birth";
-
     private static final String PHONE = "phone";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
@@ -43,21 +43,29 @@ public class UpdateClientAction implements Action {
         String country = request.getParameter(COUNTRY);
         String update = request.getParameter("update");
 
-        H2DaoFactory factory =  H2DaoFactory.getInstance();
-        H2ClientDao clientDao;
+        H2DaoFactory factory = null;
         try {
-            clientDao = factory.getClientDao();
+            factory = new H2DaoFactory();
         } catch (DaoException e) {
             throw new ActionException(e);
         }
+        DaoManager daoManager = null;
+        try {
+            daoManager = factory.getDaoManager();
+        } catch (DaoException e) {
+            throw new ActionException(e);
+        }
+
+        ClientDao clientDao;
+        try {
+            clientDao = daoManager.getClientDao();
+        } catch (DaoException e) {
+            throw new ActionException(e);
+        }
+
         if (update != null) {
             int id = Integer.parseInt(update);
-            Client findClient = null;
-            try {
-                 findClient = clientDao.findById(id);
-            } catch (DaoException e) {
-                throw new ActionException(e);
-            }
+
             Client client = new Client();
             client.setFirstName(firstName);
             client.setLastName(lastName);
@@ -77,8 +85,6 @@ public class UpdateClientAction implements Action {
             HttpSession session = request.getSession();
             session.setAttribute("user", client);
         }
-
-
         return clientTable;
     }
 }

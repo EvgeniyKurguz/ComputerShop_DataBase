@@ -2,11 +2,12 @@ package com.epam.kurguz.dao;
 
 import com.epam.kurguz.exception.DaoException;
 
+import java.sql.Connection;
+
 public interface DaoFactory {
 
-    public ClientDao getClientDao() throws DaoException;
+    public Connection getConnection() throws DaoException;
 
-    public EmployeeDao getEmployeeDao() throws DaoException;
-
-    public UserDao getUserDao() throws DaoException;
+    public DaoManager getDaoManager() throws DaoException;
 }
+
