@@ -1,6 +1,7 @@
 package com.epam.kurguz.dao.h2;
 
 import com.epam.kurguz.dao.ClientDao;
+import com.epam.kurguz.dao.JDBCDao;
 import com.epam.kurguz.exception.DaoException;
 import com.epam.kurguz.entity.Client;
 
@@ -8,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class H2ClientDao implements ClientDao {
+public class H2ClientDao extends JDBCDao implements ClientDao {
     private static final String JOIN = " inner join CITY on CLIENTS.ID_CITY = CITY.ID" +
             " inner join COUNTRY on CLIENTS.ID_COUNTRY = COUNTRY.ID";
     private static final String FIND_BY_ID = "SELECT * FROM CLIENTS " + JOIN + " WHERE CLIENTS.ID=?";
@@ -46,6 +47,7 @@ public class H2ClientDao implements ClientDao {
     private Connection connection;
 
     public H2ClientDao(Connection connection) {
+        super(connection);
         this.connection = connection;
     }
 
