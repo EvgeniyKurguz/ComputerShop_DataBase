@@ -23,11 +23,9 @@
             <th>last name</th>
             <th>birth</th>
             <th>phone</th>
-            <th>attestation_number</th>
             <th>username</th>
             <th>password</th>
-            <th>role</th>
-            <th>city</th>
+             <th>city</th>
             <th>country</th>
             <%--<th>CheckBox</th>--%>
             <th>Update Button</th>
@@ -45,10 +43,8 @@
                 <td>${client.lastName}</td>
                 <td>${client.birth}</td>
                 <td>${client.phone}</td>
-                <td>${client.attestation_number}</td>
                 <td>${client.username}</td>
                 <td>${client.password}</td>
-                <td>${client.role}</td>
                 <td>${client.city}</td>
                 <td>${client.country}</td>
 
