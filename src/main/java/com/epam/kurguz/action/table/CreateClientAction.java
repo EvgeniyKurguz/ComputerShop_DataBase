@@ -38,7 +38,7 @@ public class CreateClientAction implements Action {
         String city = request.getParameter(CITY);
         String country = request.getParameter(COUNTRY);
 
-        H2DaoFactory factory = (H2DaoFactory) H2DaoFactory.getInstance();
+        H2DaoFactory factory = H2DaoFactory.getInstance();
         H2ClientDao clientDao = null;
         try {
             clientDao = factory.getClientDao();

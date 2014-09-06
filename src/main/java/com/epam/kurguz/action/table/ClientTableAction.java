@@ -20,7 +20,7 @@ public class ClientTableAction implements Action {
     @Override
     public ActionResult execute(HttpServletRequest request) throws ActionException {
 
-        H2DaoFactory factory = (H2DaoFactory) H2DaoFactory.getInstance();
+        H2DaoFactory factory =  H2DaoFactory.getInstance();
         H2ClientDao clientDao = null;
         try {
             clientDao = factory.getClientDao();

@@ -43,7 +43,7 @@ public class UpdateClientAction implements Action {
         String country = request.getParameter(COUNTRY);
         String update = request.getParameter("update");
 
-        H2DaoFactory factory = (H2DaoFactory) H2DaoFactory.getInstance();
+        H2DaoFactory factory =  H2DaoFactory.getInstance();
         H2ClientDao clientDao;
         try {
             clientDao = factory.getClientDao();
