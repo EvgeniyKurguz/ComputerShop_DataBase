@@ -23,7 +23,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
     private static final String DELETE_BY_LASTNAME = "DELETE FROM CLIENTS WHERE LASTNAME=?";
     private static final String UPDATE = "UPDATE  CLIENTS" +
             " SET FIRSTNAME = ?, LASTNAME = ?, BIRTH = ?, PHONE = ?," +
-            " ATTESTATION_NUMBER= ?, EMAIL= ?, USERNAME=?, PASSWORD=?, " +
+            " EMAIL= ?, USERNAME=?, PASSWORD=?, " +
             "ID_CITY=(select id from CITY where CITY = ?), " +
             "ID_COUNTRY=(select id from COUNTRY where COUNTRY = ?) WHERE ID = ?";
     private static final String CREATE_CLIENT = "INSERT INTO  CLIENTS VALUES (default , ?, ?, ?, ?, ?, ?, ?, ?," +
@@ -41,6 +41,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
     private static final String EMAIL = "email";
     private static final String CITY = "city";
     private static final String COUNTRY = "country";
+
     H2AbstractDao dao = new H2AbstractDao();
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;

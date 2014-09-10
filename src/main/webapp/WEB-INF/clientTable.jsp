@@ -15,18 +15,18 @@
 <div id="navbar-header">
 
     <table class="table table-bordered table-hover table-condensed">
-        <caption>ClientTable</caption>
+        <caption>Таблица "Клиенты"</caption>
         <thead>
         <tr>
             <th>Id</th>
-            <th>first name</th>
-            <th>last name</th>
-            <th>birth</th>
-            <th>phone</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Дата рождения</th>
+            <th>Телефон</th>
             <th>username</th>
             <th>password</th>
-             <th>city</th>
-            <th>country</th>
+             <th>Город</th>
+            <th>Страна</th>
             <%--<th>CheckBox</th>--%>
             <th>Update Button</th>
             <th>Delete Button</th>
@@ -69,11 +69,23 @@
 
         <hr>
 
-        <form method="get" action="<c:url value=""/>">
-            <button type="submit" class="Submit">Добавить запись о клиенте</button>
+        <form method="get"  value="/createClient" style="float: right">
+            <%--<button type="submit" class="Submit">Добавить запись о клиенте</button>--%>
+                <a href="createClient">Добавить запись о клиенте</a>
         </form>
-        <button onClick='location.href=""' type="submit" class="btn">На
-            главную
+
+        <ul id="change" class="pagination">
+            <li><a href="${pageName}?page=${pageNumber-1}&rows=${rowsCount}"
+                   form="back">&laquo;</a></li>
+            <li>
+                <c:forEach items="${paginationList}" var="pl">
+            <li><a href="${pageName}?page=${pl.intValue()}&rows=${rowsCount}"
+                   name="page">${pl.intValue()}</a></li>
+            </c:forEach>
+            </li>
+            <li><a href="${pageName}?page=${pageNumber+1}&rows=${rowsCount}"
+                   form="next">&raquo;</a></li>
+        </ul>
         </button>
         </tbody>
     </table>
