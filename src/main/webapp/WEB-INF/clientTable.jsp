@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--&lt;%&ndash;http://programilla.com/blog/siteconstruction/231.html&ndash;%&gt; связные списки--%>
 <%--http://www.cyberforum.ru/javascript/thread264088.html--%>
+<%--http://www.cyberforum.ru/php-database/thread698480.html--%>
 
 <html>
 <head>
@@ -61,7 +62,7 @@
 
         <hr>
 
-        <form method="get" value="/createClient" style="float: right">
+        <form method="get" value="createClient" style="float: right">
 
             <a href="createClient">Добавить запись о клиенте</a>
         </form>
