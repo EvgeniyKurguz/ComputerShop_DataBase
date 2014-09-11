@@ -77,8 +77,9 @@
 
         <div align="right">
             <a class="c" href="index">ВОЙТИ</a>
-            <a href="registration" class="c">РЕГИСТРАЦИЯ</a>
-        </div>
+            <%--<a href="registration" class="c">РЕГИСТРАЦИЯ</a>--%>
+            <a href="createClient" class="c">РЕГИСТРАЦИЯ</a>
+         </div>
     </form>
     <div id="imHeader">
 

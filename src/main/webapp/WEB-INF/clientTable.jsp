@@ -23,13 +23,11 @@
             <th>Фамилия</th>
             <th>Дата рождения</th>
             <th>Телефон</th>
-            <th>username</th>
-            <th>password</th>
-             <th>Город</th>
+            <th>Логин</th>
+            <th>Пароль</th>
+            <th>Город</th>
             <th>Страна</th>
-            <%--<th>CheckBox</th>--%>
-            <th>Update Button</th>
-            <th>Delete Button</th>
+
         </tr>
         </thead>
         <tbody>
