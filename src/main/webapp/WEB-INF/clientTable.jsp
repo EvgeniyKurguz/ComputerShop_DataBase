@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%--&lt;%&ndash;http://programilla.com/blog/siteconstruction/231.html&ndash;%&gt; связные списки--%>
+<%--http://www.cyberforum.ru/javascript/thread264088.html--%>
 
 <html>
 <head>
@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="../static/style/style.css">
 
-   </head>
+</head>
 <body>
 
 <div id="navbar-header">
@@ -27,7 +27,6 @@
             <th>Пароль</th>
             <th>Город</th>
             <th>Страна</th>
-
         </tr>
         </thead>
         <tbody>
@@ -35,7 +34,7 @@
         <c:forEach items="${clientList}" var="client">
 
             <tr>
-                <%--<input type="text" placeholder="${client.id}">--%>
+                    <%--<input type="text" placeholder="${client.id}">--%>
                 <td>${client.id}</td>
                 <td>${client.firstName}</td>
                 <td>${client.lastName}</td>
@@ -46,9 +45,6 @@
                 <td>${client.city}</td>
                 <td>${client.country}</td>
 
-                <%--<td>--%>
-                    <%--<input type="checkbox" id="" value="${client.id}"/><label for=""></label>--%>
-                <%--</td>--%>
                 <td>
                     <form method="get" action="<c:url value=""/>">
                         <button type="submit" name="update" value="${client.id}">Edit</button>
@@ -60,16 +56,14 @@
                     </form>
                 </td>
             </tr>
-            <%--<form method="post">--%>
-                <%--<button type="submit" name="delete" value="${client.id}">Удалить отмеченных</button>--%>
-            <%--</form>--%>
+
         </c:forEach>
 
         <hr>
 
-        <form method="get"  value="/createClient" style="float: right">
-            <%--<button type="submit" class="Submit">Добавить запись о клиенте</button>--%>
-                <a href="createClient">Добавить запись о клиенте</a>
+        <form method="get" value="/createClient" style="float: right">
+
+            <a href="createClient">Добавить запись о клиенте</a>
         </form>
 
         <ul id="change" class="pagination">
