@@ -1,6 +1,6 @@
 var imCProducts = new Array(
-["al9","wi5","Laptop/124533","Самый крутой ноутбук","520.00",0],
-["yl2","ve8","Ноутбук/125","","698.00",0]
+["al9","wi5","Laptop/124533","РЎР°РјС‹Р№ РєСЂСѓС‚РѕР№ РЅРѕСѓС‚Р±СѓРє","520.00",0],
+["yl2","ve8","РќРѕСѓС‚Р±СѓРє/125","","698.00",0]
 );
 
 var imCShipment = new Array(
@@ -14,27 +14,27 @@ var imVAT="0.00";
 var imFormatRight=true;
 var imFormat2Digit=true;
 var imPayMode=1;
-var imShopPage ="index.html";
-var imPayLink="<a href=''>Оплатить</a>";
+var imShopPage ="index";
+var imPayLink="<a href=''>РћРїР»Р°С‚РёС‚СЊ</a>";
 
-imLocale["Name"] = "Продукт";
-imLocale["Descr"] = "Описание";
-imLocale["Opt"] = "Опции";
-imLocale["Qty"] = "Количество";
-imLocale["Price"] = "Цена";
-imLocale["SubTot"] = "Подитог";
-imLocale["Total"] = "Итог";
-imLocale["TotalVAT"] = "Итог с НДС";
-imLocale["Err_EmptyCart"] = "Корзина пуста";
-imLocale["Err_Qty"] = "Неверное количество";
-imLocale["Err_Cookie"] = "Эта функция требует включенных cookies";
-imLocale["Order_No"] = "Номер заказа";
-imLocale["UserData"] = "Данные клиента";
-imLocale["PayNow"] = "Если вы хотите оплатить кредитной картой, пожалуйста, нажмите 'Оплатить сейчас'.<br />";
-imLocale["PayNow_Button"] = "Оплатить сейчас";
-imLocale["GoNext"] = "Далее";
-imLocale["GoBack"] = "Назад";
-imLocale["GoShop"] = "Продолжить покупки";
-imLocale["EmptyCart"] = "Очистить корзину";
-var imCLabels = new Array("Имя","Адрес","Город","Код","Область","Регион","Страна","Телефон","e-mail","Заметка");
+imLocale["Name"] = "РџСЂРѕРґСѓРєС‚";
+imLocale["Descr"] = "РћРїРёСЃР°РЅРёРµ";
+imLocale["Opt"] = "РћРїС†РёРё";
+imLocale["Qty"] = "РљРѕР»РёС‡РµСЃС‚РІРѕ";
+imLocale["Price"] = "Р¦РµРЅР°";
+imLocale["SubTot"] = "РџРѕРґРёС‚РѕРі";
+imLocale["Total"] = "РС‚РѕРі";
+imLocale["TotalVAT"] = "РС‚РѕРі СЃ РќР”РЎ";
+imLocale["Err_EmptyCart"] = "РљРѕСЂР·РёРЅР° РїСѓСЃС‚Р°";
+imLocale["Err_Qty"] = "РќРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ";
+imLocale["Err_Cookie"] = "Р­С‚Р° С„СѓРЅРєС†РёСЏ С‚СЂРµР±СѓРµС‚ РІРєР»СЋС‡РµРЅРЅС‹С… cookies";
+imLocale["Order_No"] = "РќРѕРјРµСЂ Р·Р°РєР°Р·Р°";
+imLocale["UserData"] = "Р”Р°РЅРЅС‹Рµ РєР»РёРµРЅС‚Р°";
+imLocale["PayNow"] = "Р•СЃР»Рё РІС‹ С…РѕС‚РёС‚Рµ РѕРїР»Р°С‚РёС‚СЊ РєСЂРµРґРёС‚РЅРѕР№ РєР°СЂС‚РѕР№, РїРѕР¶Р°Р»СѓР№СЃС‚Р°, РЅР°Р¶РјРёС‚Рµ 'РћРїР»Р°С‚РёС‚СЊ СЃРµР№С‡Р°СЃ'.<br />";
+imLocale["PayNow_Button"] = "РћРїР»Р°С‚РёС‚СЊ СЃРµР№С‡Р°СЃ";
+imLocale["GoNext"] = "Р”Р°Р»РµРµ";
+imLocale["GoBack"] = "РќР°Р·Р°Рґ";
+imLocale["GoShop"] = "РџСЂРѕРґРѕР»Р¶РёС‚СЊ РїРѕРєСѓРїРєРё";
+imLocale["EmptyCart"] = "РћС‡РёСЃС‚РёС‚СЊ РєРѕСЂР·РёРЅСѓ";
+var imCLabels = new Array("РРјСЏ","РђРґСЂРµСЃ","Р“РѕСЂРѕРґ","РљРѕРґ","РћР±Р»Р°СЃС‚СЊ","Р РµРіРёРѕРЅ","РЎС‚СЂР°РЅР°","РўРµР»РµС„РѕРЅ","e-mail","Р—Р°РјРµС‚РєР°");
 

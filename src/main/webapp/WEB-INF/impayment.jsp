@@ -28,28 +28,28 @@
 	<!-- Parent -->
 	<link rel="sitemap" href="imsitemap.html" title="Общая карта сайта" />
 	<!-- Res -->
-	<script type="text/javascript" src="res/x5engine.js"></script>
-	<link rel="stylesheet" type="text/css" href="res/styles.css" media="screen, print" />
-	<link rel="stylesheet" type="text/css" href="res/template.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="res/print.css" media="print" />
-	<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="res/iebehavior.css" media="screen" /><![endif]-->
-	<link rel="stylesheet" type="text/css" href="res/imcart.css" media="screen, print" />
+	<script type="text/javascript" src="/static/res/x5engine.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/res/styles.css" media="screen, print" />
+	<link rel="stylesheet" type="text/css" href="/static/res/template.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/static/res/print.css" media="print" />
+	<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="/static/res/iebehavior.css" media="screen" /><![endif]-->
+	<link rel="stylesheet" type="text/css" href="/static/res/imcart.css" media="screen, print" />
 	<script type="text/javascript" src="res/x5cart.js"></script>
-	<link rel="stylesheet" type="text/css" href="res/handheld.css" media="handheld" />
-	<link rel="alternate stylesheet" title="Высокий контраст - Доступность" type="text/css" href="res/accessibility.css" media="screen" />
-	<script type="text/javascript" src="res/x5products.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/res/handheld.css" media="handheld" />
+	<link rel="alternate stylesheet" title="Высокий контраст - Доступность" type="text/css" href="/static/res/accessibility.css" media="screen" />
+	<script type="text/javascript" src="/static/res/x5products.js"></script>
 
 </head>
 <body>
 <div id="imSite">
 <div id="imHeader">
 	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="992" height="147" >
-<param name="movie" value="res/top.swf" />
+<param name="movie" value="/static/res/top.swf" />
 <param name="menu" value="false" />
 <param name="quality" value="high" />
 <param name="wmode" value="opaque" />
 <param name="flashvars" value="txt=Магазин компьютеров" /><!--[if !IE]> <-->
-<object type="application/x-shockwave-flash" width= "992" height= "147" data="res/top.swf" >
+<object type="application/x-shockwave-flash" width= "992" height= "147" data="/static/res/top.swf" >
 <param name="menu" value="false" />
 <param name="quality" value="high" />
 <param name="wmode" value="opaque" />
@@ -69,7 +69,7 @@
 <a name="imGoToMenu"></a><p class="imInvisible">Главное меню:</p>
 <div id="imMnMn">
 <ul>
-	<li><a class="imMnItm_1" href="index.html" title=""><span class="imHidden">Главная</span></a></li>
+	<li><a class="imMnItm_1" href="index" title=""><span class="imHidden">Главная</span></a></li>
 	<li><a class="imMnItm_2" ><span class="imHidden">Компьютеры, Ноутбуки, Игровые приставки</span></a>
 <ul>
 	<li><a href="ноутбуки.html" title="">Ноутбуки</a></li>
@@ -147,6 +147,6 @@ onclick="alert('Команда поиска доступна, только ес�
 <div id="imShowBoxContainer" style="display: none;" onclick="imShowBoxHide()"><div id="imShowBox" style="height: 200px; width: 200px;"></div></div>
 <div id="imBGSound"></div>
 <div id="imToolTip"><script type="text/javascript">var imt = new IMTip;</script></div>
-<script type="text/javascript">imPreloadImages('/static/res/immnu_01b.gif,res/immnu_02b.gif,res/immnu_03b.gif,res/immnu_04b.gif,res/immnu_05b.gif,res/immnu_06b.gif')</script>
+<script type="text/javascript">imPreloadImages('/static/res/immnu_01b.gif,/static/res/immnu_02b.gif,/static/res/immnu_03b.gif,/static/res/immnu_04b.gif,/static/res/immnu_05b.gif,/static/res/immnu_06b.gif')</script>
 </body>
 </html>
