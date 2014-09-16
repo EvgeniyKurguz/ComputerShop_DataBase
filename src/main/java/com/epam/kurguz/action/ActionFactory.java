@@ -3,13 +3,14 @@ package com.epam.kurguz.action;
 
 import com.epam.kurguz.action.table.ClientTableAction;
 import com.epam.kurguz.action.table.CreateClientAction;
+import com.epam.kurguz.action.table.ProductTableAction;
 import com.epam.kurguz.action.table.UpdateClientAction;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ActionFactory {
-      static Map<String, Action> actionMap = new HashMap<>();
+      static Map<String, Action> actionMap = new HashMap<String, Action>();
 
     static {
         ShowLoginPageAction showLoginPageAction = new ShowLoginPageAction();
@@ -24,7 +25,6 @@ public class ActionFactory {
 
         actionMap.put("GET/clientTable", new ClientTableAction());
 
-
         actionMap.put("GET/clientRegistration", new ShowPageAction("clientRegistration"));
         actionMap.put("POST/clientRegistration", new ClientRegisterAction());
 
@@ -33,6 +33,12 @@ public class ActionFactory {
 
         actionMap.put("GET/updateClient", new ShowPageAction("updateClient"));
         actionMap.put("POST/updateClient", new UpdateClientAction());
+
+        actionMap.put("GET/productTable", new ProductTableAction());
+        actionMap.put("GET/createProduct", new ShowPageAction("createProduct"));
+        actionMap.put("POST/createProduct", new CreateClientAction());
+
+        actionMap.put("GET/imcart",  new ImcartAction("imcart"));
     }
 
     public static Action getAction(String actionName) {

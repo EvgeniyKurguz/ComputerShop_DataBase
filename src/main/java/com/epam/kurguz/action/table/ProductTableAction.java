@@ -10,22 +10,12 @@ import com.epam.kurguz.exception.ActionException;
 import com.epam.kurguz.exception.DaoException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
-public class CreateClientAction implements Action {
-    private static final String NAME = "name";
-    private static final String MAKER = "maker";
-    private static final String MODEL = "lastName";
+public class ProductTableAction implements Action {
+    private ActionResult productTable = new ActionResult("productTable");
 
-
-    ActionResult productTable = new ActionResult("productTable", true);
-    ActionResult createProduct = new ActionResult("createProduct");
-
-    @Override
-    public ActionResult execute(HttpServletRequest request) throws ActionException {
-        String name = request.getParameter(NAME);
-        String maker = request.getParameter(MAKER);
-        String model = request.getParameter(MODEL);
+       public ActionResult execute(HttpServletRequest request) throws ActionException {
 
         H2DaoFactory factory = null;
         try {
@@ -39,7 +29,6 @@ public class CreateClientAction implements Action {
         } catch (DaoException e) {
             throw new ActionException(e);
         }
-
         ProductDao productDao = null;
         try {
             productDao = daoManager.getProductDao();
@@ -47,14 +36,17 @@ public class CreateClientAction implements Action {
             throw new ActionException(e);
         }
 
-        Product product = new Product();
-        product.setName(name);
-        product.setMaker(maker);
-        product.setModel(model);
+        List<Product> productList = null;
+        try {
+            productList = productDao.getProductList();
+        } catch (DaoException e) {
+            throw new ActionException(e);
+        }
 
-
-        HttpSession session = request.getSession();
-        session.setAttribute("user", product);
+        request.setAttribute("productTable", productList);
         return productTable;
     }
+
 }
+
+

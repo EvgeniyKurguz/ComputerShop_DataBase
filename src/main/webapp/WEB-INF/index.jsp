@@ -46,7 +46,8 @@
 <div align="right">
 
     <a href="login" class="c">Выйти</a>
-    <a href="clientTable">Таблица клиентов</a>
+    <a href="clientTable" class="c">Таблица клиентов</a>
+    <a href="productTable" class="c">Таблица товаров</a>
 
 </div>
     </form>

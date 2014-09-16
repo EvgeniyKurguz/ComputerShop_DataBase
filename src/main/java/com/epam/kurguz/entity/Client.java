@@ -9,7 +9,7 @@ public class Client extends User {
     private String email;
     private String city;
     private String country;
-    private List<Client> clientList = new ArrayList<>();
+    private List<Client> clientList = new ArrayList<Client>();
 
     public Client() {
 

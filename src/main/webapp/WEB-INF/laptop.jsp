@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="/static/res/template.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/static/res/print.css" media="print" />
     <!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="/static/res/iebehavior.css" media="screen" /><![endif]-->
-    <link rel="stylesheet" type="text/css" href="/staticres/p004.css" media="screen, print" />
+    <link rel="stylesheet" type="text/css" href="/static/res/p004.css" media="screen, print" />
     <script type="text/javascript" src="/static/res/x5cart.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/res/handheld.css" media="handheld" />
     <link rel="alternate stylesheet" title="Высокий контраст - Доступность" type="text/css" href="/static/res/accessibility.css" media="screen" />
@@ -118,6 +118,8 @@
             </div>
             <!-- Menu END -->
 
+            <!-- Menu END -->
+
         </div>
         <hr class="imInvisible" />
         <a name="imGoToCont"></a>
@@ -128,13 +130,35 @@
             <p id="imPathTitle">Компьютеры, Ноутбуки, Игровые приставки</p>
             <div id="imPage">
 
+                <div id="imCel9_00">
+                    <div id="imCel9_00_Cont">
+                        <div id="imObj9_00">
+                            <div>
+                                <div class="imCartBrd"><div class="imCartItem">
+                                    <div class="imCRImg"><a href="javascript:imShowBox('/static/cart/fal9_wi5_p0049_00.jpg',371,500,'','IMG','t');"><img src="/static/cart/pal9_wi5_p0049_00.jpg" alt="Laptop/124533" width="83" height="61" style="margin-top:40px; border: none;" /></a></div><div class="imCRDescF"><strong>Laptop/124533</strong><br />Самый крутой ноутбук</div><div class="imCRLast">520.00 $</div><div class="imCRLast" style="text-align: right"><input id="imQtyal91" type="text" value="1" size="4" maxlength="4" /> <img src="/static/res/imcartadd.gif" alt="Добавить в корзину" style="vertical-align: bottom; cursor: pointer" onclick="imCAddProdLink('im31309','al9','wi5','',imGetLayer('imQtyal91').value)" /></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="imCel9_01">
+                    <div id="imCel9_01_Cont">
+                        <div id="imObj9_01">
+                            <div>
+                                <div class="imCartBrd"><div class="imCartItem">
+                                    <div class="imCRImg"><a href="javascript:imShowBox('/static/cart/fyl2_ve8_p0049_01.jpg',303,500,'','IMG','t');"><img src="/static/cart/pyl2_ve8_p0049_01.jpg" alt="Ноутбук/125" width="83" height="50" style="margin-top:46px; border: none;" /></a></div><div class="imCRDescF"><strong>Ноутбук/125</strong><br /></div><div class="imCRLast">698.00 $</div><div class="imCRLast" style="text-align: right"><input id="imQtyyl21" type="text" value="1" size="4" maxlength="4" /> <img src="/static/res/imcartadd.gif"  alt="Добавить в корзину" style="vertical-align: bottom; cursor: pointer" onclick="imCAddProdLink('im31309','yl2','ve8','',imGetLayer('imQtyyl21').value)" /></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!-- Page END -->
 
 
         </div>
         <div id="imFooter">
-            <div style="position: absolute; left: 810px; top: 21px; width: 152px; height: 21px; "><form id="imSearch_11" action="imsearch.php" method="get" style="white-space: nowrap"><fieldset><input type="text" name="search" value="" style="width: 75px; font: 11px Tahoma; color: #000000; background: #FFFFFF url('/static/res/imsearch.gif') no-repeat 3px; padding: 3px 3px 3px 21px; border: 1px solid #000000; vertical-align: middle" /> <span style="font: 11px Tahoma; color: #000000; background-color: #808080; padding: 3px 6px 3px 6px; border: 1px solid #000000; vertical-align: middle; cursor: pointer; "
+            <div style="position: absolute; left: 810px; top: 21px; width: 152px; height: 21px; "><form id="imSearch_11" action="imsearch.php" method="get" style="white-space: nowrap"><fieldset><input type="text" name="search" value="" style="width: 75px; font: 11px Tahoma; color: #000000; background: #FFFFFF url('res/imsearch.gif') no-repeat 3px; padding: 3px 3px 3px 21px; border: 1px solid #000000; vertical-align: middle" /> <span style="font: 11px Tahoma; color: #000000; background-color: #808080; padding: 3px 6px 3px 6px; border: 1px solid #000000; vertical-align: middle; cursor: pointer; "
                                                                                                                                                                                                                                                                                                                                                                                                                                                      onclick="alert('Команда поиска доступна, только если вебсайт опубликован.'); return false;" >Поиск</span>
             </fieldset></form></div>
         </div>

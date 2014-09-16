@@ -9,7 +9,7 @@ public class Product {
     private String maker;
     private String model;
 
-    List<Product> products = new ArrayList<>();
+    List<Product> products = new ArrayList<Product>();
 
     public int getId() {
         return id;
@@ -27,20 +27,19 @@ public class Product {
         this.name = name;
     }
 
-    public String getCountry() {
+    public String getMaker() {
         return maker;
     }
 
-    public void setCountry(String country) {
-        this.maker = country;
+    public void setMaker(String maker) {
+        this.maker = maker;
     }
 
-    public String getMaterial() {
+    public String getModel() {
         return model;
     }
 
-    public void setMaterial(String material) {
-        this.model = material;
+    public void setModel(String model) {
+        this.model = model;
     }
-
 }

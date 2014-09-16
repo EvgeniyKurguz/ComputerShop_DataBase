@@ -1,2 +1,14 @@
+#imCel9_00 {position: absolute; top: 0px; left: 10px; height: 152px; width: 467px; }
+#imObj9_00 .imCartBrd {float: left; position: relative; height: 156px; width: 233px; }
+#imObj9_00 .imCartItem {position: absolute; left: 2px; top: 0; height: 150px; width: 227px; text-align: left; overflow: hidden; font: 11px Tahoma; color: #000000; background-color: transparent; border: 1px solid #A8A8A8; }
+#imObj9_00 .imCRImg {position: absolute; padding: 4px; text-align: center; height: 150px; width: 83px; left: 136px; top: 0; overflow: auto; }
+#imObj9_00 .imCRDescF {position: absolute; padding: 4px; height: 115px; width: 128px; left: 0; top: 0; overflow: auto; }
+#imObj9_00 .imCRDescR {position: absolute; padding: 4px; height: 92px; width: 128px; left: 0; top: 0; overflow: auto; }
+#imObj9_00 .imCRLast {position: absolute; bottom: 4px; left: 4px; width: 128px; }
+#imObj9_00 .imCROpt {position: absolute; bottom: 27px; left: 4px; width: 128px; }
+#imObj9_00 input {font: 11px Tahoma; color: #000000; border: 1px solid #AAAAAA; padding: 1px; text-align: right; }
+#imObj9_00 select {font: 11px Tahoma; color: #000000; border: 1px solid #AAAAAA; padding: 1px; }
+#imObj9_00 {padding: 0px; }
+#imCel9_00_Cont {text-align: center; height: 152px; overflow: hidden; }
 #imPage {position: relative; height: 360px; }
 
