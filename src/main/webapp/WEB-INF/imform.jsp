@@ -128,7 +128,7 @@
 <form class="imUserData" name="imFormTableDat" method="post" onsubmit="return ChkFrm(this)" action="javascript:imCSetUserData();">
 <fieldset>
 <div>
-<label for="Itm_1">
+<%--@declare id="itm_1"--%><label for="Itm_1">
 <span class="imLabel">Имя*:<br class="imHidden" /></span>
 <span class="imLabel_Cont">
 <input class="imField imInput_0" type="text" name="imTxtDat" id="Itm1" />
@@ -136,7 +136,7 @@
 </label>
 </div>
 <div>
-<label for="Itm_2">
+<%--@declare id="itm_2"--%><label for="Itm_2">
 <span class="imLabel">Адрес*:<br class="imHidden" /></span>
 <span class="imLabel_Cont">
 <input class="imField imInput_0" type="text" name="imTxtDat" id="Itm2" />
@@ -144,7 +144,7 @@
 </label>
 </div>
 <div>
-<label for="Itm_3">
+<%--@declare id="itm_3"--%><label for="Itm_3">
 <span class="imLabel">Город*:<br class="imHidden" /></span>
 <span class="imLabel_Cont">
 <input class="imField imInput_0" type="text" name="imTxtDat" id="Itm3" />
@@ -152,7 +152,7 @@
 </label>
 </div>
 <div>
-<label for="Itm_4">
+<%--@declare id="itm_4"--%><label for="Itm_4">
 <span class="imLabel">Код*:<br class="imHidden" /></span>
 <span class="imLabel_Cont">
 <input class="imField imInput_3" type="text" name="imTxtDat" id="Itm4" />
@@ -160,7 +160,7 @@
 </label>
 </div>
 <div>
-<label for="Itm_5">
+<%--@declare id="itm_5"--%><label for="Itm_5">
 <span class="imLabel">Область*:<br class="imHidden" /></span>
 <span class="imLabel_Cont">
 <input class="imField imInput_2" type="text" name="imTxtDat" id="Itm5" />
@@ -168,7 +168,7 @@
 </label>
 </div>
 <div>
-<label for="Itm_6">
+<%--@declare id="itm_6"--%><label for="Itm_6">
 <span class="imLabel">Регион*:<br class="imHidden" /></span>
 <span class="imLabel_Cont">
 <input class="imField imInput_0" type="text" name="imTxtDat" id="Itm6" />
@@ -176,7 +176,7 @@
 </label>
 </div>
 <div>
-<label for="Itm_7">
+<%--@declare id="itm_7"--%><label for="Itm_7">
 <span class="imLabel">Страна*:<br class="imHidden" /></span>
 <span class="imLabel_Cont">
 <input class="imField imInput_1" type="text" name="imTxtDat" id="Itm7" />
@@ -184,7 +184,7 @@
 </label>
 </div>
 <div>
-<label for="Itm_8">
+<%--@declare id="itm_8"--%><label for="Itm_8">
 <span class="imLabel">Телефон*:<br class="imHidden" /></span>
 <span class="imLabel_Cont">
 <input class="imField imInput_2" type="text" name="imTxtDat" id="Itm8" />
@@ -192,7 +192,7 @@
 </label>
 </div>
 <div>
-<label for="Itm_16">
+<%--@declare id="itm_16"--%><label for="Itm_16">
 <span class="imLabel">e-mail*:<br class="imHidden" /></span>
 <span class="imLabel_Cont">
 <input class="imField imInput_1" type="text" name="imTxtDat" id="Itm16" />

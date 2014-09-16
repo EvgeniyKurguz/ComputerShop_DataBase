@@ -39,6 +39,8 @@ public class ActionFactory {
         actionMap.put("POST/createProduct", new CreateClientAction());
 
         actionMap.put("GET/imcart",  new ImcartAction("imcart"));
+        actionMap.put("GET/imform",  new ImformAction("imform"));
+        actionMap.put("GET/imreport",  new ImreportAction("imreport"));
     }
 
     public static Action getAction(String actionName) {

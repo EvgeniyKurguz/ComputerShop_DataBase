@@ -296,7 +296,7 @@ function imCCheckout(){
 			i++;
 		}
 	imSetCookie("imShipment",iShipmentType,imExpireDays);
-	imOpenLocation("imform.html");
+	imOpenLocation("imform");
 }
 
 //get user info
