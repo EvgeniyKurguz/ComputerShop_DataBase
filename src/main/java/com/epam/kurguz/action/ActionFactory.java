@@ -1,10 +1,7 @@
 package com.epam.kurguz.action;
 
 
-import com.epam.kurguz.action.table.ClientTableAction;
-import com.epam.kurguz.action.table.CreateClientAction;
-import com.epam.kurguz.action.table.ProductTableAction;
-import com.epam.kurguz.action.table.UpdateClientAction;
+import com.epam.kurguz.action.table.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,14 +13,19 @@ public class ActionFactory {
         ShowLoginPageAction showLoginPageAction = new ShowLoginPageAction();
         actionMap.put("GET/", showLoginPageAction);
         actionMap.put("POST/", new LoginAction());
+
         actionMap.put("GET/index", new ShowPageAction("index"));
         actionMap.put("GET/registration", new FormRegistrationAction("registration"));
-        actionMap.put("GET/login",  new ExitAction("login"));
+        actionMap.put("GET/login", new ShowLoginPageAction());
+        actionMap.put("POST/login", new LoginAction());
+
+
         actionMap.put("GET/fullscreen",  new FullscreenAction("fullscreen"));
         actionMap.put("GET/imagebrowser",  new ProductAction("imagebrowser"));
         actionMap.put("GET/laptop",  new ProductAction("laptop"));
 
         actionMap.put("GET/clientTable", new ClientTableAction());
+        actionMap.put("POST/clienttable", new DeleteClientAction());
 
         actionMap.put("GET/clientRegistration", new ShowPageAction("clientRegistration"));
         actionMap.put("POST/clientRegistration", new ClientRegisterAction());

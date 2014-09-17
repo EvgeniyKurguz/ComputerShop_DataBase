@@ -39,48 +39,46 @@
     <script type="text/javascript" src="/static/res/x5cart.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/res/handheld.css" media="handheld"/>
     <link rel="alternate stylesheet" title="Высокий контраст - Доступность" type="text/css"
-          href="/static/res/accessibility.css" media="screen"/>
-    <script>
-        function validate(form) {
-            var reason = "";
-
-            if (form.username.value == "" || /[^a-zA-z]/.test(form.username.value))
-                reason += "Ошибка имени ";
-            if (form.password.value == "" || /[^0-9]/.test(form.password.value))
-                reason += "Ошибка пароля ";
-
-            if (reason == "")
-                return true;
-            else {
-                alert(reason);
-                return false;
-            }
-        }
-    </script>
+     href="/static/res/accessibility.css" media="screen"/>
 
 </head>
 <body>
 
 <div id="imSite">
-    <form method="post" name="login-form" action="">
+    <form method="post" name="login-form" action="login">
         <h3 align="right"><span><em><strong> Вход в личный кабинет. </strong></em></span></h3>
         <input name="action" type="hidden" value="login"/>
 
         <div align="right"> Имя:
-            <input type="text" name="username"/>
+            <input type="text" name="username" placeholder="Username"/>
         </div>
 
         <p align="right"><span class="content">	Пароль:
-              <input type="password" name="password"/>
+              <input type="password" name="password" placeholder="Password"/>
           </span></p>
 
-
         <div align="right">
-            <a class="c" href="index">ВОЙТИ</a>
+            <a class="c" href="index" >ВОЙТИ</a>
             <%--<a href="registration" class="c">РЕГИСТРАЦИЯ</a>--%>
-            <a href="createClient" class="c">РЕГИСТРАЦИЯ</a>
+            <a href="registration" class="c">РЕГИСТРАЦИЯ</a>
          </div>
     </form>
+
+        <%--<form action="" method="post">--%>
+            <%--Логин: <input type="text" name="user" size="10"><br>--%>
+            <%--Пароль: <input type="password" name="password" size="10"><br>--%>
+            <%--<p>--%>
+            <%--<table>--%>
+                <%--<tr>--%>
+                    <%--<th><small>--%>
+                        <%--<input type="submit" name="логин" value="Войти в систему">--%>
+                    <%--</small>--%>
+                    <%--<th><small>--%>
+                        <%--<input type="submit" name="registration" value="Зарегистрироваться">--%>
+                    <%--</small>--%>
+            <%--</table>--%>
+        <%--</form>--%>
+
     <div id="imHeader">
 
         <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"

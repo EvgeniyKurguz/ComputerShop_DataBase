@@ -27,5 +27,7 @@ public interface ClientDao extends Dao<Client> {
 
     List<Client> getClientList() throws DaoException;
 
+    List<Client> findRange(int position, int count) throws DaoException;
+
     boolean clientLoginIsOccupied(String username) throws DaoException;
 }

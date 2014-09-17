@@ -2,17 +2,16 @@ package com.epam.kurguz.entity;
 
 import java.util.Date;
 
-public class User {
+public class User  {
     private int id;
     private String firstName;
     private String lastName;
+    private String Address;
     private Date birth;
-    private String identityPapers;
     private String phone;
     private String userName;
     private String password;
     private String email;
-
     public User(String username, String password) {
     }
 
@@ -20,14 +19,12 @@ public class User {
         this.userName = userName;
     }
 
-    public User(int id, String firstName, String lastName, String userName, String password,  Date birth,  String identityPapers, String email, String phone) {
+    public User(int id, String firstName, String lastName, String userName, String password,  Date birth,  String email, String phone) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.identityPapers = identityPapers;
         this.phone = phone;
         this.email = email;
-        this.identityPapers = identityPapers;
         this.birth = birth;
         this.userName = userName;
         this.password = password;
@@ -37,6 +34,14 @@ public class User {
     }
 
     public User() {
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
     }
 
     public String getUserName() {
@@ -93,14 +98,6 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getIdentityPapers() {
-        return identityPapers;
-    }
-
-    public void setIdentityPapers(String passport) {
-        this.identityPapers = passport;
     }
 
     public String getPhone() {

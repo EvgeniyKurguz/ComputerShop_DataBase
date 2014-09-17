@@ -9,6 +9,7 @@ body {
     padding: 5px 15px; /* Поля */
     text-decoration: none; /* Убираем подчёркивание */
     color: #000; /* Цвет текста */
+
 }
 .c:hover {
     box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Тень */

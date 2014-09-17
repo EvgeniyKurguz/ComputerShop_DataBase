@@ -19,14 +19,18 @@ public class RegistrationAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest request) {
+
         String login = request.getParameter(USERNAME);
         String password = request.getParameter(PASSWORD);
         String email = request.getParameter("email");
+        User newUser = new User();
 
 
-        User user = new User(id, firstName, lastName, birth, phone, username, password, email);
-
-        request.setAttribute("user", user);
+        request.setAttribute("user", newUser);
         return null;
     }
+
+
+
+
 }

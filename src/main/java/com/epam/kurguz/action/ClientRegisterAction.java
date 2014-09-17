@@ -15,7 +15,7 @@ import java.sql.Date;
 public class ClientRegisterAction implements Action {
     private static final String FIRSTNAME = "firstName";
     private static final String LASTNAME = "lastName";
-    private final static String USERNAME = "username";
+    private final static String LOGIN = "login";
     private final static String PASSWORD = "password";
     private final static String CONFIRM_PASSWORD = "confirmPassword";
     private final static String EMAIL = "email";
@@ -23,7 +23,6 @@ public class ClientRegisterAction implements Action {
     private static final String CITY = "city";
     private static final String COUNTRY = "country";
     private static final String PHONE = "phone";
-
     Validator validator = new Validator();
     private ActionResult home = new ActionResult("home", true);
     private ActionResult register = new ActionResult("clientRegistration");
@@ -32,7 +31,7 @@ public class ClientRegisterAction implements Action {
     public ActionResult execute(HttpServletRequest request) throws ActionException {
         String firstName = request.getParameter(FIRSTNAME);
         String lastName = request.getParameter(LASTNAME);
-        String username = request.getParameter(USERNAME);
+        String username = request.getParameter(LOGIN);
         String password = request.getParameter(PASSWORD);
         String confirmPassword = request.getParameter(CONFIRM_PASSWORD);
         String birth = request.getParameter(BIRTH);

@@ -42,9 +42,10 @@
 
 </head>
 <body>
-<form method="post" name="login-form" action="">
+<form method="post" name="login-form" action="ClientRegisterAction">
 <div align="right">
-
+    <jsp:useBean id="user" class="com.epam.kurguz.entity.User" scope="application"/>
+    Пользователь: <%= user.getUserName()%><br>
     <a href="login" class="c">Выйти</a>
     <a href="clientTable" class="c">Таблица клиентов</a>
     <a href="productTable" class="c">Таблица товаров</a>

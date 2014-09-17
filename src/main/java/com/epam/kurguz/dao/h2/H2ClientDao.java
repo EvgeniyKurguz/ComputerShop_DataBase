@@ -206,6 +206,26 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
     }
 
     @Override
+    public List<Client> findRange(int position, int count) throws DaoException {
+//        ResultSet resultSet = null;
+//        List<Client> result = new ArrayList<>();
+//        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_RANGE)) {
+//            preparedStatement.setInt(1, offset);
+//            preparedStatement.setInt(2, limit);
+//            resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                result.add(createClient(resultSet));
+//            }
+//        } catch (SQLException e) {
+//            throw new DaoException(e);
+//        } finally {
+//            DaoHelper.closeResultSet(resultSet);
+//        }
+       return null;
+    }
+
+
+    @Override
     public Client findClientByUsernameAndPassword(String username, String password) throws DaoException {
         try {
             preparedStatement = connection.prepareStatement(FIND_CLIENT_BY_USERNAME_AND_PASSWORD);

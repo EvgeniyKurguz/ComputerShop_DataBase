@@ -33,6 +33,20 @@
         <url-pattern>/do/*</url-pattern>
     </filter-mapping>
 
+    <servlet>
+        <servlet-name>ErrorHandlerServlet</servlet-name>
+        <servlet-class>com.epam.kurguz.servlet.ErrorHandlerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ErrorHandlerServlet</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+
+    <error-page>
+        <location>/error</location>
+    </error-page>
+
+
     <session-config>
         <session-timeout>1</session-timeout>
         <cookie-config>
