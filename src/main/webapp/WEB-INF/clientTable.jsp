@@ -13,76 +13,96 @@
 </head>
 <body>
 
-<div id="navbar-header">
+<div id="mainBody" class="container">
+    <header id="header">
+        <div class="row">
 
-    <table class="table table-bordered table-hover table-condensed">
-        <caption>Таблица "Клиенты"</caption>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Дата рождения</th>
-            <th>Телефон</th>
-            <th>Логин</th>
-            <th>Пароль</th>
-            <th>Город</th>
-            <th>Страна</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%--@elvariable id="clientList" type="com.epam.ys.web.entity.Client"--%>
-        <c:forEach items="${clientList}" var="client">
 
-            <tr>
-                    <%--<input type="text" placeholder="${client.id}">--%>
-                <td>${client.id}</td>
-                <td>${client.firstName}</td>
-                <td>${client.lastName}</td>
-                <td>${client.birth}</td>
-                <td>${client.phone}</td>
-                <td>${client.username}</td>
-                <td>${client.password}</td>
-                <td>${client.city}</td>
-                <td>${client.country}</td>
+            <div align="center">
+                <div>
+                    <h3>Client Table</h3>
 
-                <td>
-                    <form method="get" action="<c:url value=""/>">
-                        <button type="submit" name="update" value="${client.id}">Edit</button>
-                    </form>
-                </td>
-                <td>
-                    <form method="post">
-                        <button type="submit" name="delete" value="${client.id}">Delete</button>
-                    </form>
-                </td>
-            </tr>
+                    <div class="row-fluid">
 
-        </c:forEach>
+                        <div id="navbar-header">
 
-        <hr>
+                            <table class="table table-bordered table-hover table-condensed">
+                                <%--<caption>ClientTable</caption>--%>
+                                <thead>
+                                <tr>
+                                    <%--<th>Id</th>--%>
+                                    <th>first name</th>
+                                    <th>last name</th>
+                                    <th>birth</th>
+                                    <th>phone</th>
+                                    <th>email</th>
+                                    <th>username</th>
+                                    <th>password</th>
+                                    <%--<th>role</th>--%>
+                                    <th>city</th>
+                                    <th>country</th>
+                                    <%--<th>CheckBox</th>--%>
+                                    <th>Edit Button</th>
+                                    <th>Delete Button</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${clientList}" var="client">
 
-        <form method="get" value="createClient" style="float: right">
+                                    <tr>
+                                        <td>${client.firstName}</td>
+                                        <td>${client.lastName}</td>
+                                        <td>${client.birth}</td>
+                                        <td>${client.phone}</td>
+                                        <td>${client.username}</td>
+                                        <td>${client.password}</td>
+                                        <td>${client.email}</td>
+                                        <td>${client.city}</td>
 
-            <a href="createClient">Добавить запись о клиенте</a>
-        </form>
+                                        <td>
+                                            <form method="get" action="<c:url value="/updateClient"/>">
+                                                <button type="submit" name="id" value="${client.id}">Edit</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form method="post">
+                                                <button type="submit" name="delete" value="${client.id}">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <%--<form method="post">--%>
+                                    <%--<button type="submit" name="delete" value="${client.id}">Удалить отмеченных</button>--%>
+                                    <%--</form>--%>
+                                </c:forEach>
 
-        <ul id="change" class="pagination">
-            <li><a href="${pageName}?page=${pageNumber-1}&rows=${rowsCount}"
-                   form="back">&laquo;</a></li>
-            <li>
-                <c:forEach items="${paginationList}" var="pl">
-            <li><a href="${pageName}?page=${pl.intValue()}&rows=${rowsCount}"
-                   name="page">${pl.intValue()}</a></li>
-            </c:forEach>
-            </li>
-            <li><a href="${pageName}?page=${pageNumber+1}&rows=${rowsCount}"
-                   form="next">&raquo;</a></li>
-        </ul>
-        </button>
-        </tbody>
-    </table>
-    <hr>
-</div>
+                                <hr>
+
+                                <form method="get" action="<c:url value="/createClient"/>" style="float: right">
+                                    <button type="submit" class="Submit">Добавить запись о клиенте</button>
+                                </form>
+
+
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- Footer ------------------------------------------------------ -->
+
+            <!-- /container -->
+        </div>
+
+              <script type="text/javascript">
+            $(function () {
+                $('#gallery a').lightBox();
+            });
+        </script>
+
 </body>
 </html>

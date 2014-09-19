@@ -13,53 +13,43 @@ import java.sql.SQLException;
 public class H2DaoFactory implements DaoFactory {
     public static final String PROPERTIES_FILE = "database.properties";
     private static PropertyManager propertyManager = new PropertyManager(PROPERTIES_FILE);
-    private static BoneCP connectionPool;
-    private static BoneCPConfig config;
-    private static Connection connection;
+    private final BoneCP connectionPool;
 
     public H2DaoFactory() throws DaoException {
         try {
             Class.forName(propertyManager.getProperty("db.driver"));
-            if (connectionPool == null) {
-                if (config == null) {
-                    config = getConfig(PROPERTIES_FILE);
-                }
-                connectionPool = new BoneCP(config);
-            }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             throw new DaoException(e);
         }
-    }
-
-    public static BoneCPConfig getConfig(String propertyFileName) {
-        String jdbcUrl = propertyManager.getProperty("db.url");
-        String username = propertyManager.getProperty("db.user");
-        String password = propertyManager.getProperty("db.password");
-        int maxConn = Integer.parseInt(propertyManager.getProperty("db.poolsize"));
-
         BoneCPConfig config = new BoneCPConfig();
-        config.setJdbcUrl(jdbcUrl);
-        config.setUsername(username);
-        config.setPassword(password);
-        config.setMaxConnectionsPerPartition(maxConn);
 
-        return config;
-    }
+        config.setJdbcUrl(propertyManager.getProperty("db.url"));
+        config.setUsername(propertyManager.getProperty("db.user"));
+        config.setPassword(propertyManager.getProperty("db.password"));
 
-    @Override
-    public Connection getConnection() throws DaoException {
         try {
-            if (connection == null || connection.isClosed()) {
-                connection = connectionPool.getConnection();
-            }
+            connectionPool = new BoneCP(config);
         } catch (SQLException e) {
             throw new DaoException(e);
         }
-        return connection;
     }
 
-    @Override
-    public DaoManager getDaoManager() throws DaoException {
-        return new H2DaoManager(getConnection());
+    public static DaoFactory getInstance() {
+        return InstanceHolder.instance;
     }
+
+    public DaoManager getDaoManager() throws DaoException {
+        Connection connection;
+        try {
+            connection = connectionPool.getConnection();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return new H2DaoManager(connection);
+    }
+
+    private static class InstanceHolder {
+        private static DaoFactory instance = new H2DaoFactory();
+    }
+
 }

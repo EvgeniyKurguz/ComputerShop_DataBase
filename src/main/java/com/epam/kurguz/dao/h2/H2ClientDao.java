@@ -1,9 +1,10 @@
 package com.epam.kurguz.dao.h2;
 
 import com.epam.kurguz.dao.ClientDao;
+import com.epam.kurguz.dao.DaoHelper;
 import com.epam.kurguz.dao.JDBCDao;
-import com.epam.kurguz.exception.DaoException;
 import com.epam.kurguz.entity.Client;
+import com.epam.kurguz.exception.DaoException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
             " inner join COUNTRY on CLIENTS.ID_COUNTRY = COUNTRY.ID";
     private static final String FIND_BY_ID = "SELECT * FROM CLIENTS " + JOIN + " WHERE CLIENTS.ID=?";
     private static final String FIND_BY_LASTNAME = "SELECT * FROM CLIENTS " + JOIN + " WHERE LASTNAME=?";
+
     private static final String FIND_BY_EMAIL = "SELECT * FROM CLIENTS " + JOIN + " WHERE EMAIL=?";
     private static final String FIND_BY_USERNAME = "SELECT * FROM CLIENTS " + JOIN + " WHERE USERNAME=?";
     private static final String FIND_CLIENT_BY_USERNAME_AND_PASSWORD = "SELECT * FROM CLIENTS " + JOIN +
@@ -30,6 +32,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
             " (select id from role where role = ?)," +
             " ?," +
             " ?)";
+    private static final String FIND_RANGE = "SELECT * FROM CLIENT " + JOIN + " where not is_blocked ORDER BY ID LIMIT ? OFFSET ?";
     private static final String GET_CLIENT_LIST = "SELECT * FROM CLIENTS" + JOIN;
     private static final String ID = "id";
     private static final String FIRST_NAME = "firstName";
@@ -206,21 +209,21 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
     }
 
     @Override
-    public List<Client> findRange(int position, int count) throws DaoException {
-//        ResultSet resultSet = null;
-//        List<Client> result = new ArrayList<>();
-//        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_RANGE)) {
-//            preparedStatement.setInt(1, offset);
-//            preparedStatement.setInt(2, limit);
-//            resultSet = preparedStatement.executeQuery();
-//            while (resultSet.next()) {
-//                result.add(createClient(resultSet));
-//            }
-//        } catch (SQLException e) {
-//            throw new DaoException(e);
-//        } finally {
-//            DaoHelper.closeResultSet(resultSet);
-//        }
+    public List<Client> findRange(int limit, int offset) throws DaoException {
+        ResultSet resultSet = null;
+        List<Client> result = new ArrayList<Client>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_RANGE)) {
+            preparedStatement.setInt(offset, 1);
+            preparedStatement.setInt(limit, 2);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                result.add(createClient(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            DaoHelper.closeResultSet(resultSet);
+        }
        return null;
     }
 

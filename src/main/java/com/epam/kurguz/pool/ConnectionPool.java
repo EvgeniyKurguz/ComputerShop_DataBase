@@ -1,7 +1,6 @@
-package com.epam.kurguz.entity;
+package com.epam.kurguz.pool;
 
 import com.epam.kurguz.exception.PoolException;
-import com.epam.kurguz.pool.PropertyManager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionPool {
-    public static final String PROPERTIES_FILE ="database.properties";
+    public static final String PROPERTIES_FILE =
+            "database.properties";
     public static final int MAX_POOL_SIZE = 10;
-    private static List<Connection> connectionList = new ArrayList<Connection>(MAX_POOL_SIZE);
+    private static List<Connection> connectionList = new ArrayList<>(MAX_POOL_SIZE);
     private static int CURRENT_POOL_SIZE;
     private static PropertyManager propertyManager = new PropertyManager(PROPERTIES_FILE);
 

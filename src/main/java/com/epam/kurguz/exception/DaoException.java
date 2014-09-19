@@ -1,6 +1,6 @@
 package com.epam.kurguz.exception;
 
-public class DaoException extends Exception {
+public class DaoException extends RuntimeException {
 
     private static final long serialVersionUID = 3985779316306015355L;
 

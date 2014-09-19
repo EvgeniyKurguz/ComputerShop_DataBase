@@ -24,12 +24,10 @@ public class ActionFactory {
         actionMap.put("GET/imagebrowser",  new ProductAction("imagebrowser"));
         actionMap.put("GET/laptop",  new ProductAction("laptop"));
 
-        actionMap.put("GET/clientTable", new ClientTableAction());
-        actionMap.put("POST/clienttable", new DeleteClientAction());
-
+        actionMap.put("GET/clientTable", new ShowClientTableAction());
+        actionMap.put("POST/clientTable", new DeleteClientAction());
         actionMap.put("GET/clientRegistration", new ShowPageAction("clientRegistration"));
         actionMap.put("POST/clientRegistration", new ClientRegisterAction());
-
         actionMap.put("GET/createClient", new ShowPageAction("createClient"));
         actionMap.put("POST/createClient", new CreateClientAction());
 

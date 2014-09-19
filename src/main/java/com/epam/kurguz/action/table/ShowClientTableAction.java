@@ -15,17 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowClientAction implements Action {
-    public static final Logger LOGGER = LoggerFactory.getLogger(ShowClientAction.class);
+public class ShowClientTableAction implements Action {
+    public static final Logger LOGGER = LoggerFactory.getLogger(ShowClientTableAction.class);
     public static final int DEFAULT_PAGE_NUMBER = 0;
     public static final int DEFAULT_ROWS_COUNT = 10;
-    private ActionResult clientTable = new ActionResult("client-table");
+    private ActionResult clientTable = new ActionResult("clientTable");
 
     @Override
     public ActionResult execute(HttpServletRequest request) throws ActionException {
         int pageNumber = DEFAULT_PAGE_NUMBER;
         int rowsCount = DEFAULT_ROWS_COUNT;
-        String pageName = request.getParameter("client-table");
+        String pageName = request.getParameter("clientTable");
         String pageString = request.getParameter("page");
         String rowsString = request.getParameter("rows");
 

@@ -47,8 +47,8 @@
     <jsp:useBean id="user" class="com.epam.kurguz.entity.User" scope="application"/>
     Пользователь: <%= user.getUserName()%><br>
     <a href="login" class="c">Выйти</a>
-    <a href="clientTable" class="c">Таблица клиентов</a>
-    <a href="productTable" class="c">Таблица товаров</a>
+    <a href="clientTable" class="c">Клиенты</a>
+    <a href="productTable" class="c">Товары</a>
 
 </div>
     </form>

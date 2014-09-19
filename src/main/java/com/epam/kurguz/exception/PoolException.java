@@ -1,4 +1,4 @@
-package com.epam.kurguz.pool;
+package com.epam.kurguz.exception;
 
 public class PoolException  extends Exception{
 
