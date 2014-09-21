@@ -15,10 +15,10 @@ public class ActionFactory {
         actionMap.put("POST/", new LoginAction());
 
         actionMap.put("GET/index", new ShowPageAction("index"));
+        actionMap.put("GET/home", new ShowPageAction("home"));
         actionMap.put("GET/registration", new FormRegistrationAction("registration"));
         actionMap.put("GET/login", new ShowLoginPageAction());
         actionMap.put("POST/login", new LoginAction());
-
 
         actionMap.put("GET/fullscreen",  new FullscreenAction("fullscreen"));
         actionMap.put("GET/imagebrowser",  new ProductAction("imagebrowser"));

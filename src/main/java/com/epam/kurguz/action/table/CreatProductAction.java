@@ -12,9 +12,6 @@ import com.epam.kurguz.exception.DaoException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/**
- * Created by Евгений on 16.09.2014.
- */
 public class CreatProductAction implements Action {
     private static final String NAME = "name";
     private static final String MAKER = "maker";

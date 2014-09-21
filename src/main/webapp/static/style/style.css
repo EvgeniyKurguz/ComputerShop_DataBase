@@ -17,4 +17,13 @@ body {
     color: #a00;
 }
 
-.table td[align=right] {text-align: right;}
+.table-data-base {
+    margin: 5px;
+    height: 445px;
+}
+
+.table-name {
+    margin: 200px 10px 10px 10px;
+    float: left;
+    width: 150px;
+}

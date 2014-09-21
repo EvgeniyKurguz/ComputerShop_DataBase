@@ -43,9 +43,12 @@
 
 </head>
 <body>
-
+<%--<%--%>
+    <%--response.sendRedirect(request.getContextPath()+"/login");--%>
+<%--%>--%>
 <div id="imSite">
-    <form method="post" name="login-form" action="login">
+<c:if test="${empty user}">
+<form  action="<c:url value="/login"/>" method="post">
         <h3 align="right"><span><em><strong> Вход в личный кабинет. </strong></em></span></h3>
         <input name="action" type="hidden" value="login"/>
 
@@ -58,12 +61,43 @@
           </span></p>
 
         <div align="right">
-            <a class="c" href="index" >ВОЙТИ</a>
-            <%--<a href="registration" class="c">РЕГИСТРАЦИЯ</a>--%>
-            <a href="registration" class="c">РЕГИСТРАЦИЯ</a>
+            <%--<a class="c" href="home" >ВОЙТИ</a>--%>
+            <button type="submit" class="">Войти</button>--%>
+            <a href="clientRegistration" class="c">РЕГИСТРАЦИЯ</a>
          </div>
     </form>
+</c:if>
+    <%--<c:if test="${empty user}">--%>
+        <%--<ul class="nav pull-right">--%>
+            <%--<li class="dropdown">--%>
+                <%--<a data-toggle="dropdown" class="dropdown-toggle" href="#">Login <b class="caret"></b></a>--%>
 
+                <%--<div class="dropdown-menu">--%>
+                    <%--<form class="form-horizontal loginFrm" action="<c:url value="/login"/>" method="post">--%>
+
+                        <%--<div class="control-group">--%>
+                            <%--<input type="text" class="span2" name="username" placeholder="Username">--%>
+                        <%--</div>--%>
+                        <%--<div class="control-group">--%>
+                            <%--<input type="password" class="span2" name="password" placeholder="Password">--%>
+                        <%--</div>--%>
+                        <%--<div class="control-group">--%>
+                            <%--<label class="checkbox">--%>
+                                <%--<input type="checkbox"> Remember me--%>
+                            <%--</label>--%>
+                            <%--<button type="submit" class="btn pull-right">Sign in</button>--%>
+                        <%--</div>--%>
+                    <%--</form>--%>
+                <%--</div>--%>
+            <%--</li>--%>
+            <%--<form style="float: right">--%>
+
+                        <%--<a href="clientRegistration" class="c">Зарегистрироваться</a>--%>
+
+            <%--</form>--%>
+        <%--</ul>--%>
+    <%--</c:if>--%>
+<%-----End---%>
         <%--<form action="" method="post">--%>
             <%--Логин: <input type="text" name="user" size="10"><br>--%>
             <%--Пароль: <input type="password" name="password" size="10"><br>--%>
