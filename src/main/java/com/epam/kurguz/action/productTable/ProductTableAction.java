@@ -1,11 +1,12 @@
-package com.epam.kurguz.action.table;
+package com.epam.kurguz.action.productTable;
 
 import com.epam.kurguz.action.Action;
 import com.epam.kurguz.action.ActionResult;
-import com.epam.kurguz.dao.ClientDao;
+import com.epam.kurguz.dao.DaoFactory;
 import com.epam.kurguz.dao.DaoManager;
+import com.epam.kurguz.dao.ProductDao;
 import com.epam.kurguz.dao.h2.H2DaoFactory;
-import com.epam.kurguz.entity.Client;
+import com.epam.kurguz.entity.Product;
 import com.epam.kurguz.exception.ActionException;
 import com.epam.kurguz.exception.DaoException;
 
@@ -13,18 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("ThrowFromFinallyBlock")
-public class ShowClientTableAction implements Action {
-
+public class ProductTableAction implements Action {
     public static final int DEFAULT_PAGE_NUMBER = 0;
     public static final int DEFAULT_ROWS_COUNT = 10;
-    private ActionResult clientTable = new ActionResult("clientTable");
+    private ActionResult productTable = new ActionResult("productTable");
 
     @Override
     public ActionResult execute(HttpServletRequest request) throws ActionException {
         int pageNumber = DEFAULT_PAGE_NUMBER;
         int rowsCount = DEFAULT_ROWS_COUNT;
-        String pageName = request.getParameter("clientTable");
+        String pageName = request.getParameter("product-table");
         String pageString = request.getParameter("page");
         String rowsString = request.getParameter("rows");
 
@@ -33,13 +32,13 @@ public class ShowClientTableAction implements Action {
 
         DaoManager daoManager = null;
         try {
-            H2DaoFactory factory = new H2DaoFactory();
+            DaoFactory factory = H2DaoFactory.getInstance();
             daoManager = factory.getDaoManager();
-            ClientDao clientDao = daoManager.getClientDao();
-            List<Client> clientList = clientDao.findRange(pageNumber, rowsCount);
-            List<Client> clientLengthList = clientDao.getClientList();
+            ProductDao productDao = daoManager.getProductDao();
+            List<Product> productList = productDao.findRange(pageNumber, rowsCount);
+            List<Product> productLengthList = productDao.getProductList();
 
-            int tableLength = clientLengthList.size();
+            int tableLength = productLengthList.size();
             List<Integer> paginationList = new ArrayList<>();
 
             for (int i = 0; i < tableLength / rowsCount + 1; i++) {
@@ -55,30 +54,30 @@ public class ShowClientTableAction implements Action {
             }
 
             request.setAttribute("paginationList", paginationList);
-            request.setAttribute("clientList", clientList);
+            request.setAttribute("productList", productList);
             request.setAttribute("pageNumber", pageNumber);
             request.setAttribute("rowsCount", rowsCount);
             request.setAttribute("pageName", pageName);
             daoManager.commit();
         } catch (DaoException e) {
             try {
-                if (daoManager != null) {
-                    daoManager.rollBack();
-                }
-                request.setAttribute("EditClientError", "Edit client error");
+                daoManager.rollBack();
+                request.setAttribute("Product Action Error", "Show Product error");
             } catch (DaoException exception) {
                 throw new ActionException(exception);
             }
         } finally {
             try {
-                if (daoManager != null) {
-                    daoManager.close();
-                }
+                daoManager.close();
             } catch (DaoException e) {
                 throw new ActionException(e);
             }
         }
-        return clientTable;
+        return productTable;
     }
 }
+
+
+
+
 

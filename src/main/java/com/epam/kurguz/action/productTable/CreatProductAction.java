@@ -1,4 +1,4 @@
-package com.epam.kurguz.action.product;
+package com.epam.kurguz.action.productTable;
 
 import com.epam.kurguz.action.Action;
 import com.epam.kurguz.action.ActionResult;
@@ -15,11 +15,10 @@ import javax.servlet.http.HttpSession;
 public class CreatProductAction implements Action {
     private static final String NAME = "name";
     private static final String MAKER = "maker";
-    private static final String MODEL = "lastName";
+    private static final String MODEL = "model";
 
 
     ActionResult productTable = new ActionResult("productTable", true);
-    ActionResult createProduct = new ActionResult("createProduct");
 
     @Override
     public ActionResult execute(HttpServletRequest request) throws ActionException {
@@ -51,6 +50,7 @@ public class CreatProductAction implements Action {
         product.setName(name);
         product.setMaker(maker);
         product.setModel(model);
+        productDao.insert(product);
 
 
         HttpSession session = request.getSession();

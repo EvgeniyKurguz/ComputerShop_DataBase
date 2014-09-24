@@ -104,10 +104,6 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
             preparedStatement.setString(9, String.valueOf(client.getRole()));
             preparedStatement.setString(10, client.getCity());
             preparedStatement.setString(11, client.getCountry());
-//            preparedStatement.setBoolean(12, client.isBlocked());
-//            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-//            int anInt = generatedKeys.getInt(1);
-//            preparedStatement.setInt(anInt, client.getId());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -127,6 +123,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
             DaoHelper.closeResultSet(resultSet);
         }
     }
+
 
     @Override
     public Client findByAccount(BigDecimal account) throws DaoException {

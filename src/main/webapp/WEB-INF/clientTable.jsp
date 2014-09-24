@@ -30,7 +30,6 @@
 
                                 <thead>
                                 <tr>
-
                                         <th>first name</th>
                                         <th>last name</th>
                                         <th>birth</th>
@@ -42,7 +41,6 @@
                                         <th>city</th>
                                         <th>country</th>
                                         <th>is blocked</th>
-
                                 </tr>
                                 </thead>
                                 <tbody>

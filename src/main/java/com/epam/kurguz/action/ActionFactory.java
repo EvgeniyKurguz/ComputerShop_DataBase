@@ -1,8 +1,8 @@
 package com.epam.kurguz.action;
 
 
-import com.epam.kurguz.action.product.ProductTableAction;
-import com.epam.kurguz.action.table.*;
+import com.epam.kurguz.action.productTable.ProductTableAction;
+import com.epam.kurguz.action.clientTable.*;
 
 import java.util.HashMap;
 import java.util.Map;

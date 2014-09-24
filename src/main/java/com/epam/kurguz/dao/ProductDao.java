@@ -7,13 +7,20 @@ import com.epam.kurguz.exception.DaoException;
 import java.util.List;
 
 public interface ProductDao extends Dao<Product> {
-    Product findByProductName(String lastName) throws DaoException;
+    Product findByName(String name) throws DaoException;
 
-    Product findByProducer(String username) throws DaoException;
+    Product findByMaker(String maker) throws DaoException;
 
-    void deleteByProductName(Product client) throws DaoException;
+    Product findByModel(String model) throws DaoException;
 
-    void deleteByProducer(Product client) throws DaoException;
+    void deleteByName(Product product) throws DaoException;
+
+    void setDeleteByMaker(Product product) throws DaoException;
+
+    void setDeleteByModel(Product product) throws DaoException;
+
+    List<Product> findRange(int limit, int offset) throws DaoException;
 
     List<Product> getProductList() throws DaoException;
+
 }

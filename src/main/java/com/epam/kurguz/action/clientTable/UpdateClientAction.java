@@ -1,4 +1,4 @@
-package com.epam.kurguz.action.table;
+package com.epam.kurguz.action.clientTable;
 
 
 import com.epam.kurguz.action.Action;
