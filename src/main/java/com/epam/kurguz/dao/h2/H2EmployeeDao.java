@@ -12,6 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("JpaQueryApiInspection")
 public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
     private static final String JOIN = " inner join SEPARATION on employee.separation_id = SEPARATION.ID" +
             " inner join ROLE on employee.role_id = ROLE.ID";
@@ -29,6 +30,7 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
     private static final String DELETE_EMPLOYEE = "DELETE FROM employee WHERE ID= ?";
     private static final String DELETE_BY_LASTNAME = "DELETE FROM employee WHERE LASTNAME=?";
     private static final String FIND_BY_LASTNAME = "SELECT * FROM employee WHERE LASTNAME=?";
+    private static final String FIND_RANGE = "SELECT * FROM CLIENT " + JOIN + " where not is_blocked ORDER BY ID LIMIT ? OFFSET ?";
     private static final String CREATE_EMPLOYEE = "INSERT INTO  employee VALUES (default, ?, ?, ?, ?, ?, ?," +
             "(select id from role where role = ?), ?, ?, ?)";
     private static final String GET_EMPLOYEE_LIST = "SELECT * FROM employee";
@@ -67,6 +69,36 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
         } catch (SQLException e) {
             throw new DaoException(e);
         }
+    }
+
+    @Override
+    public void updateAccount(Employee employee) throws DaoException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement( UPDATE_BY_ACCOUNT)) {
+            preparedStatement.setBigDecimal(1, employee.getAccount());
+            preparedStatement.setInt(2, employee.getId());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+      @Override
+    public List<Employee> findRange(int limit, int offset) throws DaoException {
+        ResultSet resultSet = null;
+        List<Employee> result = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_RANGE)) {
+            preparedStatement.setInt(1, offset);
+            preparedStatement.setInt(2, limit);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                result.add(createEmployee(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            DaoHelper.closeResultSet(resultSet);
+        }
+        return result;
     }
 
     @Override

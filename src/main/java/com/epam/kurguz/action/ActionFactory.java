@@ -1,6 +1,7 @@
 package com.epam.kurguz.action;
 
 
+import com.epam.kurguz.action.employeeTable.EmployeeTableAction;
 import com.epam.kurguz.action.productTable.ProductTableAction;
 import com.epam.kurguz.action.clientTable.*;
 
@@ -31,7 +32,10 @@ public class ActionFactory {
         actionMap.put("GET/imagebrowser",  new ProductAction("imagebrowser"));
         actionMap.put("GET/laptop",  new ProductAction("laptop"));
 
-        actionMap.put("GET/clientTable", new ShowClientTableAction());
+        actionMap.put("GET/employeeTable", new EmployeeTableAction());
+        actionMap.put("POST/employeeTable", new DeleteClientAction());
+
+        actionMap.put("GET/clientTable", new ClientTableAction());
         actionMap.put("POST/clientTable", new DeleteClientAction());
 
         actionMap.put("GET/createClient", new ShowPageAction("createClient"));
