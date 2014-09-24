@@ -88,12 +88,11 @@ public class ClientRegisterAction implements Action {
         Client client = new Client();
         client.setFirstName(firstName);
         client.setLastName(lastName);
-        client.setUserName(username);
+        client.setUsername(username);
         client.setPassword(password);
         client.setPhone(phone);
         client.setEmail(email);
         client.setBirth(Date.valueOf(birth));
-
         client.setCity(city);
         client.setCountry(country);
         try {

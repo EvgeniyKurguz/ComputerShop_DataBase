@@ -1,43 +1,44 @@
 package com.epam.kurguz.entity;
 
-import java.sql.Date;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Client extends User {
-
-    private String email;
     private String city;
     private String country;
-    private List<Client> clientList = new ArrayList<Client>();
+    private List<Client> clientList = new ArrayList<>();
 
     public Client() {
-
-
     }
 
-    public String getCountry() {
-        return country;
+    public Client(int id) {
+        super(id);
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-
-    private Client(int id,
-                   String firstName,
-                   String lastName,
-                   Date birth,
-                   String phone,
-                   String username,
-                   String password,
-                   String email,
-                   String city,
-                   String country) {
-        super(id, firstName, lastName, birth, phone, username, password, email);
+    public Client(int id, String firstName, String lastName, java.util.Date birth, String phone, String attestationNumber, String username, String password, String email, Role role, BigDecimal account, String city, String country,  boolean blocked) {
+        super(id, firstName, lastName, birth, phone, attestationNumber, username, password, email, role, account, blocked);
         this.city = city;
         this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + getId() +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", birth=" + getBirth() +
+                ", phone='" + getPhone() + '\'' +
+                ", attestationNumber='" + getAttestationNumber() + '\'' +
+                ", username='" + getUsername() + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", role=" + getRole() + '\'' +
+                ", account=" + getAccount() + '\'' +
+                ", city=" + getCity() + '\'' +
+                ", country=" + getCountry() + '\'' +
+                '}';
     }
 
     public String getCity() {
@@ -48,44 +49,38 @@ public class Client extends User {
         this.city = city;
     }
 
-    public String getEmail() {
-        return email;
+    public List<Client> getClientList() {
+        return clientList;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
     }
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + getId() +
-                ", firstName=" + getFirstName() +
-                ", lastName=" + getLastName() +
-                ", phone=" + getPhone() +
-                ", birth=" + getBirth() +
-                ", email=" + email + '}' + "\n" +
-                ", username='" + getUserName() + '\'' +
-                ", password='" + getPassword() + '\'' +
-                ", city=" + getCity() + '\'' +
-                ", country=" + getCountry() + '\'' +
-                '}';
+    public String getCountry() {
+        return country;
     }
 
-    public void setBirth(Date date) {
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public static class Builder {
+    public static class Builder extends Client {
         private int id;
         private String firstName;
         private String lastName;
-        private Date birth;
+        private java.util.Date birth;
         private String phone;
+        private String attestationNumber;
         private String username;
         private String password;
+        private Role role;
         private String email;
         private String city;
         private String country;
+        private BigDecimal account;
+        private boolean blocked;
+
         public Builder id(int id) {
             this.id = id;
             return this;
@@ -101,13 +96,17 @@ public class Client extends User {
             return this;
         }
 
+        public Builder role(Role role) {
+            this.role = role;
+            return this;
+        }
 
         public Builder password(String password) {
             this.password = password;
             return this;
         }
 
-        public Builder birth(Date birth) {
+        public Builder birth(java.util.Date birth) {
             this.birth = birth;
             return this;
         }
@@ -117,6 +116,10 @@ public class Client extends User {
             return this;
         }
 
+        public Builder attestationNumber(String attestationNumber) {
+            this.attestationNumber = attestationNumber;
+            return this;
+        }
 
         public Builder phone(String phone) {
             this.phone = phone;
@@ -127,6 +130,7 @@ public class Client extends User {
             this.email = email;
             return this;
         }
+
         public Builder city(String city) {
             this.city = city;
             return this;
@@ -137,21 +141,32 @@ public class Client extends User {
             return this;
         }
 
+        public Builder account(BigDecimal account) {
+            this.account = account;
+            return this;
+        }
+
+        public Builder blocked(boolean blocked) {
+            this.blocked = blocked;
+            return this;
+        }
+
         public Client build() {
             return new Client(id,
                     firstName,
                     lastName,
                     birth,
                     phone,
+                    attestationNumber,
                     username,
                     password,
                     email,
+                    role,
+                    account,
                     city,
-                    country);
+                    country,
+                    blocked);
         }
     }
 }
-
-
-
 

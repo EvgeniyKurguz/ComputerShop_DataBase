@@ -6,16 +6,21 @@ import com.epam.kurguz.entity.Order;
 import com.epam.kurguz.exception.DaoException;
 
 import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.List;
 
 
 public class H2OrderDao extends JDBCDao implements OrderDao {
-   public H2OrderDao(Connection connection){
-       super(connection);
-   }
+    public H2OrderDao(Connection connection) {
+        super(connection);
+    }
 
     @Override
-    public void insert(Order entityToCreate) throws DaoException, SQLException {
+    public List<Order> getOrderList() throws DaoException {
+        return null;
+    }
+
+    @Override
+    public void insert(Order entityToCreate) throws DaoException {
 
     }
 

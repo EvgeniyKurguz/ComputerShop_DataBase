@@ -1,9 +1,13 @@
 package com.epam.kurguz.dao;
 
 import com.epam.kurguz.entity.Order;
+import com.epam.kurguz.exception.DaoException;
 
-/**
- * Created by Евгений on 06.09.2014.
- */
+import java.util.List;
+
 public interface OrderDao extends Dao<Order> {
+    List<Order> getOrderList() throws DaoException;
+
 }
+
+

@@ -1,3 +1,4 @@
+<%--suppress XmlPathReference --%>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -44,8 +45,7 @@
 <body>
 <form method="post" name="login-form" action="ClientRegisterAction">
 <div align="right">
-    <jsp:useBean id="user" class="com.epam.kurguz.entity.User" scope="application"/>
-    Пользователь: <%= user.getUserName()%><br>
+
     <a href="login" class="c">Выйти</a>
     <div class="dropdown-menu">
         <form class="form-horizontal loginFrm">

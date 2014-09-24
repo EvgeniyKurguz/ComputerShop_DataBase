@@ -6,14 +6,13 @@ import com.epam.kurguz.entity.Product;
 import com.epam.kurguz.exception.DaoException;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 
 public class H2ProductDao extends JDBCDao implements ProductDao {
-   public H2ProductDao(Connection connection){
-       super(connection);
-   }
+    public H2ProductDao(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public Product findByProductName(String lastName) throws DaoException {
@@ -41,7 +40,7 @@ public class H2ProductDao extends JDBCDao implements ProductDao {
     }
 
     @Override
-    public void insert(Product entityToCreate) throws DaoException, SQLException {
+    public void insert(Product entityToCreate) throws DaoException {
 
     }
 

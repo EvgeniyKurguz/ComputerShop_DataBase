@@ -8,15 +8,14 @@ import com.epam.kurguz.dao.h2.H2DaoFactory;
 import com.epam.kurguz.entity.Client;
 import com.epam.kurguz.exception.ActionException;
 import com.epam.kurguz.exception.DaoException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ThrowFromFinallyBlock")
 public class ShowClientTableAction implements Action {
-    public static final Logger LOGGER = LoggerFactory.getLogger(ShowClientTableAction.class);
+
     public static final int DEFAULT_PAGE_NUMBER = 0;
     public static final int DEFAULT_ROWS_COUNT = 10;
     private ActionResult clientTable = new ActionResult("clientTable");
@@ -63,14 +62,18 @@ public class ShowClientTableAction implements Action {
             daoManager.commit();
         } catch (DaoException e) {
             try {
-                daoManager.rollBack();
-            request.setAttribute("EditClientError", "Edit client error");
+                if (daoManager != null) {
+                    daoManager.rollBack();
+                }
+                request.setAttribute("EditClientError", "Edit client error");
             } catch (DaoException exception) {
                 throw new ActionException(exception);
             }
         } finally {
             try {
-                daoManager.close();
+                if (daoManager != null) {
+                    daoManager.close();
+                }
             } catch (DaoException e) {
                 throw new ActionException(e);
             }

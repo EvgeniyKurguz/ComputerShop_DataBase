@@ -4,6 +4,7 @@ package com.epam.kurguz.action.table;
 import com.epam.kurguz.action.Action;
 import com.epam.kurguz.action.ActionResult;
 import com.epam.kurguz.dao.ClientDao;
+import com.epam.kurguz.dao.DaoFactory;
 import com.epam.kurguz.dao.DaoManager;
 import com.epam.kurguz.dao.h2.H2DaoFactory;
 import com.epam.kurguz.entity.Client;
@@ -18,35 +19,27 @@ public class DeleteClientAction implements Action {
     @Override
     public ActionResult execute(HttpServletRequest request) throws ActionException {
         String delete = request.getParameter("delete");
-
-        H2DaoFactory factory = null;
-        try {
-            factory = new H2DaoFactory();
-        } catch (DaoException e) {
-            throw new ActionException(e);
-        }
         DaoManager daoManager = null;
         try {
+            DaoFactory factory = H2DaoFactory.getInstance();
             daoManager = factory.getDaoManager();
-        } catch (DaoException e) {
-            throw new ActionException(e);
-        }
-        ClientDao clientDao = null;
-        try {
-            clientDao = daoManager.getClientDao();
-        } catch (DaoException e) {
-            throw new ActionException(e);
-        }
-        if (delete != null) {
-            Client findClient = null;
-            try {
+            ClientDao clientDao = daoManager.getClientDao();
+            if (delete != null) {
                 int id = Integer.parseInt(delete);
-                findClient = clientDao.findById(id);
-            } catch (DaoException e) {
-                throw new ActionException(e);
-            }
-            try {
+                Client findClient = clientDao.findById(id);
                 clientDao.deleteById(findClient);
+            }
+            daoManager.commit();
+        } catch (DaoException e){
+            try {
+                daoManager.rollBack();
+                request.setAttribute("DeleteClientError", "Delete client error");
+            } catch (DaoException exception) {
+                throw new ActionException(exception);
+            }
+        }finally {
+            try {
+                daoManager.close();
             } catch (DaoException e) {
                 throw new ActionException(e);
             }
@@ -54,5 +47,3 @@ public class DeleteClientAction implements Action {
         return deleteClient;
     }
 }
-
-

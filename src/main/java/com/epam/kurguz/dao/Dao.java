@@ -3,11 +3,9 @@ package com.epam.kurguz.dao;
 
 import com.epam.kurguz.exception.DaoException;
 
-import java.sql.SQLException;
-
 public interface Dao<T> {
 
-    void insert(T entityToCreate) throws DaoException, SQLException;
+    void insert(T entityToCreate) throws DaoException;
 
     T findById(int id) throws DaoException;
 

@@ -7,14 +7,14 @@
     <script type='text/javascript' src='<c:url value="webjars/jquery/2.0.3/jquery.min.js"/>'></script>
     <script type='text/javascript' src='<c:url value="webjars/bootstrap/3.0.0/js/bootstrap.min.js"/>'></script>
 
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../static/css/bootstrap.css" rel="stylesheet" media="screen">
 
-    <link rel="stylesheet" href="../static/style/style.css">
 </head>
 <body>
+
 <h3>Добавление клиента</h3>
 
-<form method="post" class="form-horizontal" role="form">
+<form method="post" class="bdrform_tabl" role="form">
     <div class="form-group">
         <label for="firstName" class="col-sm-2 control-label">First Name</label>
 
@@ -43,7 +43,13 @@
             <input type="text" class="form-control" id="phone" name="phone" value="" placeholder="">
         </div>
     </div>
+    <div class="form-group">
+        <label for="attestationNumber" class="col-sm-2 control-label">Attestation_Number</label>
 
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="attestationNumber" name="attestationNumber" value="" placeholder="">
+        </div>
+    </div>
     <div class="form-group">
         <label for="email" class="col-sm-2 control-label">Email</label>
 
@@ -71,19 +77,18 @@
         <div class="col-sm-10">
 
             <select name="city" id="city" class="fld">
-                <option value="1">Астана</option>
-                <option value="2">Москва</option>
+                <option value="1">Astana</option>
+                <option value="2">Moscow</option>
             </select>
-                 </div>
+        </div>
     </div>
     <div class="form-group">
         <label for="country" class="col-sm-2 control-label">Country</label>
 
         <div class="col-sm-10">
             <select name="country" id="country" class="fld">
-                <option value="1">Казахстан</option>
-                <option value="2">Россия</option>
-
+                <option value="1">Kazakhstan</option>
+                <option value="2">Russia</option>
             </select>
         </div>
     </div>
@@ -91,13 +96,13 @@
         <input type="text" style="display: none" class="form-control" id="" name="account" value="0" placeholder="">
     </div>
     <option value="CLIENT"></option>
-        <div class="form-group">
+    <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn">Save</button>
-
         </div>
     </div>
 </form>
+
 </body>
 </html>
 
