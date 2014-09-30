@@ -1,6 +1,6 @@
 package com.epam.kurguz.entity;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Product extends BaseEntity {
@@ -8,8 +8,11 @@ public class Product extends BaseEntity {
     private String name;
     private String maker;
     private String model;
-
-    List<Product> productList = new ArrayList<Product>();
+    private int weight;
+    private int quantity;
+    private BigDecimal price;
+    private List<PropertyValue> propertyValueList;
+    private boolean blocked;
 
     public Product() {
     }
@@ -18,10 +21,15 @@ public class Product extends BaseEntity {
         super(id);
     }
 
-    public Product(int id, String name, String maker, String model) {
+    public Product(int id, String name, String maker, String model, BigDecimal price, int weight, int quantity, boolean blocked) {
+        super(id);
         this.name = name;
         this.maker = maker;
         this.model = model;
+        this.price = price;
+        this.weight = weight;
+        this.quantity = quantity;
+        this.blocked = blocked;
     }
 
     public String getName() {
@@ -32,12 +40,44 @@ public class Product extends BaseEntity {
         this.name = name;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public int getWeight() {
+        return weight;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public List<PropertyValue> getPropertyValueList() {
+        return propertyValueList;
+    }
+
+    public void setPropertyValueList(List<PropertyValue> propertyValueList) {
+        this.propertyValueList = propertyValueList;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
 
     public String getMaker() {
@@ -59,9 +99,14 @@ public class Product extends BaseEntity {
     @Override
     public String toString() {
         return "Product{" +
-                "productName='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", maker='" + maker + '\'' +
                 ", model='" + model + '\'' +
+                ", weight=" + weight +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", propertyValueList=" + propertyValueList +
+                ", blocked=" + blocked +
                 '}';
     }
 
@@ -70,6 +115,11 @@ public class Product extends BaseEntity {
         private String name;
         private String maker;
         private String model;
+        private int weight;
+        private int quantity;
+        private BigDecimal price;
+        private List<PropertyValue> propertyValueList;
+        private boolean blocked;
 
 
         public Builder id(int id) {
@@ -79,6 +129,26 @@ public class Product extends BaseEntity {
 
         public Builder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public Builder weight(int weight) {
+            this.weight = weight;
+            return this;
+        }
+
+        public Builder price(BigDecimal price) {
+            this.price = price;
+            return this;
+        }
+
+        public Builder quantity(int quantity) {
+            this.quantity = quantity;
+            return this;
+        }
+
+        public Builder propertyList(List<PropertyValue> propertyValueList) {
+            this.propertyValueList = propertyValueList;
             return this;
         }
 
@@ -92,14 +162,21 @@ public class Product extends BaseEntity {
             return this;
         }
 
+        public Builder blocked(boolean blocked) {
+            this.blocked = blocked;
+            return this;
+        }
+
         public Product build() {
             return new Product(id,
                     name,
                     maker,
-                    model);
-        }
-
-        ;
+                    model,
+                    price,
+                    weight,
+                    quantity,
+                    blocked);
+        };
     }
 
 
