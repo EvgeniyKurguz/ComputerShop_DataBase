@@ -12,19 +12,37 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class H2ClientDao extends JDBCDao implements ClientDao {
+public class H2ClientDao extends JDBCDao<Client> implements ClientDao {
     private static final String JOIN = "inner join ROLE on client.role_id = ROLE.ID" +
             " inner join CITY on client.city_id = CITY.ID" +
             " inner join COUNTRY on client.country_id = COUNTRY.ID";
     public static final String FIND_BY_ACCOUNT = "SELECT * FROM client " + JOIN + " WHERE client.ACCOUNT=?";
     private static final String FIND_BY_ID = "SELECT * FROM client " + JOIN + " WHERE client.ID=?";
-    private static final String FIND_BY_LASTNAME = "SELECT * FROM client " + JOIN + " WHERE LASTNAME=?";
-    private static final String FIND_BY_EMAIL = "SELECT * FROM client " + JOIN + " WHERE EMAIL=?";
-    private static final String FIND_BY_USERNAME = "SELECT * FROM client " + JOIN + " WHERE USERNAME=?";
+    private static final String FIND_BY_LASTNAME = "SELECT * FROM client " + JOIN +
+            " WHERE LASTNAME=? AND client.is_blocked='FALSE'";
+    private static final String FIND_BY_FIRST_NAME = "SELECT * FROM client " + JOIN +
+            " WHERE firstname=? AND client.is_blocked='FALSE'";
+    private static final String FIND_BY_EMAIL = "SELECT * FROM client " + JOIN +
+            " WHERE EMAIL=? AND client.is_blocked='FALSE'";
+    private static final String FIND_BY_USERNAME = "SELECT * FROM client " + JOIN +
+            " WHERE USERNAME=? AND client.is_blocked='FALSE'";
+    private static final String FIND_BY_BIRTH = "SELECT * FROM client " + JOIN +
+            " WHERE birth=? AND client.is_blocked='FALSE'";
+    private static final String FIND_BY_ATTESTATION_NUMBER = "SELECT * FROM client " + JOIN +
+            " WHERE attestation_number=? AND client.is_blocked='FALSE'";
+    private static final String FIND_BY_CITY = "SELECT * FROM client " + JOIN +
+            " WHERE city=? AND client.is_blocked='FALSE'";
+    private static final String FIND_BY_COUNTRY = "SELECT * FROM client " + JOIN +
+            " WHERE country=? AND client.is_blocked='FALSE'";
+    private static final String FIND_BY_PHONE = "SELECT * FROM client " + JOIN +
+            " WHERE phone=? AND client.is_blocked='FALSE'";
     private static final String FIND_CLIENT_BY_USERNAME_AND_PASSWORD = "SELECT * FROM client " + JOIN +
             " WHERE USERNAME = ? and PASSWORD = ?";
     private static final String GET_CLIENT_LIST = "SELECT * FROM client " + JOIN + " WHERE client.is_blocked='FALSE'";
-    private static final String FIND_RANGE = "SELECT * FROM CLIENT " + JOIN + " where not is_blocked ORDER BY ID LIMIT ? OFFSET ?";
+    private static final String GET_CLIENT_LIST_BY_ID = "SELECT * FROM client " + JOIN + " " +
+            "WHERE client.is_blocked='FALSE' AND client.id = ?";
+    private static final String FIND_RANGE = "SELECT * FROM CLIENT " + JOIN + " " +
+            "where not is_blocked ORDER BY ID LIMIT ? OFFSET ?";
     private static final String DELETE_BY_ID = "UPDATE client SET is_blocked = 'TRUE' WHERE ID = ?";
     private static final String DELETE_BY_EMAIL = "DELETE FROM client WHERE EMAIL=?";
     private static final String DELETE_BY_LASTNAME = "DELETE FROM client WHERE LASTNAME=?";
@@ -37,6 +55,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
     private static final String UPDATE_ACCOUNT = "UPDATE  client SET ACCOUNT=? WHERE ID=?";
     private static final String CREATE_CLIENT = "INSERT INTO client VALUES (default, ?, ?, ?, ?, ?, ?, ?, ?," +
             " (select id from role where role = ?), ?,?,0,false)";
+    private static final String GET_COUNT =  "SELECT COUNT(*) FROM client";
     private static final String ID = "id";
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
@@ -54,8 +73,23 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
 
     public H2ClientDao(Connection connection) {
         super(connection);
-        this.connection = connection;
     }
+
+    @Override
+    public String getSelectRequest() throws DaoException {
+        return GET_CLIENT_LIST;
+    }
+
+    @Override
+    public String getSelectCount() throws DaoException {
+        return GET_COUNT;
+    }
+
+    @Override
+    public String getSelectRequestByRange() throws DaoException {
+        return FIND_RANGE;
+    }
+
 
     @Override
     public void update(Client client) throws DaoException {
@@ -104,6 +138,10 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
             preparedStatement.setString(9, String.valueOf(client.getRole()));
             preparedStatement.setString(10, client.getCity());
             preparedStatement.setString(11, client.getCountry());
+//            preparedStatement.setBoolean(12, client.isBlocked());
+//            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+//            int anInt = generatedKeys.getInt(1);
+//            preparedStatement.setInt(anInt, client.getId());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -116,14 +154,13 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID)) {
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
-            return getClientFromResultSet(resultSet);
+            return getFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
             DaoHelper.closeResultSet(resultSet);
         }
     }
-
 
     @Override
     public Client findByAccount(BigDecimal account) throws DaoException {
@@ -131,7 +168,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ACCOUNT)) {
             preparedStatement.setBigDecimal(1, account);
             resultSet = preparedStatement.executeQuery();
-            return getClientFromResultSet(resultSet);
+            return getFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
@@ -140,17 +177,116 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
     }
 
     @Override
-    public Client findByLastName(String lastName) throws DaoException {
+    public List<Client> findByBirth(Date birth) throws DaoException {
+        List<Client> clients = new ArrayList<>();
         ResultSet resultSet = null;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_LASTNAME)) {
-            preparedStatement.setString(1, lastName);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_BIRTH)) {
+            preparedStatement.setString(1, String.valueOf(birth));
             resultSet = preparedStatement.executeQuery();
-            return getClientFromResultSet(resultSet);
+            while (resultSet.next()) {
+                clients.add(createEntity(resultSet));
+            }        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            DaoHelper.closeResultSet(resultSet);
+        }
+        return clients;
+    }
+
+    @Override
+    public Client findByPhone(String phone) throws DaoException {
+        ResultSet resultSet = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_PHONE)) {
+            preparedStatement.setString(1, phone);
+            resultSet = preparedStatement.executeQuery();
+            return getFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
             DaoHelper.closeResultSet(resultSet);
         }
+    }
+
+    @Override
+    public Client findByAttestationNumber(int attestationNumber) throws DaoException {
+        ResultSet resultSet = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ATTESTATION_NUMBER)) {
+            preparedStatement.setInt(1, attestationNumber);
+            resultSet = preparedStatement.executeQuery();
+            return getFromResultSet(resultSet);
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            DaoHelper.closeResultSet(resultSet);
+        }
+    }
+
+    @Override
+    public List<Client> findByCity(String city) throws DaoException {
+        List<Client> clients = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_CITY)) {
+            preparedStatement.setString(1, city);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                clients.add(createEntity(resultSet));
+            }        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            DaoHelper.closeResultSet(resultSet);
+        }
+        return clients;
+    }
+
+    @Override
+    public List<Client> findByCountry(String country) throws DaoException {
+        List<Client> clients = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_COUNTRY)) {
+            preparedStatement.setString(1, country);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                clients.add(createEntity(resultSet));
+            }        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            DaoHelper.closeResultSet(resultSet);
+        }
+        return clients;
+    }
+
+    @Override
+    public List<Client> findByLastName(String lastName) throws DaoException {
+        List<Client> clients = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_LASTNAME)) {//TODO переделать на Last name и first name
+            preparedStatement.setString(1, lastName);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                clients.add(createEntity(resultSet));
+            }        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            DaoHelper.closeResultSet(resultSet);
+        }
+        return clients;
+    }
+
+    @Override
+    public List<Client> findByFirstName(String firstName) throws DaoException {
+        List<Client> clients = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_FIRST_NAME)) {
+            preparedStatement.setString(1, firstName);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                clients.add(createEntity(resultSet));
+            }        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            DaoHelper.closeResultSet(resultSet);
+        }
+        return clients;
     }
 
     @Override
@@ -159,7 +295,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_EMAIL)) {
             preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
-            return getClientFromResultSet(resultSet);
+            return getFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
@@ -173,7 +309,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_USERNAME)) {
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
-            return getClientFromResultSet(resultSet);
+            return getFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
@@ -218,7 +354,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
             List<Client> clients = new ArrayList<>();
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                clients.add(createClient(resultSet));
+                clients.add(createEntity(resultSet));
             }
             return clients;
         } catch (SQLException e) {
@@ -227,6 +363,24 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
             DaoHelper.closeResultSet(resultSet);
         }
     }
+//
+//    @Override
+//    public List<Client> getClientListById() throws DaoException {
+//        ResultSet resultSet = null;
+//        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_CLIENT_LIST_BY_ID)) {
+//            List<Client> clients = new ArrayList<>();
+//            pre
+//            resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                clients.add(createEntity(resultSet));
+//            }
+//            return clients;
+//        } catch (SQLException e) {
+//            throw new DaoException(e);
+//        } finally {
+//            DaoHelper.closeResultSet(resultSet);
+//        }
+//    }
 
     @Override
     public Client findClientByUsernameAndPassword(String username, String password) throws DaoException {
@@ -235,7 +389,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
-            return getClientFromResultSet(resultSet);
+            return getFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
@@ -258,25 +412,7 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
     }
 
     @Override
-    public List<Client> findRange(int limit, int offset) throws DaoException {
-        ResultSet resultSet = null;
-        List<Client> result = new ArrayList<>();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_RANGE)) {
-            preparedStatement.setInt(1, offset);
-            preparedStatement.setInt(2, limit);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                result.add(createClient(resultSet));
-            }
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        } finally {
-            DaoHelper.closeResultSet(resultSet);
-        }
-        return result;
-    }
-
-    private Client getClientFromResultSet(ResultSet resultSet) throws DaoException {
+    public Client getFromResultSet(ResultSet resultSet) throws DaoException {
         Client client = null;
         try {
             if (resultSet.next()) {
@@ -302,7 +438,8 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
         return client;
     }
 
-    private Client createClient(ResultSet resultSet) throws DaoException {
+    @Override
+    public Client createEntity(ResultSet resultSet) throws DaoException {
         try {
             int id = resultSet.getInt(ID);
             String firstName = resultSet.getString(FIRST_NAME);
@@ -338,4 +475,5 @@ public class H2ClientDao extends JDBCDao implements ClientDao {
             throw new DaoException(e);
         }
     }
+
 }

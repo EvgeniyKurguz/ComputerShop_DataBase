@@ -12,8 +12,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("JpaQueryApiInspection")
-public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
+public class H2EmployeeDao extends JDBCDao<Employee> implements EmployeeDao {
+
     private static final String JOIN = " inner join SEPARATION on employee.separation_id = SEPARATION.ID" +
             " inner join ROLE on employee.role_id = ROLE.ID";
     private static final String UPDATE_LASTNAME = "UPDATE employee SET LASTNAME = ? " + JOIN + " WHERE ID = ?";
@@ -23,6 +23,8 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
             " WHERE USERNAME =? and PASSWORD =?";
     private static final String FIND_BY_USERNAME = "SELECT * FROM employee " + JOIN + " WHERE USERNAME=?";
     private static final String FIND_BY_ID = "SELECT * FROM employee " + JOIN + " WHERE employee.ID=?";
+    private static final String FIND_RANGE = "SELECT * FROM employee " + JOIN + "" +
+            " where not is_blocked ORDER BY ID LIMIT ? OFFSET ?";
     private static final String UPDATE = "UPDATE  employee" +
             " SET FIRSTNAME = ?, LASTNAME = ?, BIRTH = ?, PHONE = ?, ATTESTATION_NUMBER= ?, EMAIL= ?," +
             "role_id=(select id from ROLE where ROLE = ?),separation_id=(select id from SEPARATION where SEPARATION = ?)," +
@@ -30,10 +32,10 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
     private static final String DELETE_EMPLOYEE = "DELETE FROM employee WHERE ID= ?";
     private static final String DELETE_BY_LASTNAME = "DELETE FROM employee WHERE LASTNAME=?";
     private static final String FIND_BY_LASTNAME = "SELECT * FROM employee WHERE LASTNAME=?";
-    private static final String FIND_RANGE = "SELECT * FROM CLIENT " + JOIN + " where not is_blocked ORDER BY ID LIMIT ? OFFSET ?";
     private static final String CREATE_EMPLOYEE = "INSERT INTO  employee VALUES (default, ?, ?, ?, ?, ?, ?," +
             "(select id from role where role = ?), ?, ?, ?)";
     private static final String GET_EMPLOYEE_LIST = "SELECT * FROM employee";
+    private static final String GET_RECORDS_COUNT = "SELECT COUNT(*) FROM employee";
     private static final String ID = "id";
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
@@ -49,7 +51,21 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
 
     public H2EmployeeDao(Connection connection) {
         super(connection);
-        this.connection = connection;
+    }
+
+    @Override
+    public String getSelectRequest() throws DaoException {
+        return null;
+    }
+
+    @Override
+    public String getSelectCount() throws DaoException {
+        return null;
+    }
+
+    @Override
+    public String getSelectRequestByRange() throws DaoException {
+        return null;
     }
 
     @Override
@@ -72,42 +88,12 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
     }
 
     @Override
-    public void updateAccount(Employee employee) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement( UPDATE_BY_ACCOUNT)) {
-            preparedStatement.setBigDecimal(1, employee.getAccount());
-            preparedStatement.setInt(2, employee.getId());
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-    }
-
-      @Override
-    public List<Employee> findRange(int limit, int offset) throws DaoException {
-        ResultSet resultSet = null;
-        List<Employee> result = new ArrayList<>();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_RANGE)) {
-            preparedStatement.setInt(1, offset);
-            preparedStatement.setInt(2, limit);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                result.add(createEmployee(resultSet));
-            }
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        } finally {
-            DaoHelper.closeResultSet(resultSet);
-        }
-        return result;
-    }
-
-    @Override
     public Employee findByLastName(String lastName) throws DaoException {
         ResultSet resultSet = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_LASTNAME)) {
             preparedStatement.setString(1, lastName);
             resultSet = preparedStatement.executeQuery();
-            return getEmployeeFromResultSet(resultSet);
+            return getFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
@@ -121,7 +107,7 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID)) {
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
-            return getEmployeeFromResultSet(resultSet);
+            return getFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
@@ -177,7 +163,7 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
             List<Employee> employees = new ArrayList<>();
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                employees.add(createEmployee(resultSet));
+                employees.add(createEntity(resultSet));
             }
             return employees;
         } catch (SQLException e) {
@@ -194,10 +180,10 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
-            return getEmployeeFromResultSet(resultSet);
+            return getFromResultSet(resultSet);
         } catch (SQLException e) {
             throw new DaoException(e);
-        }finally {
+        } finally {
             DaoHelper.closeResultSet(resultSet);
         }
     }
@@ -205,18 +191,19 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
     @Override
     public boolean employeeLoginIsOccupied(String username) throws DaoException {
         ResultSet resultSet = null;
-        try (      PreparedStatement      preparedStatement = connection.prepareStatement(FIND_BY_USERNAME)        ){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_USERNAME)) {
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
             throw new DaoException(e);
-        }finally {
+        } finally {
             DaoHelper.closeResultSet(resultSet);
         }
     }
 
-    private Employee createEmployee(ResultSet resultSet) throws DaoException {
+    @Override
+    public Employee createEntity(ResultSet resultSet) throws DaoException {
         try {
             int id = resultSet.getInt(ID);
             String firstName = resultSet.getString(FIRST_NAME);
@@ -249,7 +236,8 @@ public class H2EmployeeDao extends JDBCDao implements EmployeeDao {
         }
     }
 
-    private Employee getEmployeeFromResultSet(ResultSet resultSet) throws DaoException {
+    @Override
+    public Employee getFromResultSet(ResultSet resultSet) throws DaoException {
         Employee employee = null;
         try {
             if (resultSet.next()) {

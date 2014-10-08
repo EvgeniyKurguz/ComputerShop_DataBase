@@ -31,7 +31,7 @@ public class H2DaoManager implements DaoManager {
         return new H2ProductDao(connection);
     }
 
-    public OrderDao getBookingDao() {
+    public OrderDao getOrderDao() {
         return new H2OrderDao (connection);
     }
 

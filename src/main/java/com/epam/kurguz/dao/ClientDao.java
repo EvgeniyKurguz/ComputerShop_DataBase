@@ -4,11 +4,14 @@ import com.epam.kurguz.entity.Client;
 import com.epam.kurguz.exception.DaoException;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.List;
 
 public interface ClientDao extends Dao<Client> {
 
-    Client findByLastName(String lastName) throws DaoException;
+    List<Client> findByLastName(String lastName) throws DaoException;
+
+    List<Client> findByFirstName(String firstName) throws DaoException;
 
     Client findByEmail(String email) throws DaoException;
 
@@ -24,10 +27,17 @@ public interface ClientDao extends Dao<Client> {
 
     boolean clientLoginIsOccupied(String username) throws DaoException;
 
-    List<Client> findRange(int position, int count) throws DaoException;
-
     void updateAccount(Client client) throws DaoException;
 
     Client findByAccount(BigDecimal account) throws DaoException;
 
+    List<Client> findByBirth(Date birth) throws DaoException;
+
+    Client findByPhone(String phone) throws DaoException;
+
+    Client findByAttestationNumber(int attestationNumber) throws DaoException;
+
+    List<Client> findByCity(String city) throws DaoException;
+
+    List<Client> findByCountry(String country) throws DaoException;
 }

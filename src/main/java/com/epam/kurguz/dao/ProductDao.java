@@ -2,25 +2,32 @@ package com.epam.kurguz.dao;
 
 
 import com.epam.kurguz.entity.Product;
+import com.epam.kurguz.entity.PropertyValue;
 import com.epam.kurguz.exception.DaoException;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 public interface ProductDao extends Dao<Product> {
-    Product findByName(String name) throws DaoException;
+    String getSelectRequest() throws DaoException;
 
-    Product findByMaker(String maker) throws DaoException;
+    String getSelectCount() throws DaoException;
 
-    Product findByModel(String model) throws DaoException;
+    String getSelectRequestByRange() throws DaoException;
 
-    void deleteByName(Product product) throws DaoException;
+    Product findByName(String lastName) throws DaoException;
 
-    void setDeleteByMaker(Product product) throws DaoException;
+    Product findByProducer(String username) throws DaoException;
 
-    void setDeleteByModel(Product product) throws DaoException;
+    void deleteByProductName(Product client) throws DaoException;
 
-    List<Product> findRange(int limit, int offset) throws DaoException;
+    void deleteByProducer(Product client) throws DaoException;
 
     List<Product> getProductList() throws DaoException;
 
+    List<PropertyValue> findByPropertyNameAndCategory(String propertyName, String category) throws DaoException;
+
+    Product createEntity(ResultSet resultSet) throws DaoException;
+
+    Product getFromResultSet(ResultSet resultSet) throws DaoException;
 }

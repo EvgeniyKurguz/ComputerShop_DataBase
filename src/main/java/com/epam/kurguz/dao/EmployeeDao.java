@@ -8,10 +8,6 @@ import java.util.List;
 
 public interface EmployeeDao extends Dao<Employee> {
 
-    void updateAccount(Employee employee) throws DaoException;
-
-    List<Employee> findRange(int limit, int offset) throws DaoException;
-
     Employee findByLastName(String lastName) throws DaoException;
 
     void deleteByLastName(Employee employee) throws DaoException;

@@ -7,15 +7,16 @@ import java.sql.Connection;
 
 public interface DaoManager {
 
+
     Connection getConnection() throws DaoException;
 
     ClientDao getClientDao() throws DaoException;
 
     EmployeeDao getEmployeeDao() throws DaoException;
 
-    ProductDao getProductDao() throws DaoException;
+    OrderDao getOrderDao() throws DaoException;
 
-    OrderDao getBookingDao() throws DaoException;
+    ProductDao getProductDao() throws DaoException;
 
     UserDao getUserDao() throws DaoException;
 
