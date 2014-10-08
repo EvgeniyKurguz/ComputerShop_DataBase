@@ -3,8 +3,8 @@ package com.epam.kurguz.entity;
 public class PropertyValue extends BaseEntity {
     private String name;
     private String value;//добавляет сущность хранящую список значений - values.
-
     //все доступные знач-я
+
     public PropertyValue() {
     }
 
